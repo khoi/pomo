@@ -29,9 +29,17 @@ struct ActivityRing: View {
 }
 
 struct ActivityRing_Previews: PreviewProvider {
-    @State static var progress: CGFloat = 0.5
+    @State static var empty: CGFloat = 0
+    @State static var halfFull: CGFloat = 0.5
+    @State static var full: CGFloat = 1
     
     static var previews: some View {
-        ActivityRing(progress: $progress)
+        Group {
+            ActivityRing(progress: $empty)
+            ActivityRing(progress: $halfFull)
+            ActivityRing(progress: $full)
+            
+        }
+        .previewLayout(PreviewLayout.fixed(width: 300, height: 300))
     }
 }
