@@ -22,6 +22,7 @@ struct ActivityRing: View {
                 .trim(from: 0, to: progress)
                 .stroke(Color.pink, style: StrokeStyle(lineWidth: 10, lineCap: .round, dashPhase: 0))
                 .rotationEffect(.degrees(-90))
+                .animation(Animation.default)
             
         }
         

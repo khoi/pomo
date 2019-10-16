@@ -16,6 +16,7 @@
 		D659A03F235059C0000767CC /* pomoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A03E235059C0000767CC /* pomoUITests.swift */; };
 		D659A04E2351F920000767CC /* ActivityRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A04D2351F920000767CC /* ActivityRing.swift */; };
 		D6893FE623570EB70045781F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6893FE523570EB70045781F /* Home.swift */; };
+		D6893FE8235713720045781F /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6893FE7235713720045781F /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D659A040235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D659A04D2351F920000767CC /* ActivityRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRing.swift; sourceTree = "<group>"; };
 		D6893FE523570EB70045781F /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		D6893FE7235713720045781F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				D659A027235059C0000767CC /* LaunchScreen.storyboard */,
 				D659A02A235059C0000767CC /* Info.plist */,
 				D659A024235059C0000767CC /* Preview Content */,
+				D6893FE7235713720045781F /* AppState.swift */,
 			);
 			path = pomo;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
+				D6893FE8235713720045781F /* AppState.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D6893FE623570EB70045781F /* Home.swift in Sources */,
 				D659A04E2351F920000767CC /* ActivityRing.swift in Sources */,

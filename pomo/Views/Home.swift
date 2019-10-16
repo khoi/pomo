@@ -9,29 +9,38 @@
 import SwiftUI
 
 struct Home: View {
-    @State var progress: CGFloat = 0.75
+    @ObservedObject var state: AppState
     @State var isShowingSettings = false
     
     var body: some View {
         VStack {
-            Button(action: {
-                self.isShowingSettings = true
-            }) {
-                Image(systemName: "gear").imageScale(.large)
-            }
-            ActivityRing(progress: $progress)
+                Button(action: {
+                    self.isShowingSettings = true
+                }) {
+                    Image(systemName: "gear").imageScale(.large)
+                }
+                
+                Button(action: {
+                    self.state.progress = CGFloat.random(in: 0...1)
+                }) {
+                    Text("Random Progress")
+                }
+               
+                
+            
+            ActivityRing(progress: self.$state.progress)
         }
         .sheet(isPresented: $isShowingSettings, onDismiss: {
             self.isShowingSettings = false
         }) {
             Text("Settings screen")
         }
-    
+        
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(state: AppState())
     }
 }
