@@ -15,6 +15,7 @@
 		D659A034235059C0000767CC /* pomoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A033235059C0000767CC /* pomoTests.swift */; };
 		D659A03F235059C0000767CC /* pomoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A03E235059C0000767CC /* pomoUITests.swift */; };
 		D659A04E2351F920000767CC /* ActivityRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A04D2351F920000767CC /* ActivityRing.swift */; };
+		D6893FE623570EB70045781F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6893FE523570EB70045781F /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D659A03E235059C0000767CC /* pomoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pomoUITests.swift; sourceTree = "<group>"; };
 		D659A040235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D659A04D2351F920000767CC /* ActivityRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRing.swift; sourceTree = "<group>"; };
+		D6893FE523570EB70045781F /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				D659A04D2351F920000767CC /* ActivityRing.swift */,
+				D6893FE523570EB70045781F /* Home.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
+				D6893FE623570EB70045781F /* Home.swift in Sources */,
 				D659A04E2351F920000767CC /* ActivityRing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
