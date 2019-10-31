@@ -7,9 +7,18 @@
 //
 
 import Foundation
-import CoreGraphics
-import Combine
 
-class AppState: ObservableObject {
-    @Published var progress: CGFloat = 0.75
+struct AppState {
+  var started: NSDate?
+}
+
+enum AppAction {
+  case startTimer
+}
+
+func appReducer(state: inout AppState, action: AppAction) {
+  switch action {
+  case .startTimer:
+    state.started = NSDate()
+  }
 }
