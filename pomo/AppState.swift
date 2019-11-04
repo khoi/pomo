@@ -11,11 +11,13 @@ import Foundation
 struct AppState {
   var started: Date?
   var defaultDuration: TimeInterval = TimeInterval(1 * 30)
+  var activityLogs = [String]()
 }
 
 enum AppMutation {
   case startTimer
   case stopTimer
+  case addActivityLogs(String)
 }
 
 enum AppAction {
@@ -29,18 +31,28 @@ func appMutator(state: inout AppState, mutation: AppMutation) {
     state.started = Date()
   case .stopTimer:
     state.started = nil
+  case .addActivityLogs(let log):
+    state.activityLogs.append(log)
   }
 }
 
-func appDispatcher(action: AppAction, commit: @escaping (AppMutation) -> Void) -> Effect?  {
+func startTimer() -> Effect<String> {
+  return Effect { callback in
+    callback("Yolo")
+  }
+}
+
+func appDispatcher(action: AppAction) -> [Effect<AppMutation>]  {
   switch action {
   case .startTimer:
-    return {
-      commit(.startTimer)
-    }
+    return [Effect { callback in
+      callback(.startTimer)
+      callback(.addActivityLogs("Start timer"))
+    }.receive(on: .main)]
   case .stopTimer:
-    return {
-      commit(.stopTimer)
-    }
+    return [Effect { callback in
+      callback(.stopTimer)
+      callback(.addActivityLogs("Stop timer"))
+    }.receive(on: .main)]
   }
 }
