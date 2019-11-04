@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D605C772236A9F5F00C9C0A7 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605C771236A9F5F00C9C0A7 /* Redux.swift */; };
+		D605C772236A9F5F00C9C0A7 /* Vuex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605C771236A9F5F00C9C0A7 /* Vuex.swift */; };
 		D605C776236AA23C00C9C0A7 /* HomeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605C775236AA23C00C9C0A7 /* HomeContainer.swift */; };
 		D659A01D235059BF000767CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01C235059BF000767CC /* AppDelegate.swift */; };
 		D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01E235059BF000767CC /* SceneDelegate.swift */; };
@@ -38,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D605C771236A9F5F00C9C0A7 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		D605C771236A9F5F00C9C0A7 /* Vuex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vuex.swift; sourceTree = "<group>"; };
 		D605C775236AA23C00C9C0A7 /* HomeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainer.swift; sourceTree = "<group>"; };
 		D659A019235059BF000767CC /* pomo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D659A01C235059BF000767CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				D659A02A235059C0000767CC /* Info.plist */,
 				D659A024235059C0000767CC /* Preview Content */,
 				D6893FE7235713720045781F /* AppState.swift */,
-				D605C771236A9F5F00C9C0A7 /* Redux.swift */,
+				D605C771236A9F5F00C9C0A7 /* Vuex.swift */,
 			);
 			path = pomo;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 			files = (
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D6893FE8235713720045781F /* AppState.swift in Sources */,
-				D605C772236A9F5F00C9C0A7 /* Redux.swift in Sources */,
+				D605C772236A9F5F00C9C0A7 /* Vuex.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D659A04E2351F920000767CC /* ActivityRing.swift in Sources */,
 				D605C776236AA23C00C9C0A7 /* HomeContainer.swift in Sources */,

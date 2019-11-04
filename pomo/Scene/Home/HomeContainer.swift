@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HomeContainer: View {
-  @EnvironmentObject var store: Store<AppState, AppAction>
+  @EnvironmentObject var store: Store<AppState, AppMutation, AppAction>
     
   @State var timeLeft: TimeInterval = 0
   
@@ -27,12 +27,12 @@ struct HomeContainer: View {
       
       if self.store.state.started == nil {
         Button("Start") {
-          self.store.send(.startTimer)
+          self.store.dispatch(.startTimer)
         }
       }
       else {
         Button("Stop") {
-          self.store.send(.stopTimer)
+          self.store.dispatch(.stopTimer)
         }
       }
     }
@@ -43,7 +43,7 @@ struct HomeContainer: View {
       }
       let timeLeft = self.store.state.defaultDuration - Date().timeIntervalSince(started)
       if timeLeft <= 0 {
-        self.store.send(.stopTimer)
+        self.store.dispatch(.stopTimer)
         return
       }
       self.timeLeft = timeLeft
@@ -70,6 +70,6 @@ struct HomeContainer: View {
 struct HomeContainerView_Previews: PreviewProvider {
   static var previews: some View {
     HomeContainer()
-      .environmentObject(Store(state: AppState(), reducer: appReducer))
+      .environmentObject(Store<AppState, AppMutation, AppAction>.init(state: AppState(), mutator: appMutator, dispatcher: appDispatcher))
   }
 }

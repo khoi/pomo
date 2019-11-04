@@ -13,16 +13,34 @@ struct AppState {
   var defaultDuration: TimeInterval = TimeInterval(1 * 30)
 }
 
+enum AppMutation {
+  case startTimer
+  case stopTimer
+}
+
 enum AppAction {
   case startTimer
   case stopTimer
 }
 
-func appReducer(state: inout AppState, action: AppAction) {
-  switch action {
+func appMutator(state: inout AppState, mutation: AppMutation) {
+  switch mutation {
   case .startTimer:
     state.started = Date()
   case .stopTimer:
     state.started = nil
+  }
+}
+
+func appDispatcher(action: AppAction, commit: @escaping (AppMutation) -> Void) -> Effect?  {
+  switch action {
+  case .startTimer:
+    return {
+      commit(.startTimer)
+    }
+  case .stopTimer:
+    return {
+      commit(.stopTimer)
+    }
   }
 }
