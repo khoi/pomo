@@ -9,15 +9,16 @@
 import Foundation
 
 typealias Mutator<State, Mutation> = (inout State, Mutation) -> Void
+typealias Dispatcher<Action, Mutation> = (Action, @escaping (Mutation) -> Void) -> Effect?
 typealias Effect = () -> Void
 
 final class Store<State, Mutation, Action>: ObservableObject {
   @Published public private(set) var state: State
   
   private let mutator: Mutator<State, Mutation>
-  private let dispatcher: (Action, @escaping (Mutation) -> Void) -> Effect?
+  private let dispatcher: Dispatcher<Action, Mutation>
   
-  init(state: State, mutator: @escaping Mutator<State, Mutation>, dispatcher: @escaping (Action, @escaping (Mutation) -> Void) -> Effect?) {
+  init(state: State, mutator: @escaping Mutator<State, Mutation>, dispatcher: @escaping Dispatcher<Action, Mutation>) {
     self.state = state
     self.mutator = mutator
     self.dispatcher = dispatcher
