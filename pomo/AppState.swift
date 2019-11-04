@@ -9,16 +9,20 @@
 import Foundation
 
 struct AppState {
-  var started: NSDate?
+  var started: Date?
+  var defaultDuration: TimeInterval = TimeInterval(1 * 30)
 }
 
 enum AppAction {
   case startTimer
+  case stopTimer
 }
 
 func appReducer(state: inout AppState, action: AppAction) {
   switch action {
   case .startTimer:
-    state.started = NSDate()
+    state.started = Date()
+  case .stopTimer:
+    state.started = nil
   }
 }
