@@ -60,7 +60,7 @@ final class Store<State, Mutation, Action>: ObservableObject {
 
 func logger<State, Mutation>(_ mutator: @escaping Mutator<State, Mutation>) -> Mutator<State, Mutation> {
   return { state, mutation in
-    print("dispatching \(mutation)")
+    print("commiting \(mutation)")
     mutator(&state, mutation)
   }
 }

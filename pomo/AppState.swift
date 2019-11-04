@@ -10,7 +10,7 @@ import Foundation
 
 struct AppState {
   var started: Date?
-  var defaultDuration: TimeInterval = TimeInterval(1 * 30)
+  var defaultDuration: TimeInterval = TimeInterval(1 * 5)
   var activityLogs = [String]()
 }
 
