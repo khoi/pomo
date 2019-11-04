@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import Combine
 
 typealias Mutator<State, Mutation> = (inout State, Mutation) -> Void
-typealias Dispatcher<Action, Mutation> = (Action) -> [Effect<Mutation>]
+
+protocol Action {
+  associatedtype Mutation
+  func mapToMutation() -> AnyPublisher<Mutation, Never>
+}
 
 public struct Effect<A> {
   public let run: (@escaping (A) -> Void) -> Void
@@ -33,27 +38,27 @@ public struct Effect<A> {
   }
 }
 
-final class Store<State, Mutation, Action>: ObservableObject {
+final class Store<State, Mutation>: ObservableObject {
   @Published public private(set) var state: State
   
   private let mutator: Mutator<State, Mutation>
-  private let dispatcher: Dispatcher<Action, Mutation>
+  private var cancellables: Set<AnyCancellable> = []
   
-  init(state: State, mutator: @escaping Mutator<State, Mutation>, dispatcher: @escaping Dispatcher<Action, Mutation>) {
+  init(state: State, mutator: @escaping Mutator<State, Mutation>) {
     self.state = state
     self.mutator = mutator
-    self.dispatcher = dispatcher
   }
   
   func commit(_ mutation: Mutation) {
     mutator(&state, mutation)
   }
   
-  func dispatch(_ action: Action) {
-    let effects = dispatcher(action)
-    effects.forEach { (effect) in
-      effect.run(self.commit)
-    }
+  func dispatch<A: Action>(_ action: A) where A.Mutation == Mutation {
+    action
+      .mapToMutation()
+      .receive(on: DispatchQueue.main)
+      .sink(receiveValue: commit)
+      .store(in: &cancellables)
   }
 }
 

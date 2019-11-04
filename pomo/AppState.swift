@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 struct AppState {
   var started: Date?
@@ -20,9 +21,28 @@ enum AppMutation {
   case addActivityLogs(String)
 }
 
-enum AppAction {
+enum AppAction: Action {
   case startTimer
   case stopTimer
+  
+  func mapToMutation() -> AnyPublisher<AppMutation, Never> {
+    switch self {
+    case .startTimer:
+      return [
+          .addActivityLogs("startTimer"),
+          .startTimer,
+        ]
+        .publisher
+        .eraseToAnyPublisher()
+    case .stopTimer:
+      return [
+          .addActivityLogs("stopTimer"),
+          .stopTimer,
+        ]
+        .publisher
+        .eraseToAnyPublisher()
+    }
+  }
 }
 
 func appMutator(state: inout AppState, mutation: AppMutation) {
@@ -33,20 +53,5 @@ func appMutator(state: inout AppState, mutation: AppMutation) {
     state.started = nil
   case .addActivityLogs(let log):
     state.activityLogs.append(log)
-  }
-}
-
-func appDispatcher(action: AppAction) -> [Effect<AppMutation>]  {
-  switch action {
-  case .startTimer:
-    return [Effect { callback in
-      callback(.startTimer)
-      callback(.addActivityLogs("Start timer"))
-    }.receive(on: .main)]
-  case .stopTimer:
-    return [Effect { callback in
-      callback(.stopTimer)
-      callback(.addActivityLogs("Stop timer"))
-    }.receive(on: .main)]
   }
 }
