@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Combine
 
 typealias Mutator<State, Mutation> = (inout State, Mutation) -> Void
 typealias Dispatcher<Action, Mutation> = (Action) -> [Effect<Mutation>]

@@ -36,12 +36,6 @@ func appMutator(state: inout AppState, mutation: AppMutation) {
   }
 }
 
-func startTimer() -> Effect<String> {
-  return Effect { callback in
-    callback("Yolo")
-  }
-}
-
 func appDispatcher(action: AppAction) -> [Effect<AppMutation>]  {
   switch action {
   case .startTimer:
