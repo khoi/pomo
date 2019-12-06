@@ -6,8 +6,8 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 typealias Mutator<State, Mutation> = (inout State, Mutation) -> Void
 
@@ -18,19 +18,19 @@ protocol Action {
 
 final class Store<State, Mutation>: ObservableObject {
   @Published public private(set) var state: State
-  
+
   private let mutator: Mutator<State, Mutation>
   private var cancellables: Set<AnyCancellable> = []
-  
+
   init(state: State, mutator: @escaping Mutator<State, Mutation>) {
     self.state = state
     self.mutator = mutator
   }
-  
+
   func commit(_ mutation: Mutation) {
     mutator(&state, mutation)
   }
-  
+
   func dispatch<A: Action>(_ action: A) where A.Mutation == Mutation {
     action
       .mapToMutation()

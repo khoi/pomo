@@ -13,36 +13,40 @@ struct HomeContainer: View {
 
   @State var timeLeft: TimeInterval = 0
 
-  private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+  private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
   var body: some View {
-    VStack(spacing: 16) {
-      ZStack {
-        ActivityRing(progress: ringProgress(timeLeft: self.timeLeft, duration: self.store.state.defaultDuration))
+    ZStack {
+      Color(appBackgroundColor)
+        .edgesIgnoringSafeArea(.all)
+      VStack(spacing: 16) {
+        Text("Work").font(.subheadline)
+          .foregroundColor(appTextColor)
+
         Text(format(duration: self.timeLeft))
           .font(.largeTitle)
+          .foregroundColor(appTextColor)
+          .padding()
+        Button(action: {
+          self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
+        }) {
+          Image(systemName: self.timerStarted ? "pause" : "play")
+            .font(.largeTitle)
+            .foregroundColor(.blue)
+        }
       }
-      .padding(16)
-
-      Button(action: {
-        self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
-      }) {
-        Image(systemName: self.timerStarted ? "pause.circle" : "play.circle")
-          .font(.largeTitle)
-          .foregroundColor(.pink)
+      .onReceive(timer) { _ in
+        guard let started = self.store.state.started else {
+          self.timeLeft = self.store.state.defaultDuration
+          return
+        }
+        let timeLeft = self.store.state.defaultDuration - Date().timeIntervalSince(started)
+        if timeLeft <= 0 {
+          self.store.dispatch(AppAction.stopTimer)
+          return
+        }
+        self.timeLeft = timeLeft
       }
-    }
-    .onReceive(timer) { _ in
-      guard let started = self.store.state.started else {
-        self.timeLeft = self.store.state.defaultDuration
-        return
-      }
-      let timeLeft = self.store.state.defaultDuration - Date().timeIntervalSince(started)
-      if timeLeft <= 0 {
-        self.store.dispatch(AppAction.stopTimer)
-        return
-      }
-      self.timeLeft = timeLeft
     }
   }
 
@@ -50,17 +54,12 @@ struct HomeContainer: View {
     store.state.started != nil
   }
 
-  func ringProgress(timeLeft: TimeInterval, duration: TimeInterval) -> CGFloat {
-    let progress = timeLeft / duration
-    return CGFloat(max(0, min(1, progress)))
-  }
-
   func format(duration: TimeInterval) -> String {
     let formatter = DateComponentsFormatter()
     formatter.allowedUnits = [.minute, .second]
     formatter.unitsStyle = .positional
     formatter.zeroFormattingBehavior = .pad
-    formatter.maximumUnitCount = 1
+    formatter.maximumUnitCount = 0
     return formatter.string(from: duration)!
   }
 }

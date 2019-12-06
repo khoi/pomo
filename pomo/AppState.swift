@@ -6,12 +6,12 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 struct AppState {
   var started: Date?
-  var defaultDuration: TimeInterval = TimeInterval(1 * 5)
+  var defaultDuration: TimeInterval = TimeInterval(1 * 25 * 60)
   var activityLogs = [String]()
 }
 
@@ -24,23 +24,23 @@ enum AppMutation {
 enum AppAction: Action {
   case startTimer
   case stopTimer
-  
+
   func mapToMutation() -> AnyPublisher<AppMutation, Never> {
     switch self {
     case .startTimer:
       return [
-          .addActivityLogs("startTimer"),
-          .startTimer,
-        ]
-        .publisher
-        .eraseToAnyPublisher()
+        .addActivityLogs("startTimer"),
+        .startTimer,
+      ]
+      .publisher
+      .eraseToAnyPublisher()
     case .stopTimer:
       return [
-          .addActivityLogs("stopTimer"),
-          .stopTimer,
-        ]
-        .publisher
-        .eraseToAnyPublisher()
+        .addActivityLogs("stopTimer"),
+        .stopTimer,
+      ]
+      .publisher
+      .eraseToAnyPublisher()
     }
   }
 }
@@ -51,7 +51,7 @@ func appMutator(state: inout AppState, mutation: AppMutation) {
     state.started = Date()
   case .stopTimer:
     state.started = nil
-  case .addActivityLogs(let log):
+  case let .addActivityLogs(log):
     state.activityLogs.append(log)
   }
 }
