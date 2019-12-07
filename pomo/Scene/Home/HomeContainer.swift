@@ -17,22 +17,22 @@ struct HomeContainer: View {
 
   var body: some View {
     ZStack {
-      Color(appBackgroundColor)
+      Color("background")
         .edgesIgnoringSafeArea(.all)
       VStack(spacing: 16) {
         Text("Work").font(.subheadline)
-          .foregroundColor(appTextColor)
+          .foregroundColor(Color("text"))
 
         Text(format(duration: self.timeLeft))
           .font(.largeTitle)
-          .foregroundColor(appTextColor)
+          .foregroundColor(Color("text"))
           .padding()
         Button(action: {
           self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
         }) {
           Image(systemName: self.timerStarted ? "pause" : "play")
             .font(.largeTitle)
-            .foregroundColor(.blue)
+            .foregroundColor(Color("zima"))
         }
       }
       .onReceive(timer) { _ in
@@ -66,7 +66,10 @@ struct HomeContainer: View {
 
 struct HomeContainerView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeContainer()
-      .environmentObject(Store<AppState, AppMutation>(state: AppState(), mutator: appMutator))
+    Group {
+      HomeContainer().environment(\.colorScheme, .light)
+      HomeContainer().environment(\.colorScheme, .dark)
+    }
+    .environmentObject(Store<AppState, AppMutation>(state: AppState(), mutator: appMutator))
   }
 }
