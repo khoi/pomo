@@ -28,11 +28,11 @@ struct HomeContainer: View {
           .font(.system(size: 50))
           .foregroundColor(Color("text"))
           .padding()
-        
+
         Button(action: {
           self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
         }) {
-          Image(systemName: self.timerStarted ? "pause" : "play")
+          Image(systemName: self.timerStarted ? "stop" : "play")
             .font(.system(size: 50))
             .foregroundColor(Color("zima"))
         }
