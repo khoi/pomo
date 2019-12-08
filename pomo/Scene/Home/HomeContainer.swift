@@ -20,18 +20,20 @@ struct HomeContainer: View {
       Color("background")
         .edgesIgnoringSafeArea(.all)
       VStack(spacing: 16) {
-        Text("Work").font(.subheadline)
+        Text("Work")
+          .font(.system(size: 30))
           .foregroundColor(Color("text"))
 
         Text(format(duration: self.timeLeft))
-          .font(.largeTitle)
+          .font(.system(size: 50))
           .foregroundColor(Color("text"))
           .padding()
+        
         Button(action: {
           self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
         }) {
           Image(systemName: self.timerStarted ? "pause" : "play")
-            .font(.largeTitle)
+            .font(.system(size: 50))
             .foregroundColor(Color("zima"))
         }
       }
@@ -71,5 +73,6 @@ struct HomeContainerView_Previews: PreviewProvider {
       HomeContainer().environment(\.colorScheme, .dark)
     }
     .environmentObject(Store<AppState, AppMutation>(state: AppState(), mutator: appMutator))
+    .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
 }
