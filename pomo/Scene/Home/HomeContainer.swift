@@ -19,22 +19,46 @@ struct HomeContainer: View {
     ZStack {
       Color("background")
         .edgesIgnoringSafeArea(.all)
-      VStack(spacing: 16) {
-        Text("Work")
-          .font(.system(size: 30))
-          .foregroundColor(Color("text"))
+      VStack {
+        Spacer()
+        VStack(spacing: 16) {
+          Text("Work")
+            .font(.system(size: 30))
+            .foregroundColor(Color("text"))
 
-        Text(format(duration: self.timeLeft))
-          .font(.system(size: 50))
-          .foregroundColor(Color("text"))
+          Text(format(duration: self.timeLeft))
+            .font(.system(size: 50))
+            .foregroundColor(Color("text"))
+            .padding()
+
+          HStack {
+            ForEach(1 ..< store.state.totalRound + 1) { i in
+              Image(systemName: i < self.store.state.currentRound ? "circle.fill" : "circle")
+                .font(.footnote)
+            }
+          }
           .padding()
 
-        Button(action: {
-          self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
-        }) {
-          Image(systemName: self.timerStarted ? "stop" : "play")
-            .font(.system(size: 50))
-            .foregroundColor(Color("zima"))
+          Button(action: {
+            self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
+          }) {
+            Image(systemName: self.timerStarted ? "stop" : "play")
+              .font(.system(size: 50))
+              .foregroundColor(Color("zima"))
+          }
+          .padding()
+        }
+        Spacer()
+        HStack {
+          Spacer()
+          Button(action: {
+            self.store.dispatch(AppAction.skip)
+          }) {
+            Image(systemName: "forward.end")
+              .font(.system(size: 30))
+              .foregroundColor(Color("zima"))
+          }
+          .padding()
         }
       }
       .onReceive(timer) { _ in
