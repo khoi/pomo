@@ -20,6 +20,17 @@ struct HomeContainer: View {
       Color("background")
         .edgesIgnoringSafeArea(.all)
       VStack {
+        HStack {
+          Spacer()
+          Button(action: {
+            self.store.dispatch(AppAction.reset)
+          }) {
+            Image(systemName: "arrow.counterclockwise")
+              .font(.system(size: 30))
+              .foregroundColor(Color("zima"))
+          }
+          .padding()
+        }
         Spacer()
         VStack(spacing: 16) {
           Text("Work")

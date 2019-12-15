@@ -23,12 +23,14 @@ enum AppMutation {
   case startTimer
   case stopTimer
   case addActivityLogs(String)
+  case resetRound
 }
 
 enum AppAction: Action {
   case startTimer
   case stopTimer
   case skip
+  case reset
 
   func mapToMutation() -> AnyPublisher<AppMutation, Never> {
     switch self {
@@ -54,6 +56,14 @@ enum AppAction: Action {
       ]
       .publisher
       .eraseToAnyPublisher()
+    case .reset:
+      return [
+        .addActivityLogs("reset"),
+        .stopTimer,
+        .resetRound,
+      ]
+      .publisher
+      .eraseToAnyPublisher()
     }
   }
 }
@@ -68,5 +78,7 @@ func appMutator(state: inout AppState, mutation: AppMutation) {
     state.activityLogs.append(log)
   case .goToNextRound:
     state.currentRound = state.currentRound == state.totalRound ? 1 : state.currentRound + 1
+  case .resetRound:
+    state.currentRound = 1
   }
 }
