@@ -114,7 +114,7 @@ struct HomeContainerView_Previews: PreviewProvider {
       HomeContainer().environment(\.colorScheme, .light)
       HomeContainer().environment(\.colorScheme, .dark)
     }
-    .environmentObject(Store<AppState, AppMutation>(state: AppState(), mutator: appMutator))
+    .environmentObject(Store<AppState, AppMutation>(state: AppState(currentRound: 3), mutator: appMutator))
     .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
 }
