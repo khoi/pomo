@@ -44,7 +44,7 @@ struct HomeContainer: View {
 
           HStack {
             ForEach(1 ..< store.state.totalRound + 1) { i in
-              Image(systemName: i < self.store.state.currentRound ? "circle.fill" : "circle")
+              Image(systemName: self.roundImageName(round: i, currentRound: self.store.state.currentRound))
                 .font(.footnote)
             }
           }
@@ -89,6 +89,13 @@ struct HomeContainer: View {
 
   var timerStarted: Bool {
     store.state.started != nil
+  }
+
+  func roundImageName(round: Int, currentRound: Int) -> String {
+    if round == currentRound {
+      return "smallcircle.fill.circle"
+    }
+    return round < currentRound ? "circle.fill" : "circle"
   }
 
   func format(duration: TimeInterval) -> String {
