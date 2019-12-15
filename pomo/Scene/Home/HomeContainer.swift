@@ -33,7 +33,7 @@ struct HomeContainer: View {
         }
         Spacer()
         VStack(spacing: 16) {
-          Text("Work")
+          Text(self.store.state.isBreak ? "Break" : "Work")
             .font(.system(size: 30))
             .foregroundColor(Color("text"))
 
@@ -43,8 +43,8 @@ struct HomeContainer: View {
             .padding()
 
           HStack {
-            ForEach(1 ..< store.state.totalRound + 1) { i in
-              Image(systemName: self.roundImageName(round: i, currentRound: self.store.state.currentRound))
+            ForEach(1 ..< store.state.workingRounds + 1) { i in
+              Image(systemName: self.roundImageName(round: i, currentRound: self.store.state.currentWorkingRound))
                 .font(.footnote)
             }
           }
@@ -63,7 +63,7 @@ struct HomeContainer: View {
         HStack {
           Spacer()
           Button(action: {
-            self.store.dispatch(AppAction.skip)
+            self.store.dispatch(AppAction.advanceToNextRound)
           }) {
             Image(systemName: "forward.end")
               .font(.system(size: 30))
@@ -79,7 +79,7 @@ struct HomeContainer: View {
         }
         let timeLeft = self.store.state.defaultDuration - Date().timeIntervalSince(started)
         if timeLeft <= 0 {
-          self.store.dispatch(AppAction.stopTimer)
+          self.store.dispatch(AppAction.advanceToNextRound)
           return
         }
         self.timeLeft = timeLeft

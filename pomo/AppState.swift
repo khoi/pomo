@@ -10,12 +10,29 @@ import Combine
 import Foundation
 
 struct AppState {
-  var defaultDuration: TimeInterval = TimeInterval(1 * 25 * 60)
-  var totalRound = 4
+  var defaultDuration: TimeInterval = TimeInterval(5)
+  var breakDureation: TimeInterval = TimeInterval(3)
+  var longBreakDuration: TimeInterval = TimeInterval(10)
 
-  var currentRound = 1
   var started: Date?
   var activityLogs = [String]()
+
+  var currentRound = 1
+  var totalRound = 8 // including breaks
+}
+
+extension AppState {
+  var currentWorkingRound: Int {
+    (currentRound + 1) / 2
+  }
+
+  var workingRounds: Int {
+    totalRound / 2
+  }
+
+  var isBreak: Bool {
+    currentRound % 2 == 0
+  }
 }
 
 enum AppMutation {
@@ -29,7 +46,7 @@ enum AppMutation {
 enum AppAction: Action {
   case startTimer
   case stopTimer
-  case skip
+  case advanceToNextRound
   case reset
 
   func mapToMutation() -> AnyPublisher<AppMutation, Never> {
@@ -48,7 +65,7 @@ enum AppAction: Action {
       ]
       .publisher
       .eraseToAnyPublisher()
-    case .skip:
+    case .advanceToNextRound:
       return [
         .addActivityLogs("skip"),
         .stopTimer,
