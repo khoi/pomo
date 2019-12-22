@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct HomeContainer: View {
-  @EnvironmentObject var store: Store<AppState, AppMutation>
+struct TimerContainer: View {
+  @EnvironmentObject var store: Store<TimerState, TimerAction>
 
   @State var timeLeft: TimeInterval = 0
 
@@ -23,7 +23,7 @@ struct HomeContainer: View {
         HStack {
           Spacer()
           Button(action: {
-            self.store.dispatch(AppAction.reset)
+            self.store.send(TimerAction.reset)
           }) {
             Image(systemName: "arrow.counterclockwise")
               .font(.system(size: 30))
@@ -33,7 +33,7 @@ struct HomeContainer: View {
         }
         Spacer()
         VStack(spacing: 16) {
-          Text(self.store.state.isBreak ? "Break" : "Work")
+          Text(self.store.value.isBreak ? "Break" : "Work")
             .font(.system(size: 30))
             .foregroundColor(Color("text"))
 
@@ -43,15 +43,15 @@ struct HomeContainer: View {
             .padding()
 
           HStack {
-            ForEach(1 ..< store.state.workingRounds + 1) { i in
-              Image(systemName: self.roundImageName(round: i, currentRound: self.store.state.currentWorkingRound))
+            ForEach(1 ..< store.value.workingRounds + 1) { i in
+              Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentWorkingRound))
                 .font(.footnote)
             }
           }
           .padding()
 
           Button(action: {
-            self.store.dispatch(self.timerStarted ? AppAction.stopTimer : AppAction.startTimer)
+            self.store.send(self.timerStarted ? TimerAction.stopTimer : TimerAction.startTimer)
           }) {
             Image(systemName: self.timerStarted ? "stop" : "play")
               .font(.system(size: 50))
@@ -63,7 +63,7 @@ struct HomeContainer: View {
         HStack {
           Spacer()
           Button(action: {
-            self.store.dispatch(AppAction.advanceToNextRound)
+            self.store.send(TimerAction.advanceToNextRound)
           }) {
             Image(systemName: "forward.end")
               .font(.system(size: 30))
@@ -73,13 +73,13 @@ struct HomeContainer: View {
         }
       }
       .onReceive(timer) { _ in
-        guard let started = self.store.state.started else {
-          self.timeLeft = self.store.state.defaultDuration
+        guard let started = self.store.value.started else {
+          self.timeLeft = self.store.value.defaultDuration
           return
         }
-        let timeLeft = self.store.state.defaultDuration - Date().timeIntervalSince(started)
+        let timeLeft = self.store.value.defaultDuration - Date().timeIntervalSince(started)
         if timeLeft <= 0 {
-          self.store.dispatch(AppAction.advanceToNextRound)
+          self.store.send(TimerAction.advanceToNextRound)
           return
         }
         self.timeLeft = timeLeft
@@ -88,7 +88,7 @@ struct HomeContainer: View {
   }
 
   var timerStarted: Bool {
-    store.state.started != nil
+    store.value.started != nil
   }
 
   func roundImageName(round: Int, currentRound: Int) -> String {
@@ -108,13 +108,13 @@ struct HomeContainer: View {
   }
 }
 
-struct HomeContainerView_Previews: PreviewProvider {
+struct TimerContainerView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      HomeContainer().environment(\.colorScheme, .light)
-      HomeContainer().environment(\.colorScheme, .dark)
+      TimerContainer().environment(\.colorScheme, .light)
+      TimerContainer().environment(\.colorScheme, .dark)
     }
-    .environmentObject(Store<AppState, AppMutation>(state: AppState(currentRound: 3), mutator: appMutator))
+    .environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentRound: 3), reducer: timerReducer))
     .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
 }
