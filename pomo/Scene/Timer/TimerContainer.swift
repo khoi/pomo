@@ -43,7 +43,7 @@ struct TimerContainer: View {
             .padding()
 
           HStack {
-            ForEach(1 ..< self.store.value.sessionCount + 1) { i in
+            ForEach(1 ..< self.store.value.timerSettings.sessionCount + 1) { i in
               Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentSession)).font(.footnote)
             }
           }

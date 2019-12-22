@@ -8,37 +8,27 @@
 
 import Foundation
 
-public struct TimerType: Hashable {
-  let duration: TimeInterval
-  let text: String
-  let isBreak: Bool
-
-  static func work(duration: TimeInterval) -> TimerType {
-    return TimerType(duration: duration, text: "Work", isBreak: false)
-  }
-
-  static func `break`(duration: TimeInterval) -> TimerType {
-    return TimerType(duration: duration, text: "Break", isBreak: true)
-  }
+struct TimerSettings {
+  var workDuration: TimeInterval = 25 * 60
+  var breakDuration: TimeInterval = 5 * 60
+  var longBreakDuration: TimeInterval = 15 * 60
+  var sessionCount = 4
 }
 
 public struct TimerState {
   var currentSession = 1
-  var sessionCount = 4
-  var workDuration: TimeInterval = 25 * 60
-  var breakDuration: TimeInterval = 5 * 60
-  var longBreakDuration: TimeInterval = 15 * 60
+  var timerSettings: TimerSettings = TimerSettings()
   var started: Date?
 
   var currentDuration: TimeInterval {
-    if currentSession == sessionCount {
-      return longBreakDuration
+    if currentSession == timerSettings.sessionCount {
+      return timerSettings.longBreakDuration
     }
-    return isBreak ? breakDuration : workDuration
+    return isBreak ? timerSettings.breakDuration : timerSettings.workDuration
   }
 
   var sessionText: String {
-    if currentSession == sessionCount {
+    if currentSession == timerSettings.sessionCount {
       return "Long Break"
     }
     return isBreak ? "Break" : "Work"
@@ -60,7 +50,7 @@ public let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action
   switch action {
   case .advanceToNextRound:
     state.started = nil
-    state.currentSession = (state.currentSession % state.sessionCount) + 1
+    state.currentSession = (state.currentSession % state.timerSettings.sessionCount) + 1
     return .empty()
   case .startTimer:
     state.started = CurrentTimerEnvironment.date()

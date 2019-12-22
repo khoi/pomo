@@ -8,44 +8,31 @@
 
 import Foundation
 
-public struct TimerSettingsRepository {
-  var load: () -> Effect<[TimerType]>
+struct TimerSettingsRepository {
+  var load: () -> Effect<TimerSettings>
+  var save: (TimerSettings) -> Effect<Never>
 }
 
 extension TimerSettingsRepository {
-  static var live = TimerSettingsRepository { () -> Effect<[TimerType]> in
+  static let live = TimerSettingsRepository(load: { () -> Effect<TimerSettings> in
     .sync {
-      (0 ..< UserDefaultsSettings.sessionCount).flatMap {
-        [
-          .work(duration: UserDefaultsSettings.workDuration),
-          .break(duration: $0 == UserDefaultsSettings.sessionCount - 1 ? UserDefaultsSettings.longBreakDuration : UserDefaultsSettings.breakDuration),
-        ]
-      }
+      TimerSettings(workDuration: UserDefaultsSettings.workDuration,
+                    breakDuration: UserDefaultsSettings.breakDuration,
+                    longBreakDuration: UserDefaultsSettings.longBreakDuration)
     }
-  }
+  }, save: { (settings) -> Effect<Never> in
+    .fireAndForget {
+      UserDefaultsSettings.workDuration = settings.workDuration
+      UserDefaultsSettings.breakDuration = settings.breakDuration
+      UserDefaultsSettings.longBreakDuration = settings.longBreakDuration
+      UserDefaultsSettings.sessionCount = settings.sessionCount
+    }
+  })
 }
-
-#if DEBUG
-  extension TimerSettingsRepository {
-    static var mock = TimerSettingsRepository { () -> Effect<[TimerType]> in
-      .sync { [
-        .work(duration: 5),
-        .break(duration: 3),
-        .work(duration: 5),
-        .break(duration: 3),
-        .work(duration: 5),
-        .break(duration: 3),
-        .work(duration: 5),
-        .break(duration: 5),
-      ]
-      }
-    }
-  }
-#endif
 
 public struct TimerEnvironment {
   var date: () -> Date = Date.init
-  var timerSettingsRepo: TimerSettingsRepository = .live
+  var timerSettingsRepository: TimerSettingsRepository = .live
 }
 
 extension TimerEnvironment {
