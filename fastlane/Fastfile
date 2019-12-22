@@ -1,11 +1,16 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "Bump version number"
+  lane :bump_version_number do
+    increment_build_number
+    commit_version_bump
+  end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    increment_build_number
+    match(type: "appstore", readonly: true)
     build_app(scheme: "pomo")
     upload_to_testflight(skip_waiting_for_build_processing: true)
-    commit_version_bump
   end
 end
