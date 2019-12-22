@@ -8,27 +8,53 @@
 
 import Foundation
 
+public enum TimerType {
+  case rest(duration: TimeInterval)
+  case work(duration: TimeInterval)
+
+  func toString() -> String {
+    switch self {
+    case .rest(duration: _):
+      return "Break"
+    case .work(duration: _):
+      return "Work"
+    }
+  }
+
+  var duration: TimeInterval {
+    switch self {
+    case let .rest(duration):
+      return duration
+    case let .work(duration):
+      return duration
+    }
+  }
+}
+
 public struct TimerState {
   var defaultDuration: TimeInterval = TimeInterval(5)
   var breakDureation: TimeInterval = TimeInterval(3)
   var longBreakDuration: TimeInterval = TimeInterval(10)
 
+  var cycles: [TimerType] = [
+    .work(duration: 5),
+    .rest(duration: 3),
+    .work(duration: 5),
+    .rest(duration: 3),
+    .work(duration: 5),
+    .rest(duration: 3),
+    .work(duration: 5),
+    .rest(duration: 8),
+  ]
+
+  var currentCycleIndex = 0
+
   var started: Date?
-  var activityLogs = [String]()
+}
 
-  var currentRound = 1
-  var totalRound = 8 // including breaks
-
-  var currentWorkingRound: Int {
-    (currentRound + 1) / 2
-  }
-
-  var workingRounds: Int {
-    totalRound / 2
-  }
-
-  var isBreak: Bool {
-    currentRound % 2 == 0
+extension TimerState {
+  var currentCycle: TimerType {
+    return cycles[currentCycleIndex]
   }
 }
 
@@ -43,8 +69,7 @@ public let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action
   switch action {
   case .advanceToNextRound:
     state.started = nil
-    state.currentRound = state.currentRound == state.totalRound ? 1 :
-      state.currentRound + 1
+    state.currentCycleIndex = (state.currentCycleIndex + 1) % state.cycles.count
     return .empty()
   case .startTimer:
     state.started = Date()
@@ -54,7 +79,7 @@ public let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action
     return .empty()
   case .reset:
     state.started = nil
-    state.currentRound = 1
+    state.currentCycleIndex = 0
     return .empty()
   }
 }

@@ -33,7 +33,7 @@ struct TimerContainer: View {
         }
         Spacer()
         VStack(spacing: 16) {
-          Text(self.store.value.isBreak ? "Break" : "Work")
+          Text(self.store.value.cycles[self.store.value.currentCycleIndex].toString())
             .font(.system(size: 30))
             .foregroundColor(Color("text"))
 
@@ -43,8 +43,8 @@ struct TimerContainer: View {
             .padding()
 
           HStack {
-            ForEach(1 ..< store.value.workingRounds + 1) { i in
-              Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentWorkingRound))
+            ForEach(0 ..< store.value.cycles.count) { i in
+              Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentCycleIndex))
                 .font(.footnote)
             }
           }
@@ -74,10 +74,10 @@ struct TimerContainer: View {
       }
       .onReceive(timer) { _ in
         guard let started = self.store.value.started else {
-          self.timeLeft = self.store.value.defaultDuration
+          self.timeLeft = self.store.value.currentCycle.duration
           return
         }
-        let timeLeft = self.store.value.defaultDuration - Date().timeIntervalSince(started)
+        let timeLeft = self.store.value.currentCycle.duration - Date().timeIntervalSince(started)
         if timeLeft <= 0 {
           self.store.send(TimerAction.advanceToNextRound)
           return
@@ -114,7 +114,7 @@ struct TimerContainerView_Previews: PreviewProvider {
       TimerContainer().environment(\.colorScheme, .light)
       TimerContainer().environment(\.colorScheme, .dark)
     }
-    .environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentRound: 3), reducer: timerReducer))
+    .environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(), reducer: timerReducer))
     .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
 }
