@@ -20,4 +20,10 @@ struct UserDefaultsSettings {
 
   @UserDefault("session_count", defaultValue: 4)
   static var sessionCount: Int
+
+  @UserDefault<Date?>("session_started", defaultValue: nil)
+  static var sessionStarted: Date?
+
+  @UserDefault("current_session", defaultValue: 1)
+  static var currentSession: Int
 }

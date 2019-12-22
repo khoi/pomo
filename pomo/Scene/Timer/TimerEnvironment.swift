@@ -11,6 +11,8 @@ import Foundation
 struct TimerSettingsRepository {
   var load: () -> Effect<TimerSettings>
   var save: (TimerSettings) -> Effect<Never>
+  var saveCurrentSession: (_ currentSession: Int, _ started: Date?) -> Effect<Never>
+  var loadCurrentSession: () -> Effect<(currentSession: Int, started: Date?)>
 }
 
 extension TimerSettingsRepository {
@@ -26,6 +28,15 @@ extension TimerSettingsRepository {
       UserDefaultsSettings.breakDuration = settings.breakDuration
       UserDefaultsSettings.longBreakDuration = settings.longBreakDuration
       UserDefaultsSettings.sessionCount = settings.sessionCount
+    }
+  }, saveCurrentSession: { currentSession, started in
+    .fireAndForget {
+      UserDefaultsSettings.currentSession = currentSession
+      UserDefaultsSettings.sessionStarted = started
+    }
+  }, loadCurrentSession: {
+    .sync { () -> (currentSession: Int, started: Date?) in
+      (UserDefaultsSettings.currentSession, UserDefaultsSettings.sessionStarted)
     }
   })
 }

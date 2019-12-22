@@ -6,6 +6,7 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 struct TimerSettings {
@@ -46,6 +47,10 @@ enum TimerAction {
   case reset
   case loadTimerSettings
   case loadedTimerSettings(TimerSettings)
+  case saveCurrentSession
+  case loadCurrentSession
+  case loadedCurrentSession(Int, Date?)
+  case noop
 }
 
 let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action) -> Effect<TimerAction> in
@@ -68,6 +73,20 @@ let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action) -> Ef
     return CurrentTimerEnvironment.timerSettingsRepository.load().map(TimerAction.loadedTimerSettings).eraseToEffect()
   case let .loadedTimerSettings(timerSettings):
     state.timerSettings = timerSettings
+    return .empty()
+  case .saveCurrentSession:
+    return CurrentTimerEnvironment
+      .timerSettingsRepository
+      .saveCurrentSession(state.currentSession, state.started)
+      .map { _ in TimerAction.noop }
+      .eraseToEffect()
+  case .loadCurrentSession:
+    return CurrentTimerEnvironment.timerSettingsRepository.loadCurrentSession().map(TimerAction.loadedCurrentSession).eraseToEffect()
+  case let .loadedCurrentSession(currentSession, started):
+    state.started = started
+    state.currentSession = currentSession
+    return .empty()
+  case .noop:
     return .empty()
   }
 }

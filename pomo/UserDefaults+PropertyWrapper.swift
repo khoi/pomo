@@ -10,20 +10,36 @@ import Foundation
 
 @propertyWrapper
 struct UserDefault<T> {
-  let key: String
-  let defaultValue: T
+  private let key: String
+  private let defaultValue: T
+  private let userDefaults: UserDefaults
 
-  init(_ key: String, defaultValue: T) {
+  init(_ key: String, defaultValue: T, userDefaults: UserDefaults = .standard) {
     self.key = key
     self.defaultValue = defaultValue
+    self.userDefaults = userDefaults
   }
 
   var wrappedValue: T {
     get {
-      return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+      return userDefaults.object(forKey: key) as? T ?? defaultValue
     }
     set {
-      UserDefaults.standard.set(newValue, forKey: key)
+      if let value = newValue as? OptionalProtocol, value.isNil() {
+        userDefaults.removeObject(forKey: key)
+      } else {
+        userDefaults.set(newValue, forKey: key)
+      }
     }
+  }
+}
+
+private protocol OptionalProtocol {
+  func isNil() -> Bool
+}
+
+extension Optional: OptionalProtocol {
+  func isNil() -> Bool {
+    return self == nil
   }
 }
