@@ -39,14 +39,16 @@ public struct TimerState {
   }
 }
 
-public enum TimerAction {
+enum TimerAction {
   case startTimer
   case stopTimer
   case advanceToNextRound
   case reset
+  case loadTimerSettings
+  case loadedTimerSettings(TimerSettings)
 }
 
-public let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action) -> Effect<TimerAction> in
+let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action) -> Effect<TimerAction> in
   switch action {
   case .advanceToNextRound:
     state.started = nil
@@ -61,6 +63,11 @@ public let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action
   case .reset:
     state.started = nil
     state.currentSession = 1
+    return .empty()
+  case .loadTimerSettings:
+    return CurrentTimerEnvironment.timerSettingsRepository.load().map(TimerAction.loadedTimerSettings).eraseToEffect()
+  case let .loadedTimerSettings(timerSettings):
+    state.timerSettings = timerSettings
     return .empty()
   }
 }

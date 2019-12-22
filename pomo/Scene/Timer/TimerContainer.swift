@@ -11,7 +11,8 @@ import SwiftUI
 struct TimerContainer: View {
   @EnvironmentObject var store: Store<TimerState, TimerAction>
 
-  @State var timeLeft: TimeInterval = 0
+  @State private var timeLeft: TimeInterval = 0
+  @State private var showingStopConfirmationAlert = false
 
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
@@ -50,6 +51,10 @@ struct TimerContainer: View {
           .padding()
 
           Button(action: {
+            guard !self.timerStarted else {
+              self.showingStopConfirmationAlert = true
+              return
+            }
             self.store.send(self.timerStarted ? TimerAction.stopTimer : TimerAction.startTimer)
           }) {
             Image(systemName: self.timerStarted ? "stop" : "play")
@@ -85,8 +90,14 @@ struct TimerContainer: View {
         UIApplication.shared.isIdleTimerDisabled = self.timerStarted
       }
     }
+    .alert(isPresented: $showingStopConfirmationAlert) {
+      Alert(title: Text("Sure?"), message: Text("This will reset your current session"), primaryButton: .destructive(Text("Stop"), action: {
+        self.store.send(.stopTimer)
+        self.showingStopConfirmationAlert.toggle()
+      }), secondaryButton: .cancel())
+    }
     .onAppear {
-//      self.store.send(.loadCycleSettings)
+      self.store.send(.loadTimerSettings)
     }
   }
 
