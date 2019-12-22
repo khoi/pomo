@@ -83,6 +83,7 @@ struct TimerContainer: View {
           return
         }
         self.timeLeft = timeLeft
+        UIApplication.shared.isIdleTimerDisabled = self.timerStarted
       }
     }
   }
