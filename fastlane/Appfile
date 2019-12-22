@@ -1,0 +1,5 @@
+app_identifier("io.khoi.pomo") # The bundle identifier of your app
+apple_id("k@khoi.io") # Your Apple email address
+
+itc_team_id("118425253") # App Store Connect Team ID
+team_id("EMR59SFZRH") # Developer Portal Team ID
