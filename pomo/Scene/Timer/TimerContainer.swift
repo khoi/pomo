@@ -13,6 +13,7 @@ struct TimerContainer: View {
 
   @State private var timeLeft: TimeInterval = 0
   @State private var showingStopConfirmationAlert = false
+  @State private var showingSettingsModal = false
 
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
@@ -22,6 +23,14 @@ struct TimerContainer: View {
         .edgesIgnoringSafeArea(.all)
       VStack {
         HStack {
+          Button(action: {
+            self.showingSettingsModal.toggle()
+          }) {
+            Image(systemName: "gear")
+              .font(.system(size: 30))
+              .foregroundColor(Color("zima"))
+          }
+          .padding()
           Spacer()
           Button(action: {
             self.store.send(TimerAction.reset)
@@ -95,6 +104,11 @@ struct TimerContainer: View {
         self.store.send(.stopTimer)
         self.showingStopConfirmationAlert.toggle()
       }), secondaryButton: .cancel())
+    }
+    .sheet(isPresented: $showingSettingsModal, onDismiss: {
+      self.store.send(.loadTimerSettings)
+    }) {
+      SettingsView()
     }
     .onAppear {
       self.store.send(.loadTimerSettings)

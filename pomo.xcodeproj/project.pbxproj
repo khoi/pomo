@@ -23,6 +23,7 @@
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
 		D6FCF9E623AFABB1000E228C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E523AFABB1000E228C /* Settings.swift */; };
 		D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */; };
+		D6FCF9EB23AFBA99000E228C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9EA23AFBA99000E228C /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
 		D6FCF9E523AFABB1000E228C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safesubscript.swift"; sourceTree = "<group>"; };
+		D6FCF9EA23AFBA99000E228C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				D609261023AF4B7400212288 /* TimerContainer.swift */,
 				D632018123AF4BA2003D1C53 /* TimerReducer.swift */,
 				D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */,
+				D6FCF9EA23AFBA99000E228C /* SettingsView.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,
 				D6698587239A99A0008F7732 /* Constants.swift in Sources */,
+				D6FCF9EB23AFBA99000E228C /* SettingsView.swift in Sources */,
 				D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */,
 				D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */,
 			);
