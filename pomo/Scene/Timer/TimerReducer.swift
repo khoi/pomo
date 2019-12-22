@@ -32,19 +32,15 @@ public enum TimerType {
 }
 
 public struct TimerState {
-  var defaultDuration: TimeInterval = TimeInterval(5)
-  var breakDureation: TimeInterval = TimeInterval(3)
-  var longBreakDuration: TimeInterval = TimeInterval(10)
-
   var cycles: [TimerType] = [
-    .work(duration: 5),
-    .rest(duration: 3),
-    .work(duration: 5),
-    .rest(duration: 3),
-    .work(duration: 5),
-    .rest(duration: 3),
-    .work(duration: 5),
-    .rest(duration: 8),
+    .work(duration: 25),
+    .rest(duration: 5),
+    .work(duration: 25),
+    .rest(duration: 5),
+    .work(duration: 25),
+    .rest(duration: 5),
+    .work(duration: 25),
+    .rest(duration: 10),
   ]
 
   var currentCycleIndex = 0

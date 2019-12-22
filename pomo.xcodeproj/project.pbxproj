@@ -20,6 +20,7 @@
 		D659A03F235059C0000767CC /* pomoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A03E235059C0000767CC /* pomoUITests.swift */; };
 		D6698587239A99A0008F7732 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6698586239A99A0008F7732 /* Constants.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
+		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		D6698586239A99A0008F7732 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
+		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				D6698586239A99A0008F7732 /* Constants.swift */,
 				D609260A23AF457600212288 /* Redux.swift */,
 				D609260E23AF49E800212288 /* Utils.swift */,
+				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
 			);
 			path = pomo;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,
 				D6698587239A99A0008F7732 /* Constants.swift in Sources */,
 				D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */,
+				D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

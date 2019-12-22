@@ -9,3 +9,9 @@
 import Foundation
 
 public struct TimerEnvironment {}
+
+extension TimerEnvironment {
+  static let live = TimerEnvironment()
+}
+
+var CurrentTimerEnvironment = TimerEnvironment.live
