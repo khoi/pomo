@@ -8,49 +8,44 @@
 
 import Foundation
 
-public enum TimerType {
-  case rest(duration: TimeInterval)
-  case work(duration: TimeInterval)
+public struct TimerType: Hashable {
+  let duration: TimeInterval
+  let text: String
+  let isBreak: Bool
 
-  func toString() -> String {
-    switch self {
-    case .rest(duration: _):
-      return "Break"
-    case .work(duration: _):
-      return "Work"
-    }
+  static func work(duration: TimeInterval) -> TimerType {
+    return TimerType(duration: duration, text: "Work", isBreak: false)
   }
 
-  var duration: TimeInterval {
-    switch self {
-    case let .rest(duration):
-      return duration
-    case let .work(duration):
-      return duration
-    }
+  static func `break`(duration: TimeInterval) -> TimerType {
+    return TimerType(duration: duration, text: "Break", isBreak: true)
   }
 }
 
 public struct TimerState {
-  var cycles: [TimerType] = [
-    .work(duration: 25),
-    .rest(duration: 5),
-    .work(duration: 25),
-    .rest(duration: 5),
-    .work(duration: 25),
-    .rest(duration: 5),
-    .work(duration: 25),
-    .rest(duration: 10),
-  ]
-
-  var currentCycleIndex = 0
-
+  var currentSession = 1
+  var sessionCount = 4
+  var workDuration: TimeInterval = 25 * 60
+  var breakDuration: TimeInterval = 5 * 60
+  var longBreakDuration: TimeInterval = 15 * 60
   var started: Date?
-}
 
-extension TimerState {
-  var currentCycle: TimerType {
-    return cycles[currentCycleIndex]
+  var currentDuration: TimeInterval {
+    if currentSession == sessionCount {
+      return longBreakDuration
+    }
+    return isBreak ? breakDuration : workDuration
+  }
+
+  var sessionText: String {
+    if currentSession == sessionCount {
+      return "Long Break"
+    }
+    return isBreak ? "Break" : "Work"
+  }
+
+  var isBreak: Bool {
+    return currentSession % 2 == 0
   }
 }
 
@@ -65,17 +60,17 @@ public let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action
   switch action {
   case .advanceToNextRound:
     state.started = nil
-    state.currentCycleIndex = (state.currentCycleIndex + 1) % state.cycles.count
+    state.currentSession = (state.currentSession % state.sessionCount) + 1
     return .empty()
   case .startTimer:
-    state.started = Date()
+    state.started = CurrentTimerEnvironment.date()
     return .empty()
   case .stopTimer:
     state.started = nil
     return .empty()
   case .reset:
     state.started = nil
-    state.currentCycleIndex = 0
+    state.currentSession = 1
     return .empty()
   }
 }

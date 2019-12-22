@@ -33,7 +33,7 @@ struct TimerContainer: View {
         }
         Spacer()
         VStack(spacing: 16) {
-          Text(self.store.value.cycles[self.store.value.currentCycleIndex].toString())
+          Text(self.store.value.sessionText)
             .font(.system(size: 30))
             .foregroundColor(Color("text"))
 
@@ -43,9 +43,8 @@ struct TimerContainer: View {
             .padding()
 
           HStack {
-            ForEach(0 ..< store.value.cycles.count) { i in
-              Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentCycleIndex))
-                .font(.footnote)
+            ForEach(1 ..< self.store.value.sessionCount + 1) { i in
+              Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentSession)).font(.footnote)
             }
           }
           .padding()
@@ -74,10 +73,10 @@ struct TimerContainer: View {
       }
       .onReceive(timer) { _ in
         guard let started = self.store.value.started else {
-          self.timeLeft = self.store.value.currentCycle.duration
+          self.timeLeft = self.store.value.currentDuration
           return
         }
-        let timeLeft = self.store.value.currentCycle.duration - Date().timeIntervalSince(started)
+        let timeLeft = self.store.value.currentDuration - Date().timeIntervalSince(started)
         if timeLeft <= 0 {
           self.store.send(TimerAction.advanceToNextRound)
           return
@@ -85,6 +84,9 @@ struct TimerContainer: View {
         self.timeLeft = timeLeft
         UIApplication.shared.isIdleTimerDisabled = self.timerStarted
       }
+    }
+    .onAppear {
+//      self.store.send(.loadCycleSettings)
     }
   }
 
