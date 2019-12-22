@@ -1,0 +1,16 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-ruby@v1
+    - name: bundle install
+      run: bundle install --verbose
+    - name: deploy to testflight
+      run: bundle exec fastlane ios beta
