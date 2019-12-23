@@ -11,9 +11,6 @@ import SwiftUI
 import UIKit
 
 private let completedTimerSoundURL = Bundle.main.url(forResource: "timer_completed", withExtension: "wav")!
-private let audioPlayer = try! AVAudioPlayer(contentsOf: completedTimerSoundURL)
-private let generator = UINotificationFeedbackGenerator()
-private let impactGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
 struct TimerContainer: View {
   @EnvironmentObject var store: Store<TimerState, TimerAction>
@@ -21,6 +18,10 @@ struct TimerContainer: View {
   @State private var timeLeft: TimeInterval = 0
   @State private var showingStopConfirmationAlert = false
   @State private var showingSettingsModal = false
+
+  private let audioPlayer = try! AVAudioPlayer(contentsOf: completedTimerSoundURL)
+  private let generator = UINotificationFeedbackGenerator()
+  private let impactGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
@@ -31,7 +32,7 @@ struct TimerContainer: View {
       VStack {
         HStack {
           Button(action: {
-            generator.notificationOccurred(.success)
+            self.generator.notificationOccurred(.success)
             self.showingSettingsModal.toggle()
           }) {
             Image(systemName: "gear")
@@ -81,11 +82,11 @@ struct TimerContainer: View {
 
           Button(action: {
             guard !self.store.value.timerRunning else {
-              generator.notificationOccurred(.warning)
+              self.generator.notificationOccurred(.warning)
               self.showingStopConfirmationAlert = true
               return
             }
-            generator.notificationOccurred(.success)
+            self.generator.notificationOccurred(.success)
             self.store.send(self.store.value.timerRunning ? TimerAction.stopTimer : TimerAction.startTimer)
           }) {
             Image(systemName: store.value.timerRunning ? "stop" : "play")
@@ -99,7 +100,7 @@ struct TimerContainer: View {
           Spacer()
           Button(action: {
             self.store.send(TimerAction.advanceToNextRound)
-            generator.notificationOccurred(.success)
+            self.generator.notificationOccurred(.success)
           }) {
             Image(systemName: "forward.end")
               .font(.system(size: 30))
@@ -115,8 +116,8 @@ struct TimerContainer: View {
         }
         let timeLeft = self.store.value.currentDuration - Date().timeIntervalSince(started)
         if timeLeft <= 0 {
-          impactGenerator.impactOccurred()
-          audioPlayer.play()
+          self.impactGenerator.impactOccurred()
+          self.audioPlayer.play()
           self.store.send(TimerAction.advanceToNextRound)
           return
         }
@@ -127,13 +128,13 @@ struct TimerContainer: View {
     .alert(isPresented: $showingStopConfirmationAlert) {
       Alert(title: Text("Sure?"), message: Text("This will reset your current session"), primaryButton: .destructive(Text("Stop"), action: {
         self.store.send(.stopTimer)
-        generator.notificationOccurred(.success)
+        self.generator.notificationOccurred(.success)
         self.showingStopConfirmationAlert.toggle()
       }), secondaryButton: .cancel())
     }
     .sheet(isPresented: $showingSettingsModal, onDismiss: {
       self.store.send(.loadTimerSettings)
-      generator.notificationOccurred(.success)
+      self.generator.notificationOccurred(.success)
     }) {
       SettingsView()
     }
