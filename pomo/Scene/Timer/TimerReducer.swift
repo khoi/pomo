@@ -32,7 +32,7 @@ public struct TimerState {
     if currentSession == timerSettings.sessionCount {
       return "Long Break"
     }
-    return isBreak ? "Break" : "Work"
+    return isBreak ? "Break" : "Focus"
   }
 
   var isBreak: Bool {
