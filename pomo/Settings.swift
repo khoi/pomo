@@ -9,13 +9,13 @@
 import Foundation
 
 struct UserDefaultsSettings {
-  @UserDefault("work_duration", defaultValue: 25 * 60)
+  @UserDefault("work_duration", defaultValue: 5)
   static var workDuration: TimeInterval
 
-  @UserDefault("break_duration", defaultValue: 5 * 60)
+  @UserDefault("break_duration", defaultValue: 3)
   static var breakDuration: TimeInterval
 
-  @UserDefault("long_break_duration", defaultValue: 20 * 60)
+  @UserDefault("long_break_duration", defaultValue: 4)
   static var longBreakDuration: TimeInterval
 
   @UserDefault("session_count", defaultValue: 4)

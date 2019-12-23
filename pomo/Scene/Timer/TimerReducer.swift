@@ -21,6 +21,10 @@ public struct TimerState {
   var timerSettings: TimerSettings = TimerSettings()
   var started: Date?
 
+  var timerRunning: Bool {
+    started != nil
+  }
+
   var currentDuration: TimeInterval {
     if currentSession == timerSettings.sessionCount {
       return timerSettings.longBreakDuration
@@ -36,7 +40,7 @@ public struct TimerState {
   }
 
   var isBreak: Bool {
-    return currentSession % 2 == 0
+    currentSession % 2 == 0
   }
 }
 

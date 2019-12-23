@@ -60,23 +60,35 @@ struct TimerContainer: View {
             .foregroundColor(Color("text"))
             .padding()
 
-          HStack {
+          HStack(alignment: .center, spacing: 16) {
             ForEach(1 ..< self.store.value.timerSettings.sessionCount + 1) { i in
-              Image(systemName: self.roundImageName(round: i, currentRound: self.store.value.currentSession)).font(.footnote)
+              ZStack {
+                if i < self.store.value.currentSession {
+                  Circle()
+                } else if i == self.store.value.currentSession {
+                  Circle()
+                    .stroke(style: StrokeStyle(lineWidth: 1))
+                  Circle()
+                    .trim(from: 0, to: self.currentProgress)
+                    .rotationEffect(.degrees(-90))
+                } else {
+                  Circle().stroke(style: StrokeStyle(lineWidth: 1))
+                }
+              }.frame(width: 10, height: 10, alignment: .center)
             }
           }
           .padding()
 
           Button(action: {
-            guard !self.timerStarted else {
+            guard !self.store.value.timerRunning else {
               generator.notificationOccurred(.warning)
               self.showingStopConfirmationAlert = true
               return
             }
             generator.notificationOccurred(.success)
-            self.store.send(self.timerStarted ? TimerAction.stopTimer : TimerAction.startTimer)
+            self.store.send(self.store.value.timerRunning ? TimerAction.stopTimer : TimerAction.startTimer)
           }) {
-            Image(systemName: self.timerStarted ? "stop" : "play")
+            Image(systemName: store.value.timerRunning ? "stop" : "play")
               .font(.system(size: 50))
               .foregroundColor(Color("zima"))
           }
@@ -109,7 +121,7 @@ struct TimerContainer: View {
           return
         }
         self.timeLeft = timeLeft
-        UIApplication.shared.isIdleTimerDisabled = self.timerStarted
+        UIApplication.shared.isIdleTimerDisabled = self.store.value.timerRunning
       }
     }
     .alert(isPresented: $showingStopConfirmationAlert) {
@@ -130,15 +142,11 @@ struct TimerContainer: View {
     }
   }
 
-  var timerStarted: Bool {
-    store.value.started != nil
-  }
-
-  func roundImageName(round: Int, currentRound: Int) -> String {
-    if round == currentRound {
-      return "smallcircle.fill.circle"
+  var currentProgress: CGFloat {
+    guard store.value.timerRunning else {
+      return 0
     }
-    return round < currentRound ? "circle.fill" : "circle"
+    return CGFloat((store.value.currentDuration - timeLeft) / store.value.currentDuration)
   }
 
   func format(duration: TimeInterval) -> String {
@@ -157,7 +165,7 @@ struct TimerContainerView_Previews: PreviewProvider {
       TimerContainer().environment(\.colorScheme, .light)
       TimerContainer().environment(\.colorScheme, .dark)
     }
-    .environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(), reducer: timerReducer))
+    .environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer))
     .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
 }
