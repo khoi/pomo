@@ -21,25 +21,25 @@ struct TimerSettingsRepository {
 extension TimerSettingsRepository {
   static let live = TimerSettingsRepository(load: { () -> Effect<TimerSettings> in
     .sync {
-      TimerSettings(workDuration: UserDefaultsSettings.workDuration,
-                    breakDuration: UserDefaultsSettings.breakDuration,
-                    longBreakDuration: UserDefaultsSettings.longBreakDuration)
+      TimerSettings(workDuration: AppSettings.workDuration,
+                    breakDuration: AppSettings.breakDuration,
+                    longBreakDuration: AppSettings.longBreakDuration)
     }
   }, save: { (settings) -> Effect<Never> in
     .fireAndForget {
-      UserDefaultsSettings.workDuration = settings.workDuration
-      UserDefaultsSettings.breakDuration = settings.breakDuration
-      UserDefaultsSettings.longBreakDuration = settings.longBreakDuration
-      UserDefaultsSettings.sessionCount = settings.sessionCount
+      AppSettings.workDuration = settings.workDuration
+      AppSettings.breakDuration = settings.breakDuration
+      AppSettings.longBreakDuration = settings.longBreakDuration
+      AppSettings.sessionCount = settings.sessionCount
     }
   }, saveCurrentSession: { currentSession, started in
     .fireAndForget {
-      UserDefaultsSettings.currentSession = currentSession
-      UserDefaultsSettings.sessionStarted = started
+      AppSettings.currentSession = currentSession
+      AppSettings.sessionStarted = started
     }
   }, loadCurrentSession: {
     .sync { () -> (currentSession: Int, started: Date?) in
-      (UserDefaultsSettings.currentSession, UserDefaultsSettings.sessionStarted)
+      (AppSettings.currentSession, AppSettings.sessionStarted)
     }
   })
 }

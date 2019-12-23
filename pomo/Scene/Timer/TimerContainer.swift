@@ -31,15 +31,16 @@ struct TimerContainer: View {
         .edgesIgnoringSafeArea(.all)
       VStack {
         HStack {
-          Button(action: {
-            self.generator.notificationOccurred(.success)
-            self.showingSettingsModal.toggle()
-          }) {
-            Image(systemName: "gear")
-              .font(.system(size: 30))
-              .foregroundColor(Color("zima"))
-          }
-          .padding()
+          #if DEBUG
+            Button(action: {
+              self.generator.notificationOccurred(.success)
+              self.showingSettingsModal.toggle()
+            }) {
+              Image(systemName: "gear")
+                .font(.system(size: 30))
+                .foregroundColor(Color("zima"))
+            }
+          #endif
           Spacer()
           Button(action: {
             self.store.send(TimerAction.reset)
@@ -48,8 +49,8 @@ struct TimerContainer: View {
               .font(.system(size: 30))
               .foregroundColor(Color("zima"))
           }
-          .padding()
         }
+        .padding()
         Spacer()
         VStack(spacing: 16) {
           Text(self.store.value.sessionText)
@@ -96,18 +97,20 @@ struct TimerContainer: View {
           .padding()
         }
         Spacer()
-        HStack {
-          Spacer()
-          Button(action: {
-            self.store.send(TimerAction.completeCurrentSession)
-            self.generator.notificationOccurred(.success)
-          }) {
-            Image(systemName: "forward.end")
-              .font(.system(size: 30))
-              .foregroundColor(Color("zima"))
+        #if DEBUG
+          HStack {
+            Spacer()
+            Button(action: {
+              self.store.send(TimerAction.completeCurrentSession)
+              self.generator.notificationOccurred(.success)
+            }) {
+              Image(systemName: "forward.end")
+                .font(.system(size: 30))
+                .foregroundColor(Color("zima"))
+            }
+            .padding()
           }
-          .padding()
-        }
+        #endif
       }
       .onReceive(timer) { _ in
         guard let started = self.store.value.started else {

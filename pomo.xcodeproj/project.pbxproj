@@ -26,7 +26,7 @@
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
-		D6FCF9E623AFABB1000E228C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E523AFABB1000E228C /* Settings.swift */; };
+		D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E523AFABB1000E228C /* AppSettings.swift */; };
 		D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */; };
 		D6FCF9EB23AFBA99000E228C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9EA23AFBA99000E228C /* SettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -75,7 +75,7 @@
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
 		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
-		D6FCF9E523AFABB1000E228C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D6FCF9E523AFABB1000E228C /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safesubscript.swift"; sourceTree = "<group>"; };
 		D6FCF9EA23AFBA99000E228C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,7 +181,7 @@
 				D609260A23AF457600212288 /* Redux.swift */,
 				D609260E23AF49E800212288 /* Utils.swift */,
 				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
-				D6FCF9E523AFABB1000E228C /* Settings.swift */,
+				D6FCF9E523AFABB1000E228C /* AppSettings.swift */,
 				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 			);
 			path = pomo;
@@ -367,7 +367,7 @@
 				D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */,
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
 				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
-				D6FCF9E623AFABB1000E228C /* Settings.swift in Sources */,
+				D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */,
 				D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */,
 				D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,

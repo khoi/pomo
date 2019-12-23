@@ -22,7 +22,6 @@ struct SettingsView: View {
             Text("SETTINGS").font(.headline)
             Spacer()
           }
-
           HStack {
             Spacer()
             Button(action: {

@@ -7,7 +7,25 @@
 		<key>pomo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>D659A018235059BF000767CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D659A02E235059C0000767CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D659A039235059C0000767CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
