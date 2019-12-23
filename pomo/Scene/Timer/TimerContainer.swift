@@ -119,8 +119,9 @@ struct TimerContainer: View {
         }
         let timeLeft = self.store.value.currentDuration - Date().timeIntervalSince(started)
         if timeLeft <= 0 {
-          self.impactGenerator.impactOccurred()
           self.audioPlayer.play()
+          self.impactGenerator.prepare()
+          (0 ..< 3).forEach { _ in self.impactGenerator.impactOccurred(intensity: 1) }
           self.store.send(TimerAction.completeCurrentSession)
           return
         }
