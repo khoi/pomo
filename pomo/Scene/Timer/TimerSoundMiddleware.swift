@@ -6,6 +6,7 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
+import AudioToolbox
 import AVFoundation
 import Combine
 import Foundation
@@ -24,7 +25,7 @@ func withSoundsAndVibrations(reducer: Reducer<TimerState, TimerAction>) -> Reduc
         impactGenerator.impactOccurred(intensity: 1)
       case .completeCurrentSession:
         audioPlayer.play()
-        (0 ..< 3).forEach { _ in impactGenerator.impactOccurred(intensity: 1) }
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
       default:
         break
       }
