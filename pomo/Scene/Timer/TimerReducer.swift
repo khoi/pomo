@@ -47,7 +47,7 @@ public struct TimerState {
 enum TimerAction {
   case startTimer
   case stopTimer
-  case advanceToNextRound
+  case completeCurrentSession
   case reset
   case loadTimerSettings
   case loadedTimerSettings(TimerSettings)
@@ -59,10 +59,15 @@ enum TimerAction {
 
 let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action) -> Effect<TimerAction> in
   switch action {
-  case .advanceToNextRound:
+  case .completeCurrentSession:
+    let started = state.started
     state.started = nil
     state.currentSession = (state.currentSession % state.timerSettings.sessionCount) + 1
-    return .empty()
+    return CurrentTimerEnvironment
+      .pomodoroRepository
+      .saveTimer(started ?? CurrentTimerEnvironment.date(), state.currentDuration, state.sessionText)
+      .map { _ in TimerAction.noop }
+      .eraseToEffect()
   case .startTimer:
     state.started = CurrentTimerEnvironment.date()
     return .empty()

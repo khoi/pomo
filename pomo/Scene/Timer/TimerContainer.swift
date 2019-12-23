@@ -99,7 +99,7 @@ struct TimerContainer: View {
         HStack {
           Spacer()
           Button(action: {
-            self.store.send(TimerAction.advanceToNextRound)
+            self.store.send(TimerAction.completeCurrentSession)
             self.generator.notificationOccurred(.success)
           }) {
             Image(systemName: "forward.end")
@@ -118,7 +118,7 @@ struct TimerContainer: View {
         if timeLeft <= 0 {
           self.impactGenerator.impactOccurred()
           self.audioPlayer.play()
-          self.store.send(TimerAction.advanceToNextRound)
+          self.store.send(TimerAction.completeCurrentSession)
           return
         }
         self.timeLeft = timeLeft

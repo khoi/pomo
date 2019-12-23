@@ -12,6 +12,9 @@
 		D609261123AF4B7400212288 /* TimerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609261023AF4B7400212288 /* TimerContainer.swift */; };
 		D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632018123AF4BA2003D1C53 /* TimerReducer.swift */; };
 		D638724A23B093E600AF1F2B /* timer_completed.wav in Resources */ = {isa = PBXBuildFile; fileRef = D638724923B093E600AF1F2B /* timer_completed.wav */; };
+		D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */; };
+		D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */; };
+		D638725223B0B7C400AF1F2B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D638725123B0B7C400AF1F2B /* CloudKit.framework */; };
 		D659A01D235059BF000767CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01C235059BF000767CC /* AppDelegate.swift */; };
 		D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01E235059BF000767CC /* SceneDelegate.swift */; };
 		D659A023235059C0000767CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A022235059C0000767CC /* Assets.xcassets */; };
@@ -50,6 +53,9 @@
 		D609261023AF4B7400212288 /* TimerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerContainer.swift; sourceTree = "<group>"; };
 		D632018123AF4BA2003D1C53 /* TimerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerReducer.swift; sourceTree = "<group>"; };
 		D638724923B093E600AF1F2B /* timer_completed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timer_completed.wav; sourceTree = "<group>"; };
+		D638724C23B0B6B400AF1F2B /* pomo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomo.xcdatamodel; sourceTree = "<group>"; };
+		D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		D638725123B0B7C400AF1F2B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D659A019235059BF000767CC /* pomo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D659A01C235059BF000767CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D659A01E235059BF000767CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D638725223B0B7C400AF1F2B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,13 +131,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D638725023B0B7C400AF1F2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D638725123B0B7C400AF1F2B /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D659A010235059BF000767CC = {
 			isa = PBXGroup;
 			children = (
+				D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */,
 				D659A01B235059BF000767CC /* pomo */,
 				D659A032235059C0000767CC /* pomoTests */,
 				D659A03D235059C0000767CC /* pomoUITests */,
 				D659A01A235059BF000767CC /* Products */,
+				D638725023B0B7C400AF1F2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +180,7 @@
 				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
 				D6FCF9E523AFABB1000E228C /* Settings.swift */,
 				D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */,
+				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 			);
 			path = pomo;
 			sourceTree = "<group>";
@@ -337,7 +355,9 @@
 				D609260B23AF457600212288 /* Redux.swift in Sources */,
 				D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */,
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
+				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
 				D6FCF9E623AFABB1000E228C /* Settings.swift in Sources */,
+				D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,
 				D6698587239A99A0008F7732 /* Constants.swift in Sources */,
@@ -673,6 +693,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D638724C23B0B6B400AF1F2B /* pomo.xcdatamodel */,
+			);
+			currentVersion = D638724C23B0B6B400AF1F2B /* pomo.xcdatamodel */;
+			path = pomo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D659A011235059BF000767CC /* Project object */;
 }
