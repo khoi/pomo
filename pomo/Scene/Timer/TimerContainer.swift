@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct TimerContainer: View {
   @EnvironmentObject var store: Store<TimerState, TimerAction>
@@ -15,6 +16,7 @@ struct TimerContainer: View {
   @State private var showingStopConfirmationAlert = false
   @State private var showingSettingsModal = false
 
+  private let generator = UINotificationFeedbackGenerator()
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
   var body: some View {
@@ -24,6 +26,7 @@ struct TimerContainer: View {
       VStack {
         HStack {
           Button(action: {
+            self.generator.notificationOccurred(.success)
             self.showingSettingsModal.toggle()
           }) {
             Image(systemName: "gear")
@@ -61,9 +64,11 @@ struct TimerContainer: View {
 
           Button(action: {
             guard !self.timerStarted else {
+              self.generator.notificationOccurred(.warning)
               self.showingStopConfirmationAlert = true
               return
             }
+            self.generator.notificationOccurred(.success)
             self.store.send(self.timerStarted ? TimerAction.stopTimer : TimerAction.startTimer)
           }) {
             Image(systemName: self.timerStarted ? "stop" : "play")
@@ -77,6 +82,7 @@ struct TimerContainer: View {
           Spacer()
           Button(action: {
             self.store.send(TimerAction.advanceToNextRound)
+            self.generator.notificationOccurred(.success)
           }) {
             Image(systemName: "forward.end")
               .font(.system(size: 30))
@@ -102,11 +108,13 @@ struct TimerContainer: View {
     .alert(isPresented: $showingStopConfirmationAlert) {
       Alert(title: Text("Sure?"), message: Text("This will reset your current session"), primaryButton: .destructive(Text("Stop"), action: {
         self.store.send(.stopTimer)
+        self.generator.notificationOccurred(.success)
         self.showingStopConfirmationAlert.toggle()
       }), secondaryButton: .cancel())
     }
     .sheet(isPresented: $showingSettingsModal, onDismiss: {
       self.store.send(.loadTimerSettings)
+      self.generator.notificationOccurred(.success)
     }) {
       SettingsView()
     }
