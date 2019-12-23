@@ -23,6 +23,7 @@
 		D659A034235059C0000767CC /* pomoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A033235059C0000767CC /* pomoTests.swift */; };
 		D659A03F235059C0000767CC /* pomoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A03E235059C0000767CC /* pomoUITests.swift */; };
 		D6698587239A99A0008F7732 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6698586239A99A0008F7732 /* Constants.swift */; };
+		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
 		D6FCF9E623AFABB1000E228C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E523AFABB1000E228C /* Settings.swift */; };
@@ -70,6 +71,7 @@
 		D659A03E235059C0000767CC /* pomoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pomoUITests.swift; sourceTree = "<group>"; };
 		D659A040235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6698586239A99A0008F7732 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
 		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		D659A01B235059BF000767CC /* pomo */ = {
 			isa = PBXGroup;
 			children = (
+				D67C7EE223B0EAAD00787DB1 /* Extensions */,
 				D6A62206239CAC95007413A5 /* pomo.entitlements */,
 				D638724823B093D800AF1F2B /* Resources */,
 				D605C773236AA22E00C9C0A7 /* Scene */,
@@ -179,7 +182,6 @@
 				D609260E23AF49E800212288 /* Utils.swift */,
 				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
 				D6FCF9E523AFABB1000E228C /* Settings.swift */,
-				D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */,
 				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 			);
 			path = pomo;
@@ -216,6 +218,15 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D67C7EE223B0EAAD00787DB1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */,
+				D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +368,7 @@
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
 				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
 				D6FCF9E623AFABB1000E228C /* Settings.swift in Sources */,
+				D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */,
 				D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,

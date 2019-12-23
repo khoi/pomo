@@ -9,13 +9,49 @@
 import SwiftUI
 
 struct SettingsView: View {
+  @Environment(\.presentationMode) var presentationMode
+
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    ZStack {
+      Color("background")
+        .edgesIgnoringSafeArea(.all)
+      VStack {
+        ZStack {
+          HStack {
+            Spacer()
+            Text("SETTINGS").font(.headline)
+            Spacer()
+          }
+
+          HStack {
+            Spacer()
+            Button(action: {
+              self.presentationMode.wrappedValue.dismiss()
+            }) {
+              Text("Done")
+                .fontWeight(.semibold)
+                .foregroundColor(Color("zima"))
+            }
+          }
+        }.padding(8)
+        Spacer()
+        Group {
+          Text("Version Number")
+          Text("\(UIApplication.appVersion) (\(UIApplication.appBuildNumber))")
+        }
+        .font(.footnote)
+      }
+    }
+    .foregroundColor(Color("text"))
   }
 }
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView()
+    Group {
+      SettingsView().environment(\.colorScheme, .light)
+      SettingsView().environment(\.colorScheme, .dark)
+    }
+    .previewLayout(PreviewLayout.fixed(width: 500, height: 800))
   }
 }
