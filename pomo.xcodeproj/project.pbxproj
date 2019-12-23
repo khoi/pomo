@@ -11,6 +11,7 @@
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
 		D609261123AF4B7400212288 /* TimerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609261023AF4B7400212288 /* TimerContainer.swift */; };
 		D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632018123AF4BA2003D1C53 /* TimerReducer.swift */; };
+		D638724A23B093E600AF1F2B /* timer_completed.wav in Resources */ = {isa = PBXBuildFile; fileRef = D638724923B093E600AF1F2B /* timer_completed.wav */; };
 		D659A01D235059BF000767CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01C235059BF000767CC /* AppDelegate.swift */; };
 		D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01E235059BF000767CC /* SceneDelegate.swift */; };
 		D659A023235059C0000767CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A022235059C0000767CC /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D609261023AF4B7400212288 /* TimerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerContainer.swift; sourceTree = "<group>"; };
 		D632018123AF4BA2003D1C53 /* TimerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerReducer.swift; sourceTree = "<group>"; };
+		D638724923B093E600AF1F2B /* timer_completed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timer_completed.wav; sourceTree = "<group>"; };
 		D659A019235059BF000767CC /* pomo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D659A01C235059BF000767CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D659A01E235059BF000767CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		D638724823B093D800AF1F2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D638724923B093E600AF1F2B /* timer_completed.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D659A010235059BF000767CC = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				D6A62206239CAC95007413A5 /* pomo.entitlements */,
+				D638724823B093D800AF1F2B /* Resources */,
 				D605C773236AA22E00C9C0A7 /* Scene */,
 				D659A04C2351F916000767CC /* Views */,
 				D659A01C235059BF000767CC /* AppDelegate.swift */,
@@ -293,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D638724A23B093E600AF1F2B /* timer_completed.wav in Resources */,
 				D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */,
 				D659A026235059C0000767CC /* Preview Assets.xcassets in Resources */,
 				D659A023235059C0000767CC /* Assets.xcassets in Resources */,
