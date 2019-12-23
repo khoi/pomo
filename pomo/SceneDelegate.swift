@@ -11,7 +11,12 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
-  let store = Store(initialValue: TimerState(), reducer: logging(timerReducer))
+
+  #if DEBUG
+    let store = Store(initialValue: TimerState(), reducer: logging(timerReducer))
+  #else
+    let store = Store(initialValue: TimerState(), reducer: timerReducer)
+  #endif
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
