@@ -61,13 +61,12 @@ struct TimerContainer: View {
               } else if i == self.store.value.currentSession {
                 Circle()
                   .stroke(style: StrokeStyle(lineWidth: 1))
-                Circle()
-                  .trim(from: 0, to: self.currentProgress)
-                  .rotationEffect(.degrees(-90))
+                CircleProgressView(progress: Double(self.currentProgress))
               } else {
                 Circle().stroke(style: StrokeStyle(lineWidth: 1))
               }
-            }.frame(width: 10, height: 10, alignment: .center)
+            }
+            .frame(width: 10, height: 10, alignment: .center)
           }
         }
         .padding()
