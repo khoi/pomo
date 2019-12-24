@@ -91,16 +91,14 @@ struct TimerContainer: View {
 
         HStack {
           Spacer()
-          if self.store.value.isBreak {
-            Button(action: {
-              self.store.send(TimerAction.completeCurrentSession)
-            }) {
-              Image(systemName: "forward.end")
-                .font(.system(size: 30))
-                .foregroundColor(Color("zima"))
-            }
-            .padding()
+          Button(action: {
+            self.store.send(TimerAction.completeCurrentSession)
+          }) {
+            Image(systemName: "forward.end")
+              .font(.system(size: 30))
+              .foregroundColor(Color("zima"))
           }
+          .padding()
         }
       }
       .onReceive(timer) { _ in
@@ -153,10 +151,10 @@ struct TimerContainer: View {
 struct TimerContainerView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      TimerContainer().environment(\.colorScheme, .light)
-      TimerContainer().environment(\.colorScheme, .dark)
+      TimerContainer().environment(\.colorScheme, .light).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer))
+      TimerContainer().environment(\.colorScheme, .dark).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 3), reducer: timerReducer))
     }
-    .environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer))
+
     .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
 }
