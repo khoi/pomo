@@ -15,6 +15,7 @@ struct TimerContainer: View {
 
   @State private var timeLeft: TimeInterval = 0
   @State private var showingStopConfirmationAlert = false
+  @State private var showingResetConfirmationAlert = false
   @State private var showingSettingsModal = false
 
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -36,7 +37,7 @@ struct TimerContainer: View {
           #endif
           Spacer()
           Button(action: {
-            self.store.send(TimerAction.reset)
+            self.showingResetConfirmationAlert.toggle()
           }) {
             Image(systemName: "arrow.counterclockwise")
               .font(.system(size: 30))
@@ -119,6 +120,12 @@ struct TimerContainer: View {
       Alert(title: Text("Sure?"), message: Text("This will reset your current session"), primaryButton: .destructive(Text("Stop"), action: {
         self.store.send(.stopTimer)
         self.showingStopConfirmationAlert.toggle()
+      }), secondaryButton: .cancel())
+    }
+    .alert(isPresented: $showingResetConfirmationAlert) {
+      Alert(title: Text("Sure?"), message: Text("This will reset all current sessions"), primaryButton: .destructive(Text("Reset"), action: {
+        self.store.send(.reset)
+        self.showingResetConfirmationAlert.toggle()
       }), secondaryButton: .cancel())
     }
     .sheet(isPresented: $showingSettingsModal, onDismiss: {
