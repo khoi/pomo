@@ -151,13 +151,15 @@ struct TimerContainer: View {
   }
 }
 
-struct TimerContainerView_Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      TimerContainer().environment(\.colorScheme, .light).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer))
-      TimerContainer().environment(\.colorScheme, .dark).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 3), reducer: timerReducer))
-    }
+#if DEBUG
+  struct TimerContainerView_Previews: PreviewProvider {
+    static var previews: some View {
+      Group {
+        TimerContainer().environment(\.colorScheme, .light).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer))
+        TimerContainer().environment(\.colorScheme, .dark).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 3), reducer: timerReducer))
+      }
 
-    .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
+      .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
+    }
   }
-}
+#endif

@@ -42,12 +42,14 @@ struct SettingsView: View {
   }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      SettingsView().environment(\.colorScheme, .light)
-      SettingsView().environment(\.colorScheme, .dark)
+#if DEBUG
+  struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+      Group {
+        SettingsView().environment(\.colorScheme, .light)
+        SettingsView().environment(\.colorScheme, .dark)
+      }
+      .previewLayout(PreviewLayout.fixed(width: 500, height: 800))
     }
-    .previewLayout(PreviewLayout.fixed(width: 500, height: 800))
   }
-}
+#endif

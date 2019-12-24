@@ -22,7 +22,6 @@
 		D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D659A027235059C0000767CC /* LaunchScreen.storyboard */; };
 		D659A034235059C0000767CC /* pomoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A033235059C0000767CC /* pomoTests.swift */; };
 		D659A03F235059C0000767CC /* pomoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A03E235059C0000767CC /* pomoUITests.swift */; };
-		D6698587239A99A0008F7732 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6698586239A99A0008F7732 /* Constants.swift */; };
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
@@ -72,7 +71,6 @@
 		D659A03A235059C0000767CC /* pomoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pomoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D659A03E235059C0000767CC /* pomoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pomoUITests.swift; sourceTree = "<group>"; };
 		D659A040235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D6698586239A99A0008F7732 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 				D659A027235059C0000767CC /* LaunchScreen.storyboard */,
 				D659A02A235059C0000767CC /* Info.plist */,
 				D659A024235059C0000767CC /* Preview Content */,
-				D6698586239A99A0008F7732 /* Constants.swift */,
 				D609260A23AF457600212288 /* Redux.swift */,
 				D609260E23AF49E800212288 /* Utils.swift */,
 				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
@@ -379,7 +376,6 @@
 				D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,
-				D6698587239A99A0008F7732 /* Constants.swift in Sources */,
 				D6FB31D823B24B54008191B9 /* CircleProgressView.swift in Sources */,
 				D6FCF9EB23AFBA99000E228C /* SettingsView.swift in Sources */,
 				D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */,

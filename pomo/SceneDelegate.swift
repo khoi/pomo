@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   #if DEBUG
     let store = Store(initialValue: TimerState(), reducer: logging(withSoundsAndVibrations(reducer: timerReducer)))
   #else
-    let store = Store(initialValue: TimerState(), reducer: withSoundsAndVibrations(reducer: timerReducer))
+    let store = Store(initialValue: TimerState(), reducer: lwithSoundsAndVibrations(reducer: timerReducer))
   #endif
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
