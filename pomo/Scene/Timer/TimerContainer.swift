@@ -49,7 +49,7 @@ struct TimerContainer: View {
           .foregroundColor(Color("text"))
 
         Text(format(duration: self.timeLeft))
-          .font(.system(size: 50, weight: .medium, design: .rounded))
+          .font(Font.system(size: 50, weight: .medium, design: .rounded).monospacedDigit())
           .foregroundColor(Color("text"))
           .padding()
 
