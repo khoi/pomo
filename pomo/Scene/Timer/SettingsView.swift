@@ -12,35 +12,32 @@ struct SettingsView: View {
   @Environment(\.presentationMode) var presentationMode
 
   var body: some View {
-    ZStack {
-      Color("background")
-        .edgesIgnoringSafeArea(.all)
-      VStack {
-        ZStack {
-          HStack {
-            Spacer()
-            Text("SETTINGS").font(.headline)
-            Spacer()
-          }
-          HStack {
-            Spacer()
-            Button(action: {
-              self.presentationMode.wrappedValue.dismiss()
-            }) {
-              Text("Done")
-                .fontWeight(.semibold)
-                .foregroundColor(Color("zima"))
-            }
-          }
-        }.padding(8)
-        Spacer()
-        Group {
-          Text("Version Number")
-          Text("\(UIApplication.appVersion) (\(UIApplication.appBuildNumber))")
+    VStack {
+      ZStack {
+        HStack {
+          Spacer()
+          Text("SETTINGS").font(.headline)
+          Spacer()
         }
-        .font(.footnote)
+        HStack {
+          Spacer()
+          Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+          }) {
+            Text("Done")
+              .fontWeight(.semibold)
+              .foregroundColor(Color("zima"))
+          }
+        }
+      }.padding(8)
+      Spacer()
+      Group {
+        Text("Version Number")
+        Text("\(UIApplication.appVersion) (\(UIApplication.appBuildNumber))")
       }
+      .font(.footnote)
     }
+    .background(Color("background"))
     .foregroundColor(Color("text"))
   }
 }
