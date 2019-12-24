@@ -88,9 +88,10 @@ struct TimerContainer: View {
           .padding()
         }
         Spacer()
-        #if DEBUG
-          HStack {
-            Spacer()
+
+        HStack {
+          Spacer()
+          if self.store.value.isBreak {
             Button(action: {
               self.store.send(TimerAction.completeCurrentSession)
             }) {
@@ -100,7 +101,7 @@ struct TimerContainer: View {
             }
             .padding()
           }
-        #endif
+        }
       }
       .onReceive(timer) { _ in
         guard let started = self.store.value.started else {
