@@ -40,6 +40,12 @@ struct TimerContainer: View {
             .font(.system(size: 30))
             .foregroundColor(Color("zima"))
         }
+        .alert(isPresented: $showingResetConfirmationAlert) {
+          Alert(title: Text("Sure?"), message: Text("This will reset all current sessions"), primaryButton: .destructive(Text("Reset"), action: {
+            self.store.send(.reset)
+            self.showingResetConfirmationAlert.toggle()
+          }), secondaryButton: .cancel())
+        }
       }
       .padding()
       Spacer()
@@ -72,17 +78,23 @@ struct TimerContainer: View {
         .padding()
 
         Button(action: {
-          guard !self.store.value.timerRunning else {
-            self.showingStopConfirmationAlert = true
-            return
-          }
-          self.store.send(self.store.value.timerRunning ? TimerAction.stopTimer : TimerAction.startTimer)
+            if self.store.value.timerRunning {
+                self.showingStopConfirmationAlert = true
+            } else {
+                self.store.send(TimerAction.startTimer)
+            }
         }) {
           Image(systemName: store.value.timerRunning ? "stop" : "play")
             .font(.system(size: 50))
             .foregroundColor(Color("zima"))
         }
         .padding()
+        .alert(isPresented: $showingStopConfirmationAlert) {
+          Alert(title: Text("Sure?"), message: Text("This will reset your current session"), primaryButton: .destructive(Text("Stop"), action: {
+            self.store.send(.stopTimer)
+            self.showingStopConfirmationAlert.toggle()
+          }), secondaryButton: .cancel())
+        }
       }
       Spacer()
 
@@ -111,18 +123,6 @@ struct TimerContainer: View {
       }
       self.timeLeft = timeLeft
       UIApplication.shared.isIdleTimerDisabled = self.store.value.timerRunning
-    }
-    .alert(isPresented: $showingStopConfirmationAlert) {
-      Alert(title: Text("Sure?"), message: Text("This will reset your current session"), primaryButton: .destructive(Text("Stop"), action: {
-        self.store.send(.stopTimer)
-        self.showingStopConfirmationAlert.toggle()
-      }), secondaryButton: .cancel())
-    }
-    .alert(isPresented: $showingResetConfirmationAlert) {
-      Alert(title: Text("Sure?"), message: Text("This will reset all current sessions"), primaryButton: .destructive(Text("Reset"), action: {
-        self.store.send(.reset)
-        self.showingResetConfirmationAlert.toggle()
-      }), secondaryButton: .cancel())
     }
     .sheet(isPresented: $showingSettingsModal, onDismiss: {
       self.store.send(.loadTimerSettings)
