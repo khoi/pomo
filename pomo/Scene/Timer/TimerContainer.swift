@@ -20,6 +20,8 @@ struct TimerContainer: View {
 
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
+  let openStatistic: () -> Void
+
   var body: some View {
     VStack {
       HStack {
@@ -108,9 +110,7 @@ struct TimerContainer: View {
         }
         .padding()
         Spacer()
-        Button(action: {
-          print("Show bar chart")
-        }) {
+        Button(action: openStatistic) {
           Image(systemName: "chart.bar")
             .font(.system(size: 30))
             .foregroundColor(Color("zima"))
@@ -164,8 +164,8 @@ struct TimerContainer: View {
     static let store = Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer)
     static var previews: some View {
       Group {
-        TimerContainer(store: store).environment(\.colorScheme, .light)
-        TimerContainer(store: store).environment(\.colorScheme, .dark)
+        TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .light)
+        TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .dark)
       }
       .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
     }
