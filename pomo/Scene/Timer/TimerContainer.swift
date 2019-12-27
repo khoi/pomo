@@ -11,7 +11,7 @@ import SwiftUI
 import UIKit
 
 struct TimerContainer: View {
-  @EnvironmentObject var store: Store<TimerState, TimerAction>
+  @ObservedObject var store: Store<TimerState, TimerAction>
 
   @State private var timeLeft: TimeInterval = 0
   @State private var showingStopConfirmationAlert = false
@@ -78,11 +78,11 @@ struct TimerContainer: View {
         .padding()
 
         Button(action: {
-            if self.store.value.timerRunning {
-                self.showingStopConfirmationAlert = true
-            } else {
-                self.store.send(TimerAction.startTimer)
-            }
+          if self.store.value.timerRunning {
+            self.showingStopConfirmationAlert = true
+          } else {
+            self.store.send(TimerAction.startTimer)
+          }
         }) {
           Image(systemName: store.value.timerRunning ? "stop" : "play")
             .font(.system(size: 50))
@@ -99,11 +99,19 @@ struct TimerContainer: View {
       Spacer()
 
       HStack {
-        Spacer()
         Button(action: {
           self.store.send(TimerAction.completeCurrentSession)
         }) {
           Image(systemName: "forward.end")
+            .font(.system(size: 30))
+            .foregroundColor(Color("zima"))
+        }
+        .padding()
+        Spacer()
+        Button(action: {
+          print("Show bar chart")
+        }) {
+          Image(systemName: "chart.bar")
             .font(.system(size: 30))
             .foregroundColor(Color("zima"))
         }
@@ -153,12 +161,12 @@ struct TimerContainer: View {
 
 #if DEBUG
   struct TimerContainerView_Previews: PreviewProvider {
+    static let store = Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer)
     static var previews: some View {
       Group {
-        TimerContainer().environment(\.colorScheme, .light).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer))
-        TimerContainer().environment(\.colorScheme, .dark).environmentObject(Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 3), reducer: timerReducer))
+        TimerContainer(store: store).environment(\.colorScheme, .light)
+        TimerContainer(store: store).environment(\.colorScheme, .dark)
       }
-
       .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
     }
   }

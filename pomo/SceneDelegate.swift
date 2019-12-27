@@ -13,9 +13,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
   #if DEBUG
-    let store = Store(initialValue: TimerState(), reducer: logging(withSoundsAndVibrations(reducer: timerReducer)))
+    let store = Store(initialValue: AppState(),
+                      reducer: appReducer)
   #else
-    let store = Store(initialValue: TimerState(), reducer: lwithSoundsAndVibrations(reducer: timerReducer))
+    let store = Store(initialValue: AppState(),
+                      reducer: appReducer)
   #endif
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
@@ -25,8 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Create the SwiftUI view that provides the window contents.
     let context = CoreDataStack.shared.persistentContainer.viewContext
 
-    let rootView = TimerContainer()
-      .environmentObject(store)
+    let rootView = RootView(store: store)
       .environment(\.managedObjectContext, context)
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {
@@ -57,14 +58,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func sceneWillEnterForeground(_: UIScene) {
     // Called as the scene transitions from the background to the foreground.
     // Use this method to undo the changes made on entering the background.
-    store.send(.loadCurrentSession)
+    store.send(AppAction.timer(.loadCurrentSession))
   }
 
   func sceneDidEnterBackground(_: UIScene) {
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
-    store.send(.saveCurrentSession)
+    store.send(AppAction.timer(.saveCurrentSession))
     (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
   }
 }

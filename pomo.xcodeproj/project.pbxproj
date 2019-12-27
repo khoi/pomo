@@ -18,11 +18,13 @@
 		D659A01D235059BF000767CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01C235059BF000767CC /* AppDelegate.swift */; };
 		D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01E235059BF000767CC /* SceneDelegate.swift */; };
 		D659A023235059C0000767CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A022235059C0000767CC /* Assets.xcassets */; };
-		D659A026235059C0000767CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A025235059C0000767CC /* Preview Assets.xcassets */; };
 		D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D659A027235059C0000767CC /* LaunchScreen.storyboard */; };
 		D659A034235059C0000767CC /* pomoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A033235059C0000767CC /* pomoTests.swift */; };
 		D659A03F235059C0000767CC /* pomoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A03E235059C0000767CC /* pomoUITests.swift */; };
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
+		D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */; };
+		D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8C23B5EC0800A5C90F /* AppReducer.swift */; };
+		D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9023B5F13D00A5C90F /* RootView.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
 		D6C1E6A623B0FFC600758C19 /* TimerSoundMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1E6A523B0FFC600758C19 /* TimerSoundMiddleware.swift */; };
@@ -62,7 +64,6 @@
 		D659A01C235059BF000767CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D659A01E235059BF000767CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D659A022235059C0000767CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D659A025235059C0000767CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D659A028235059C0000767CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D659A02A235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D659A02F235059C0000767CC /* pomoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pomoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +73,9 @@
 		D659A03E235059C0000767CC /* pomoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pomoUITests.swift; sourceTree = "<group>"; };
 		D659A040235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
+		D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReducer.swift; sourceTree = "<group>"; };
+		D6928D8C23B5EC0800A5C90F /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		D6928D9023B5F13D00A5C90F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
 		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		D605C773236AA22E00C9C0A7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				D6928D8923B5E90200A5C90F /* Statistic */,
 				D605C774236AA23300C9C0A7 /* Timer */,
 			);
 			path = Scene;
@@ -131,6 +136,11 @@
 		D638724823B093D800AF1F2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */,
+				D6A62206239CAC95007413A5 /* pomo.entitlements */,
+				D659A02A235059C0000767CC /* Info.plist */,
+				D659A027235059C0000767CC /* LaunchScreen.storyboard */,
+				D659A022235059C0000767CC /* Assets.xcassets */,
 				D638724923B093E600AF1F2B /* timer_completed.wav */,
 			);
 			path = Resources;
@@ -147,7 +157,6 @@
 		D659A010235059BF000767CC = {
 			isa = PBXGroup;
 			children = (
-				D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */,
 				D659A01B235059BF000767CC /* pomo */,
 				D659A032235059C0000767CC /* pomoTests */,
 				D659A03D235059C0000767CC /* pomoUITests */,
@@ -170,31 +179,20 @@
 			isa = PBXGroup;
 			children = (
 				D67C7EE223B0EAAD00787DB1 /* Extensions */,
-				D6A62206239CAC95007413A5 /* pomo.entitlements */,
 				D638724823B093D800AF1F2B /* Resources */,
 				D605C773236AA22E00C9C0A7 /* Scene */,
 				D659A04C2351F916000767CC /* Views */,
 				D659A01C235059BF000767CC /* AppDelegate.swift */,
 				D659A01E235059BF000767CC /* SceneDelegate.swift */,
-				D659A022235059C0000767CC /* Assets.xcassets */,
-				D659A027235059C0000767CC /* LaunchScreen.storyboard */,
-				D659A02A235059C0000767CC /* Info.plist */,
-				D659A024235059C0000767CC /* Preview Content */,
 				D609260A23AF457600212288 /* Redux.swift */,
 				D609260E23AF49E800212288 /* Utils.swift */,
 				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
 				D6FCF9E523AFABB1000E228C /* AppSettings.swift */,
 				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
+				D6928D8C23B5EC0800A5C90F /* AppReducer.swift */,
+				D6928D9023B5F13D00A5C90F /* RootView.swift */,
 			);
 			path = pomo;
-			sourceTree = "<group>";
-		};
-		D659A024235059C0000767CC /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D659A025235059C0000767CC /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		D659A032235059C0000767CC /* pomoTests */ = {
@@ -230,6 +228,14 @@
 				D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D6928D8923B5E90200A5C90F /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */,
+			);
+			path = Statistic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +344,6 @@
 			files = (
 				D638724A23B093E600AF1F2B /* timer_completed.wav in Resources */,
 				D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */,
-				D659A026235059C0000767CC /* Preview Assets.xcassets in Resources */,
 				D659A023235059C0000767CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,10 +372,13 @@
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D609260B23AF457600212288 /* Redux.swift in Sources */,
+				D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */,
 				D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */,
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
+				D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */,
 				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
 				D6C1E6A623B0FFC600758C19 /* TimerSoundMiddleware.swift in Sources */,
+				D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */,
 				D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */,
 				D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */,
 				D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */,
@@ -544,13 +552,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = pomo/pomo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = pomo/Resources/pomo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_ASSET_PATHS = "\"pomo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = EMR59SFZRH;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = pomo/Info.plist;
+				INFOPLIST_FILE = pomo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -567,14 +575,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = pomo/pomo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = pomo/Resources/pomo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_ASSET_PATHS = "\"pomo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = EMR59SFZRH;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = pomo/Info.plist;
+				INFOPLIST_FILE = pomo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

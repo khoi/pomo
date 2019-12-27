@@ -57,7 +57,7 @@ enum TimerAction {
   case noop
 }
 
-let timerReducer = Reducer<TimerState, TimerAction>.init { (state, action) -> Effect<TimerAction> in
+let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<TimerAction> in
   switch action {
   case .completeCurrentSession:
     let started = state.started

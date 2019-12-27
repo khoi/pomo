@@ -17,3 +17,7 @@ func compose<A, B, C>(
     f(g(a))
   }
 }
+
+func with<A, B>(_ a: A, _ f: (A) throws -> B) rethrows -> B {
+  return try f(a)
+}
