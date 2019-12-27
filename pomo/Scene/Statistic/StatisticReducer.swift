@@ -7,6 +7,7 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 
 let statisticReducer = Reducer<StatisticState, StatisticAction> { (state, action) -> Effect<StatisticAction> in
@@ -43,6 +44,16 @@ struct StatisticEnvironment {
   var loadStatistic: () -> Effect<Statistic>
 }
 
+extension StatisticEnvironment {
+  static let live = StatisticEnvironment.init { () -> Effect<Statistic> in
+    .sync { () -> Statistic in
+      let fetchRequest: NSFetchRequest<Pomodoro> = Pomodoro.fetchRequest()
+      let pomodoros = (try? CoreDataStack.shared.persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+      return (today: pomodoros.count, thisWeek: pomodoros.count, thisMonth: pomodoros.count, thisYear: pomodoros.count)
+    }
+  }
+}
+
 #if DEBUG
   extension StatisticEnvironment {
     static let mock = StatisticEnvironment.init { () -> Effect<Statistic> in
@@ -53,4 +64,4 @@ struct StatisticEnvironment {
   }
 #endif
 
-var CurrentStatisticEnvironment = StatisticEnvironment.mock
+var CurrentStatisticEnvironment = StatisticEnvironment.live
