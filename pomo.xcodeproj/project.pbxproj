@@ -180,15 +180,13 @@
 		D659A01B235059BF000767CC /* pomo */ = {
 			isa = PBXGroup;
 			children = (
-				D67C7EE223B0EAAD00787DB1 /* Extensions */,
+				D67C7EE223B0EAAD00787DB1 /* Utilities */,
 				D638724823B093D800AF1F2B /* Resources */,
 				D605C773236AA22E00C9C0A7 /* Scene */,
 				D659A04C2351F916000767CC /* Views */,
 				D659A01C235059BF000767CC /* AppDelegate.swift */,
 				D659A01E235059BF000767CC /* SceneDelegate.swift */,
 				D609260A23AF457600212288 /* Redux.swift */,
-				D609260E23AF49E800212288 /* Utils.swift */,
-				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
 				D6FCF9E523AFABB1000E228C /* AppSettings.swift */,
 				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 				D6928D8C23B5EC0800A5C90F /* AppReducer.swift */,
@@ -223,13 +221,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D67C7EE223B0EAAD00787DB1 /* Extensions */ = {
+		D67C7EE223B0EAAD00787DB1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */,
 				D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */,
+				D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */,
+				D609260E23AF49E800212288 /* Utils.swift */,
 			);
-			path = Extensions;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D6928D8923B5E90200A5C90F /* Statistic */ = {
