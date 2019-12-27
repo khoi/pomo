@@ -1,5 +1,5 @@
 //
-//  StatisticView.swift
+//  StatisticContainer.swift
 //  pomo
 //
 //  Created by khoi on 12/27/19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct StatisticView: View {
+struct StatisticContainer: View {
   @ObservedObject var store: Store<StatisticState, StatisticAction>
 
   var body: some View {
@@ -50,8 +50,8 @@ struct StatisticView: View {
 
     static var previews: some View {
       Group {
-        StatisticView(store: store).environment(\.colorScheme, .light)
-        StatisticView(store: store).environment(\.colorScheme, .dark)
+        StatisticContainer(store: store).environment(\.colorScheme, .light)
+        StatisticContainer(store: store).environment(\.colorScheme, .dark)
       }
       .previewLayout(PreviewLayout.fixed(width: 400, height: 400))
     }

@@ -25,7 +25,7 @@
 		D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */; };
 		D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8C23B5EC0800A5C90F /* AppReducer.swift */; };
 		D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9023B5F13D00A5C90F /* RootView.swift */; };
-		D6928D9323B5F62B00A5C90F /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9223B5F62B00A5C90F /* StatisticView.swift */; };
+		D6928D9323B5F62B00A5C90F /* StatisticContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9223B5F62B00A5C90F /* StatisticContainer.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
 		D6C1E6A623B0FFC600758C19 /* TimerSoundMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1E6A523B0FFC600758C19 /* TimerSoundMiddleware.swift */; };
@@ -77,7 +77,7 @@
 		D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReducer.swift; sourceTree = "<group>"; };
 		D6928D8C23B5EC0800A5C90F /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D6928D9023B5F13D00A5C90F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		D6928D9223B5F62B00A5C90F /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		D6928D9223B5F62B00A5C90F /* StatisticContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticContainer.swift; sourceTree = "<group>"; };
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
 		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */,
-				D6928D9223B5F62B00A5C90F /* StatisticView.swift */,
+				D6928D9223B5F62B00A5C90F /* StatisticContainer.swift */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
-				D6928D9323B5F62B00A5C90F /* StatisticView.swift in Sources */,
+				D6928D9323B5F62B00A5C90F /* StatisticContainer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D609260B23AF457600212288 /* Redux.swift in Sources */,
 				D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */,

@@ -19,7 +19,7 @@ struct RootView: View {
                  action: { .timer($0) }),
                    openStatistic: { self.showingStatisticModal.toggle() })
       .sheet(isPresented: $showingStatisticModal) {
-        StatisticView(store: self.store.view(value: { $0.statistic }, action: { .statistic($0) }))
+        StatisticContainer(store: self.store.view(value: { $0.statistic }, action: { .statistic($0) }))
       }
   }
 }
