@@ -18,11 +18,17 @@ struct TimerSettings {
 
 public struct TimerState {
   var currentSession = 1
-  var timerSettings: TimerSettings = TimerSettings()
+  var timerSettings = TimerSettings()
   var started: Date?
 
   var timerRunning: Bool {
     started != nil
+  }
+  
+  init(currentSession: Int = 1, timerSettings: TimerSettings = TimerSettings(), started: Date? = nil) {
+    self.currentSession = currentSession
+    self.timerSettings = timerSettings
+    self.started = started
   }
 
   var currentDuration: TimeInterval {

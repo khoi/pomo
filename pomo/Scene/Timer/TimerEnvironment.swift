@@ -88,14 +88,42 @@ extension PomodoroRepository {
   }
 }
 
+#if DEBUG
+extension PomodoroRepository {
+  static let mock = PomodoroRepository { (_, _, _) -> Effect<Never> in
+    .fireAndForget {}
+  }
+}
+#endif
+
 public struct TimerEnvironment {
   var date: () -> Date = Date.init
   var timerSettingsRepository: TimerSettingsRepository = .live
   var pomodoroRepository: PomodoroRepository = .live
+  var timerState: TimerState = .live
 }
 
 extension TimerEnvironment {
   static let live = TimerEnvironment()
+  static let mock = TimerEnvironment(
+    date: { Date(timeIntervalSince1970: 1577528238) },
+    timerSettingsRepository: .mock,
+    pomodoroRepository: .mock,
+    timerState: .mock)
 }
 
-var CurrentTimerEnvironment = TimerEnvironment.live
+
+extension TimerState {
+  static let live = TimerState()
+}
+
+#if DEBUG
+extension TimerState {
+  static let mock = TimerState(currentSession: 2,
+                               timerSettings: TimerSettings(workDuration: 5, breakDuration: 5, longBreakDuration: 5, sessionCount: 4),
+                               started: Date(timeIntervalSince1970: 1577528237))
+}
+#endif
+
+var CurrentTimerEnvironment = TimerEnvironment.mock
+
