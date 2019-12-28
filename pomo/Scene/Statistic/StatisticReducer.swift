@@ -47,11 +47,56 @@ struct StatisticEnvironment {
 extension StatisticEnvironment {
   static let live = StatisticEnvironment.init { () -> Effect<Statistic> in
     .sync { () -> Statistic in
-      let fetchRequest: NSFetchRequest<Pomodoro> = Pomodoro.fetchRequest()
-      let pomodoros = (try? CoreDataStack.shared.persistentContainer.viewContext.fetch(fetchRequest)) ?? []
-      return (today: pomodoros.count, thisWeek: pomodoros.count, thisMonth: pomodoros.count, thisYear: pomodoros.count)
+      return (today: getTodayPomoCount(),
+              thisWeek: getThisWeekPomoCount(),
+              thisMonth: getThisMonthPomoCount(),
+              thisYear: getThisYearPomoCount())
     }
   }
+}
+
+private func getTodayPomoCount() -> Int {
+  let calendar = Calendar.current
+  let startDate = calendar.startOfDay(for: CurrentTimerEnvironment.date())
+  let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+  return getPomodorosCount(from: startDate, to: endDate)
+}
+
+private func getThisWeekPomoCount() -> Int {
+  let calendar = Calendar.current
+  let today = CurrentTimerEnvironment.date()
+  let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
+  guard let lastSunday = calendar.date(from: components),
+    let monday = calendar.date(byAdding: DateComponents(day: 1), to: lastSunday) else {
+      return 0
+  }
+  return getPomodorosCount(from: monday, to: today)
+}
+
+private func getThisMonthPomoCount() -> Int {
+  let calendar = Calendar.current
+  let today = CurrentTimerEnvironment.date()
+  let components = calendar.dateComponents([.year, .month], from: today)
+  guard let startOfMonth = calendar.date(from: components) else {
+    return 0
+  }
+  return getPomodorosCount(from: startOfMonth, to: today)
+}
+
+private func getThisYearPomoCount() -> Int {
+  let calendar = Calendar.current
+  let today = CurrentTimerEnvironment.date()
+  let components = calendar.dateComponents([.year], from: today)
+  guard let startOfYear = calendar.date(from: components) else {
+    return 0
+  }
+  return getPomodorosCount(from: startOfYear, to: today)
+}
+
+private func getPomodorosCount(from startDate: Date, to endDate: Date) -> Int {
+  let fetchRequest: NSFetchRequest<Pomodoro> = Pomodoro.fetchRequest()
+  fetchRequest.predicate = NSPredicate(format: "started >= %@ && started <= %@", startDate as NSDate, endDate as NSDate)
+  return (try? CoreDataStack.shared.persistentContainer.viewContext.count(for: fetchRequest)) ?? 0
 }
 
 #if DEBUG
