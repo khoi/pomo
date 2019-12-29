@@ -45,7 +45,7 @@ struct StatisticEnvironment {
 }
 
 extension StatisticEnvironment {
-  static let live = StatisticEnvironment.init { () -> Effect<Statistic> in
+  static let live = StatisticEnvironment { () -> Effect<Statistic> in
     .sync { () -> Statistic in
       let fetchRequest: NSFetchRequest<Pomodoro> = Pomodoro.fetchRequest()
       let pomodoros = (try? CoreDataStack.shared.persistentContainer.viewContext.fetch(fetchRequest)) ?? []
@@ -56,7 +56,7 @@ extension StatisticEnvironment {
 
 #if DEBUG
   extension StatisticEnvironment {
-    static let mock = StatisticEnvironment.init { () -> Effect<Statistic> in
+    static let mock = StatisticEnvironment { () -> Effect<Statistic> in
       .sync { () -> Statistic in
         (today: 1, thisWeek: 2, thisMonth: 3, thisYear: 4)
       }

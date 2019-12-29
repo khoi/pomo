@@ -124,7 +124,7 @@ struct TimerContainer: View {
         self.timeLeft = self.store.value.currentDuration
         return
       }
-      let timeLeft = self.store.value.currentDuration - Date().timeIntervalSince(started)
+      let timeLeft = self.store.value.currentDuration - CurrentTimerEnvironment.date().timeIntervalSince(started)
       if timeLeft <= 0 {
         self.store.send(TimerAction.completeCurrentSession)
         return
@@ -160,14 +160,20 @@ struct TimerContainer: View {
 }
 
 #if DEBUG
-  struct TimerContainerView_Previews: PreviewProvider {
-    static let store = Store<TimerState, TimerAction>(initialValue: TimerState(currentSession: 2), reducer: timerReducer)
-    static var previews: some View {
-      Group {
-        TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .light)
-        TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .dark)
-      }
-      .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
+struct TimerContainerView_Previews: PreviewProvider {
+  static let store = Store<TimerState, TimerAction>(
+    initialValue: TimerState(
+      currentSession: 1,
+      timerSettings: TimerSettings(workDuration: 5, breakDuration: 5, longBreakDuration: 5, sessionCount: 4),
+      started: Date(timeIntervalSince1970: 1577528235)
+    ),
+    reducer: timerReducer)
+  static var previews: some View {
+    Group {
+      TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .light)
+      TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .dark)
     }
+    .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }
+}
 #endif
