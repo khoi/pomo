@@ -76,12 +76,7 @@ public struct TimerEnvironment {
 
 extension TimerEnvironment {
   static let live = TimerEnvironment()
-  static let mock = TimerEnvironment(
-    date: { Date(timeIntervalSince1970: 1577528238) },
-    timerSettingsRepository: .mock,
-    pomodoroRepository: .mock)
 }
-
 
 extension TimerState {
   static let live = TimerState()
@@ -90,28 +85,35 @@ extension TimerState {
 var CurrentTimerEnvironment = TimerEnvironment.live
 
 #if DEBUG
-extension TimerSettingsRepository {
-  static let mock = TimerSettingsRepository(load: { () -> Effect<TimerSettings> in
-    .sync {
-      TimerSettings(workDuration: 5,
-                    breakDuration: 3,
-                    longBreakDuration: 5)
-    }
-  }, save: { (_) -> Effect<Never> in
-    .empty()
-  }, saveCurrentSession: { _, _ in
-    .empty()
-  }, loadCurrentSession: {
-    .sync { () -> (currentSession: Int, started: Date?) in
-      (1, nil)
-    }
-  })
-}
-
-extension PomodoroRepository {
-  static let mock = PomodoroRepository { (_, _, _) -> Effect<Never> in
-    .fireAndForget {}
+  extension TimerEnvironment {
+    static let mock = TimerEnvironment(
+      date: { Date(timeIntervalSince1970: 1_577_528_238) },
+      timerSettingsRepository: .mock,
+      pomodoroRepository: .mock
+    )
   }
-}
-#endif
 
+  extension TimerSettingsRepository {
+    static let mock = TimerSettingsRepository(load: { () -> Effect<TimerSettings> in
+      .sync {
+        TimerSettings(workDuration: 5,
+                      breakDuration: 3,
+                      longBreakDuration: 5)
+      }
+    }, save: { (_) -> Effect<Never> in
+      .empty()
+    }, saveCurrentSession: { _, _ in
+      .empty()
+    }, loadCurrentSession: {
+      .sync { () -> (currentSession: Int, started: Date?) in
+        (1, nil)
+      }
+    })
+  }
+
+  extension PomodoroRepository {
+    static let mock = PomodoroRepository { (_, _, _) -> Effect<Never> in
+      .fireAndForget {}
+    }
+  }
+#endif
