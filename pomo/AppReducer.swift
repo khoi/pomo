@@ -9,7 +9,7 @@
 import Foundation
 
 struct AppState {
-  var timer = CurrentTimerEnvironment.timerState
+  var timer = TimerState()
   var statistic = StatisticState()
 }
 

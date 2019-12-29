@@ -161,7 +161,13 @@ struct TimerContainer: View {
 
 #if DEBUG
 struct TimerContainerView_Previews: PreviewProvider {
-  static let store = Store<TimerState, TimerAction>(initialValue: CurrentTimerEnvironment.timerState, reducer: timerReducer)
+  static let store = Store<TimerState, TimerAction>(
+    initialValue: TimerState(
+      currentSession: 1,
+      timerSettings: TimerSettings(workDuration: 5, breakDuration: 5, longBreakDuration: 5, sessionCount: 4),
+      started: Date(timeIntervalSince1970: 1577528235)
+    ),
+    reducer: timerReducer)
   static var previews: some View {
     Group {
       TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .light)
