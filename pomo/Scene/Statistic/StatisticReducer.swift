@@ -55,26 +55,28 @@ extension StatisticEnvironment {
   }
 }
 
+private var calendar: Calendar {
+  var calendar = Calendar.current
+  calendar.firstWeekday = 2
+  return calendar
+}
+
 private func getTodayPomoCount() -> Int {
-  let calendar = Calendar.current
-  let startDate = calendar.startOfDay(for: CurrentTimerEnvironment.date())
-  let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) ?? startDate
-  return getPomodorosCount(from: startDate, to: endDate)
+  let currentTime = CurrentTimerEnvironment.date()
+  let startOfToday = calendar.startOfDay(for: currentTime)
+  return getPomodorosCount(from: startOfToday, to: currentTime)
 }
 
 private func getThisWeekPomoCount() -> Int {
-  let calendar = Calendar.current
   let today = CurrentTimerEnvironment.date()
   let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
-  guard let lastSunday = calendar.date(from: components),
-    let monday = calendar.date(byAdding: DateComponents(day: 1), to: lastSunday) else {
+  guard let monday = calendar.date(from: components) else {
       return 0
   }
   return getPomodorosCount(from: monday, to: today)
 }
 
 private func getThisMonthPomoCount() -> Int {
-  let calendar = Calendar.current
   let today = CurrentTimerEnvironment.date()
   let components = calendar.dateComponents([.year, .month], from: today)
   guard let startOfMonth = calendar.date(from: components) else {
