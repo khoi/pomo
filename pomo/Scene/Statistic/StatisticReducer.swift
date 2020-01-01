@@ -97,7 +97,7 @@ private func getThisYearPomoCount() -> Int {
 
 private func getPomodorosCount(from startDate: Date, to endDate: Date) -> Int {
   let fetchRequest: NSFetchRequest<Pomodoro> = Pomodoro.fetchRequest()
-  fetchRequest.predicate = NSPredicate(format: "started >= %@ && started <= %@", startDate as NSDate, endDate as NSDate)
+  fetchRequest.predicate = NSPredicate(format: "text == %@ && started >= %@ && started <= %@", "Focus", startDate as NSDate, endDate as NSDate)
   return (try? CoreDataStack.shared.persistentContainer.viewContext.count(for: fetchRequest)) ?? 0
 }
 
