@@ -42,17 +42,18 @@ enum StatisticAction {
 
 struct StatisticEnvironment {
   var loadStatistic: () -> Effect<Statistic>
+  var date: () -> Date
 }
 
 extension StatisticEnvironment {
-  static let live = StatisticEnvironment { () -> Effect<Statistic> in
+  static let live = StatisticEnvironment(loadStatistic: { () -> Effect<Statistic> in
     .sync { () -> Statistic in
-      return (today: getTodayPomoCount(),
-              thisWeek: getThisWeekPomoCount(),
-              thisMonth: getThisMonthPomoCount(),
-              thisYear: getThisYearPomoCount())
+      (today: getTodayPomoCount(),
+       thisWeek: getThisWeekPomoCount(),
+       thisMonth: getThisMonthPomoCount(),
+       thisYear: getThisYearPomoCount())
     }
-  }
+  }, date: Date.init)
 }
 
 private var calendar: Calendar {
@@ -62,22 +63,22 @@ private var calendar: Calendar {
 }
 
 private func getTodayPomoCount() -> Int {
-  let currentTime = CurrentTimerEnvironment.date()
+  let currentTime = CurrentStatisticEnvironment.date()
   let startOfToday = calendar.startOfDay(for: currentTime)
   return getPomodorosCount(from: startOfToday, to: currentTime)
 }
 
 private func getThisWeekPomoCount() -> Int {
-  let today = CurrentTimerEnvironment.date()
+  let today = CurrentStatisticEnvironment.date()
   let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
   guard let monday = calendar.date(from: components) else {
-      return 0
+    return 0
   }
   return getPomodorosCount(from: monday, to: today)
 }
 
 private func getThisMonthPomoCount() -> Int {
-  let today = CurrentTimerEnvironment.date()
+  let today = CurrentStatisticEnvironment.date()
   let components = calendar.dateComponents([.year, .month], from: today)
   guard let startOfMonth = calendar.date(from: components) else {
     return 0
@@ -87,7 +88,7 @@ private func getThisMonthPomoCount() -> Int {
 
 private func getThisYearPomoCount() -> Int {
   let calendar = Calendar.current
-  let today = CurrentTimerEnvironment.date()
+  let today = CurrentStatisticEnvironment.date()
   let components = calendar.dateComponents([.year], from: today)
   guard let startOfYear = calendar.date(from: components) else {
     return 0
@@ -103,11 +104,11 @@ private func getPomodorosCount(from startDate: Date, to endDate: Date) -> Int {
 
 #if DEBUG
   extension StatisticEnvironment {
-    static let mock = StatisticEnvironment { () -> Effect<Statistic> in
+    static let mock = StatisticEnvironment(loadStatistic: { () -> Effect<Statistic> in
       .sync { () -> Statistic in
         (today: 1, thisWeek: 2, thisMonth: 3, thisYear: 4)
       }
-    }
+    }, date: { Date(timeIntervalSince1970: 1_577_528_238) })
   }
 #endif
 
