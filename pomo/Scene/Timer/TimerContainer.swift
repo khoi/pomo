@@ -17,6 +17,7 @@ struct TimerContainer: View {
   @State private var showingStopConfirmationAlert = false
   @State private var showingResetConfirmationAlert = false
   @State private var showingSettingsModal = false
+  @State private var showingNextConfirmationAlert = false
 
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
@@ -102,13 +103,18 @@ struct TimerContainer: View {
 
       HStack {
         Button(action: {
-          self.store.send(TimerAction.completeCurrentSession)
+          self.showingNextConfirmationAlert = true
         }) {
           Image(systemName: "forward.end")
             .font(.system(size: 30))
             .foregroundColor(Color("zima"))
         }
         .padding()
+        .alert(isPresented: $showingNextConfirmationAlert) {
+          Alert(title: Text("Sure?"), message: Text("This will skip to the next session"), primaryButton: .destructive(Text("Next"), action: {
+            self.store.send(TimerAction.completeCurrentSession)
+          }), secondaryButton: .cancel())
+        }
         Spacer()
         Button(action: openStatistic) {
           Image(systemName: "chart.bar")
