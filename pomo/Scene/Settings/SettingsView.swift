@@ -11,14 +11,14 @@ import SwiftUI
 struct SettingsView: View {
   @ObservedObject var store: Store<TimerSettings, SettingsAction>
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-  
+
   fileprivate static let intervals: [Int] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
-  
+
   @State private var workIntervalIndex: Int = 0
   @State private var shortBreakIndex: Int = 0
   @State private var longBreakIndex: Int = 0
   @State private var isSoundEnabled = false
-  
+
   var body: some View {
     NavigationView {
       Form {
@@ -28,34 +28,29 @@ struct SettingsView: View {
               Text("\(Self.intervals[$0]) mins")
             }
           }
-          .padding()
-          
+
           Picker("Shot break", selection: $shortBreakIndex) {
             ForEach(0 ..< Self.intervals.count, id: \.self) {
               Text("\(Self.intervals[$0]) mins")
             }
           }
-          .padding()
-          
+
           Picker("Long break", selection: $longBreakIndex) {
             ForEach(0 ..< Self.intervals.count, id: \.self) {
               Text("\(Self.intervals[$0]) mins")
             }
           }
-          .padding()
-        }
-        
+        }.padding()
+
         Section {
           Toggle(isOn: $isSoundEnabled) {
             Text("Sounds on/off")
           }
-          .padding()
-          
+
           NavigationLink(destination: AboutView()) {
             Text("About")
           }
-          .padding()
-        }
+        }.padding()
       }
       .navigationBarTitle(Text("Settings"), displayMode: .inline)
       .navigationBarItems(trailing:
@@ -63,11 +58,11 @@ struct SettingsView: View {
           self.store.send(.saveTimerSettings(
             interval(at: self.workIntervalIndex),
             interval(at: self.shortBreakIndex),
-            interval(at: self.longBreakIndex))
+            interval(at: self.longBreakIndex)
+          )
           )
           self.presentationMode.wrappedValue.dismiss()
-        }
-      )
+      })
     }
     .onAppear {
       self.workIntervalIndex = intervalIndex(of: self.store.value.workDuration)
@@ -87,16 +82,18 @@ private func interval(at index: Int) -> TimeInterval {
   return Double(SettingsView.intervals[index] * 60)
 }
 
-struct SettingsView_Previews: PreviewProvider {
-  static let store = Store<TimerSettings, SettingsAction>(initialValue: TimerSettings(), reducer: settingsReducer)
-  static var previews: some View {
-    Group {
-      NavigationView {
-        SettingsView(store: store).environment(\.colorScheme, .light)
+#if DEBUG
+  struct SettingsView_Previews: PreviewProvider {
+    static let store = Store<TimerSettings, SettingsAction>(initialValue: TimerSettings(), reducer: settingsReducer)
+    static var previews: some View {
+      Group {
+        NavigationView {
+          SettingsView(store: store).environment(\.colorScheme, .light)
+        }
+
+        SettingsView(store: store).environment(\.colorScheme, .dark)
       }
-      
-      SettingsView(store: store).environment(\.colorScheme, .dark)
+      .previewLayout(PreviewLayout.fixed(width: 500, height: 600))
     }
-    .previewLayout(PreviewLayout.fixed(width: 500, height: 600))
   }
-}
+#endif
