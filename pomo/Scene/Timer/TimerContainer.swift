@@ -12,28 +12,26 @@ import UIKit
 
 struct TimerContainer: View {
   @ObservedObject var store: Store<TimerState, TimerAction>
-
+  
   @State private var timeLeft: TimeInterval = 0
   @State private var showingStopConfirmationAlert = false
   @State private var showingResetConfirmationAlert = false
-  @State private var showingSettingsModal = false
   @State private var showingNextConfirmationAlert = false
-
+  
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-
+  
   let openStatistic: () -> Void
-
+  let openSettings: () -> Void
+  
   var body: some View {
     VStack {
       HStack {
         #if DEBUG
-          Button(action: {
-            self.showingSettingsModal.toggle()
-          }) {
-            Image(systemName: "gear")
-              .font(.system(size: 30))
-              .foregroundColor(Color("zima"))
-          }
+        Button(action: openSettings) {
+          Image(systemName: "gear")
+            .font(.system(size: 30))
+            .foregroundColor(Color("zima"))
+        }
         #endif
         Spacer()
         Button(action: {
@@ -56,12 +54,12 @@ struct TimerContainer: View {
         Text(self.store.value.sessionText)
           .font(.system(size: 30))
           .foregroundColor(Color("text"))
-
+        
         Text(format(duration: self.timeLeft))
           .font(Font.system(size: 50, weight: .medium, design: .rounded).monospacedDigit())
           .foregroundColor(Color("text"))
           .padding()
-
+        
         HStack(alignment: .center, spacing: 16) {
           ForEach(1 ..< self.store.value.timerSettings.sessionCount + 1) { i in
             ZStack {
@@ -79,7 +77,7 @@ struct TimerContainer: View {
           }
         }
         .padding()
-
+        
         Button(action: {
           if self.store.value.timerRunning {
             self.showingStopConfirmationAlert = true
@@ -100,7 +98,7 @@ struct TimerContainer: View {
         }
       }
       Spacer()
-
+      
       HStack {
         Button(action: {
           self.showingNextConfirmationAlert = true
@@ -138,23 +136,18 @@ struct TimerContainer: View {
       self.timeLeft = timeLeft
       UIApplication.shared.isIdleTimerDisabled = self.store.value.timerRunning
     }
-    .sheet(isPresented: $showingSettingsModal, onDismiss: {
-      self.store.send(.loadTimerSettings)
-    }) {
-      SettingsView()
-    }
     .onAppear {
       self.store.send(.loadTimerSettings)
     }
   }
-
+  
   var currentProgress: CGFloat {
     guard store.value.timerRunning else {
       return 0
     }
     return CGFloat((store.value.currentDuration - timeLeft) / store.value.currentDuration)
   }
-
+  
   func format(duration: TimeInterval) -> String {
     let formatter = DateComponentsFormatter()
     formatter.allowedUnits = [.minute, .second]
@@ -176,8 +169,8 @@ struct TimerContainerView_Previews: PreviewProvider {
     reducer: timerReducer)
   static var previews: some View {
     Group {
-      TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .light)
-      TimerContainer(store: store, openStatistic: {}).environment(\.colorScheme, .dark)
+      TimerContainer(store: store, openStatistic: {}, openSettings: {}).environment(\.colorScheme, .light)
+      TimerContainer(store: store, openStatistic: {}, openSettings: {}).environment(\.colorScheme, .dark)
     }
     .previewLayout(PreviewLayout.fixed(width: 500, height: 500))
   }

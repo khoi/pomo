@@ -10,16 +10,24 @@ import SwiftUI
 
 struct RootView: View {
   @ObservedObject var store: Store<AppState, AppAction>
-
+  
   @State private var showingStatisticModal = false
-
+  @State private var showingSettingsModal = false
+  
   var body: some View {
     TimerContainer(store:
       store.view(value: { $0.timer },
                  action: { .timer($0) }),
-                   openStatistic: { self.showingStatisticModal.toggle() })
-      .sheet(isPresented: $showingStatisticModal) {
+                   openStatistic: { self.showingStatisticModal.toggle() },
+                   openSettings: { self.showingSettingsModal.toggle() }
+    )
+    .sheet(isPresented: $showingStatisticModal) {
         StatisticContainer(store: self.store.view(value: { $0.statistic }, action: { .statistic($0) }))
-      }
+    }
+    .sheet(isPresented: $showingSettingsModal, onDismiss: {
+      self.store.send(.timer(.loadTimerSettings))
+    }) {
+      SettingsView(store: self.store.view(value: { $0.timer.timerSettings }, action: { .settings($0) }))
+    }
   }
 }

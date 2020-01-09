@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D464ADB23B7316A0033BE2B /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D464ADA23B7316A0033BE2B /* StatisticView.swift */; };
+		2DD8746023C0D34B0018AE51 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* SettingsView.swift */; };
+		2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */; };
 		D609260B23AF457600212288 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260A23AF457600212288 /* Redux.swift */; };
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
 		D609261123AF4B7400212288 /* TimerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609261023AF4B7400212288 /* TimerContainer.swift */; };
@@ -32,7 +34,6 @@
 		D6FB31D823B24B54008191B9 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB31D723B24B54008191B9 /* CircleProgressView.swift */; };
 		D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E523AFABB1000E228C /* AppSettings.swift */; };
 		D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */; };
-		D6FCF9EB23AFBA99000E228C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCF9EA23AFBA99000E228C /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		2D464ADA23B7316A0033BE2B /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		2DD8745F23C0D34B0018AE51 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsReducer.swift; sourceTree = "<group>"; };
 		D609260A23AF457600212288 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D609261023AF4B7400212288 /* TimerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerContainer.swift; sourceTree = "<group>"; };
@@ -85,7 +88,6 @@
 		D6FB31D723B24B54008191B9 /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		D6FCF9E523AFABB1000E228C /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		D6FCF9E723AFAC6A000E228C /* Array+Safesubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safesubscript.swift"; sourceTree = "<group>"; };
-		D6FCF9EA23AFBA99000E228C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +116,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DD8745E23C0D2D50018AE51 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2DD8745F23C0D34B0018AE51 /* SettingsView.swift */,
+				2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		D605C773236AA22E00C9C0A7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				2DD8745E23C0D2D50018AE51 /* Settings */,
 				D6928D8923B5E90200A5C90F /* Statistic */,
 				D605C774236AA23300C9C0A7 /* Timer */,
 			);
@@ -129,7 +141,6 @@
 				D609261023AF4B7400212288 /* TimerContainer.swift */,
 				D632018123AF4BA2003D1C53 /* TimerReducer.swift */,
 				D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */,
-				D6FCF9EA23AFBA99000E228C /* SettingsView.swift */,
 				D6C1E6A523B0FFC600758C19 /* TimerSoundMiddleware.swift */,
 			);
 			path = Timer;
@@ -372,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD8746023C0D34B0018AE51 /* SettingsView.swift in Sources */,
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D609260B23AF457600212288 /* Redux.swift in Sources */,
@@ -382,6 +394,7 @@
 				D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */,
 				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
 				D6C1E6A623B0FFC600758C19 /* TimerSoundMiddleware.swift in Sources */,
+				2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */,
 				D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */,
 				D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */,
 				D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */,
@@ -389,7 +402,6 @@
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,
 				D6FB31D823B24B54008191B9 /* CircleProgressView.swift in Sources */,
-				D6FCF9EB23AFBA99000E228C /* SettingsView.swift in Sources */,
 				D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */,
 				D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */,
 			);
