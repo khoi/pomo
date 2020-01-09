@@ -13,10 +13,9 @@ enum SettingsAction {
   case noop
 }
 
-let settingsReducer = Reducer<TimerSettings, SettingsAction> { (state, action) -> Effect<SettingsAction> in
+let settingsReducer = Reducer<TimerSettings, SettingsAction> { (_, action) -> Effect<SettingsAction> in
   switch action {
   case let .saveTimerSettings(workDuration, breakDuration, longBreakDuration):
-    print("Save trigger")
     let newTimerSettings = TimerSettings(workDuration: workDuration, breakDuration: breakDuration, longBreakDuration: longBreakDuration)
     return CurrentTimerEnvironment
       .timerSettingsRepository
