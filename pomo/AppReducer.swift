@@ -39,7 +39,7 @@ enum AppAction {
       self = .statistic(newValue)
     }
   }
-  
+
   var settings: SettingsAction? {
     get {
       guard case let .settings(value) = self else { return nil }

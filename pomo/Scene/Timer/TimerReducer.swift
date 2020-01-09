@@ -24,7 +24,7 @@ public struct TimerState {
   var timerRunning: Bool {
     started != nil
   }
-  
+
   init(currentSession: Int = 1, timerSettings: TimerSettings = TimerSettings(), started: Date? = nil) {
     self.currentSession = currentSession
     self.timerSettings = timerSettings
