@@ -98,7 +98,7 @@ struct TimerContainer: View {
       Spacer()
 
       HStack {
-        #if DEBUG
+        if self.store.value.isBreak {
           Button(action: {
             self.showingNextConfirmationAlert = true
           }) {
@@ -108,11 +108,11 @@ struct TimerContainer: View {
           }
           .padding()
           .alert(isPresented: $showingNextConfirmationAlert) {
-            Alert(title: Text("Sure?"), message: Text("This will skip to the next session"), primaryButton: .destructive(Text("Next"), action: {
+            Alert(title: Text("Sure?"), message: Text("This will skip the break"), primaryButton: .destructive(Text("Next"), action: {
               self.store.send(TimerAction.completeCurrentSession)
             }), secondaryButton: .cancel())
           }
-        #endif
+        }
         Spacer()
         Button(action: openStatistic) {
           Image(systemName: "chart.bar")
