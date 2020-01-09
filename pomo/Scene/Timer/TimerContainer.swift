@@ -98,19 +98,21 @@ struct TimerContainer: View {
       Spacer()
 
       HStack {
-        Button(action: {
-          self.showingNextConfirmationAlert = true
-        }) {
-          Image(systemName: "forward.end")
-            .font(.system(size: 30))
-            .foregroundColor(Color("zima"))
-        }
-        .padding()
-        .alert(isPresented: $showingNextConfirmationAlert) {
-          Alert(title: Text("Sure?"), message: Text("This will skip to the next session"), primaryButton: .destructive(Text("Next"), action: {
-            self.store.send(TimerAction.completeCurrentSession)
-          }), secondaryButton: .cancel())
-        }
+        #if DEBUG
+          Button(action: {
+            self.showingNextConfirmationAlert = true
+          }) {
+            Image(systemName: "forward.end")
+              .font(.system(size: 30))
+              .foregroundColor(Color("zima"))
+          }
+          .padding()
+          .alert(isPresented: $showingNextConfirmationAlert) {
+            Alert(title: Text("Sure?"), message: Text("This will skip to the next session"), primaryButton: .destructive(Text("Next"), action: {
+              self.store.send(TimerAction.completeCurrentSession)
+            }), secondaryButton: .cancel())
+          }
+        #endif
         Spacer()
         Button(action: openStatistic) {
           Image(systemName: "chart.bar")
