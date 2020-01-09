@@ -1,1 +1,4 @@
+--symlinks ignore
+--swiftversion 5
+
 --indent 2
