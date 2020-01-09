@@ -47,14 +47,17 @@ struct SettingsView: View {
             Text("Sounds on/off")
           }
 
-          NavigationLink(destination: AboutView()) {
-            Text("About")
+          HStack {
+            Text("Version")
+            Spacer()
+            Text("\(UIApplication.appVersion) (\(UIApplication.appBuildNumber))")
           }
+
         }.padding()
       }
       .navigationBarTitle(Text("Settings"), displayMode: .inline)
       .navigationBarItems(trailing:
-        Button("Save") {
+        Button("Done") {
           self.store.send(.saveTimerSettings(
             interval(at: self.workIntervalIndex),
             interval(at: self.shortBreakIndex),
@@ -62,13 +65,13 @@ struct SettingsView: View {
           )
           )
           self.presentationMode.wrappedValue.dismiss()
-      })
-    }
-    .onAppear {
-      self.workIntervalIndex = intervalIndex(of: self.store.value.workDuration)
-      self.shortBreakIndex = intervalIndex(of: self.store.value.breakDuration)
-      self.longBreakIndex = intervalIndex(of: self.store.value.longBreakDuration)
-    }
+      }.foregroundColor(Color("zima")))
+    }.foregroundColor(Color("text"))
+      .onAppear {
+        self.workIntervalIndex = intervalIndex(of: self.store.value.workDuration)
+        self.shortBreakIndex = intervalIndex(of: self.store.value.breakDuration)
+        self.longBreakIndex = intervalIndex(of: self.store.value.longBreakDuration)
+      }
   }
 }
 
