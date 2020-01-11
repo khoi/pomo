@@ -59,9 +59,10 @@ struct SettingsContainer: View {
             .navigationBarItems(trailing:
                 Button("Done") {
                     self.store.send(.saveTimerSettings(
-                        interval(at: self.workIntervalIndex),
-                        interval(at: self.shortBreakIndex),
-                        interval(at: self.longBreakIndex)
+                        TimerSettings(workDuration: interval(at: self.workIntervalIndex),
+                                      breakDuration: interval(at: self.shortBreakIndex),
+                                      longBreakDuration: interval(at: self.longBreakIndex),
+                                      soundEnabled: self.isSoundEnabled)
                     ))
                     self.presentationMode.wrappedValue.dismiss()
             }.foregroundColor(Color("zima")))
@@ -70,6 +71,7 @@ struct SettingsContainer: View {
                 self.workIntervalIndex = intervalIndex(of: self.store.value.workDuration)
                 self.shortBreakIndex = intervalIndex(of: self.store.value.breakDuration)
                 self.longBreakIndex = intervalIndex(of: self.store.value.longBreakDuration)
+                self.isSoundEnabled = self.store.value.soundEnabled
             }
     }
 }
