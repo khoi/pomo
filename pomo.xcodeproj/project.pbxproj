@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D464ADB23B7316A0033BE2B /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D464ADA23B7316A0033BE2B /* StatisticView.swift */; };
-		2DD8746023C0D34B0018AE51 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* SettingsView.swift */; };
+		2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */; };
 		2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */; };
 		D609260B23AF457600212288 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260A23AF457600212288 /* Redux.swift */; };
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
@@ -55,7 +55,7 @@
 
 /* Begin PBXFileReference section */
 		2D464ADA23B7316A0033BE2B /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
-		2DD8745F23C0D34B0018AE51 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
 		2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsReducer.swift; sourceTree = "<group>"; };
 		D609260A23AF457600212288 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		2DD8745E23C0D2D50018AE51 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				2DD8745F23C0D34B0018AE51 /* SettingsView.swift */,
+				2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */,
 				2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */,
 			);
 			path = Settings;
@@ -383,7 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DD8746023C0D34B0018AE51 /* SettingsView.swift in Sources */,
+				2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */,
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D609260B23AF457600212288 /* Redux.swift in Sources */,
@@ -572,7 +572,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = EMR59SFZRH;
+				DEVELOPMENT_TEAM = JN573MG5GT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = pomo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
