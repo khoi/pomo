@@ -9,20 +9,19 @@
 import Foundation
 
 enum SettingsAction {
-  case saveTimerSettings(Double, Double, Double)
-  case noop
+    case saveTimerSettings(TimerSettings)
+    case noop
 }
 
 let settingsReducer = Reducer<TimerSettings, SettingsAction> { (_, action) -> Effect<SettingsAction> in
-  switch action {
-  case let .saveTimerSettings(workDuration, breakDuration, longBreakDuration):
-    let newTimerSettings = TimerSettings(workDuration: workDuration, breakDuration: breakDuration, longBreakDuration: longBreakDuration)
-    return CurrentTimerEnvironment
-      .timerSettingsRepository
-      .save(newTimerSettings)
-      .map { _ in SettingsAction.noop }
-      .eraseToEffect()
-  default:
-    return .empty()
-  }
+    switch action {
+    case let .saveTimerSettings(newTimerSettings):
+        return CurrentTimerEnvironment
+            .timerSettingsRepository
+            .save(newTimerSettings)
+            .map { _ in SettingsAction.noop }
+            .eraseToEffect()
+    default:
+        return .empty()
+    }
 }

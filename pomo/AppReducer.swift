@@ -17,7 +17,7 @@ enum AppAction {
   case timer(TimerAction)
   case statistic(StatisticAction)
   case settings(SettingsAction)
-
+  
   var timer: TimerAction? {
     get {
       guard case let .timer(value) = self else { return nil }
@@ -28,7 +28,7 @@ enum AppAction {
       self = .timer(newValue)
     }
   }
-
+  
   var statistic: StatisticAction? {
     get {
       guard case let .statistic(value) = self else { return nil }
@@ -39,7 +39,7 @@ enum AppAction {
       self = .statistic(newValue)
     }
   }
-
+  
   var settings: SettingsAction? {
     get {
       guard case let .settings(value) = self else { return nil }
@@ -53,7 +53,7 @@ enum AppAction {
 }
 
 let appReducer = combine(
-  pullback(withSoundsAndVibrations(reducer: timerReducer), value: \AppState.timer, action: \AppAction.timer),
+  pullback(timerReducer, value: \AppState.timer, action: \AppAction.timer),
   pullback(statisticReducer, value: \AppState.statistic, action: \AppAction.statistic),
   pullback(settingsReducer, value: \AppState.timer.timerSettings, action: \AppAction.settings)
 )
