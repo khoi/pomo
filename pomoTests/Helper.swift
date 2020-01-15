@@ -35,6 +35,16 @@ struct Step<Value, Action> {
     self.line = line
     self.type = type
   }
+
+  static func send(_ action: Action,
+                   _ update: @escaping (inout Value) -> Void) -> Step<Value, Action> {
+    .init(.send, action, update)
+  }
+
+  static func receive(_ action: Action,
+                      _ update: @escaping (inout Value) -> Void) -> Step<Value, Action> {
+    .init(.receive, action, update)
+  }
 }
 
 func assert<Value: Equatable, Action: Equatable>(

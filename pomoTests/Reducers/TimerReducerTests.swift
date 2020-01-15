@@ -20,7 +20,7 @@ class TimerReducerTests: XCTestCase {
       initialValue: TimerState(started: Date()),
       reducer: timerReducer,
       steps:
-      Step(.send, .stopTimer) {
+      .send(.stopTimer) {
         $0.started = nil
       }
     )
@@ -33,7 +33,7 @@ class TimerReducerTests: XCTestCase {
       initialValue: TimerState(started: nil),
       reducer: timerReducer,
       steps:
-      Step(.send, .startTimer) {
+      .send(.startTimer) {
         $0.started = Date(timeIntervalSince1970: 3000)
       }
     )
@@ -51,8 +51,8 @@ class TimerReducerTests: XCTestCase {
       initialValue: TimerState(started: nil),
       reducer: timerReducer,
       steps:
-      Step(.send, .loadCurrentSession) { _ in },
-      Step(.receive, .loadedCurrentSession(currentSession.currentSession, currentSession.started)) {
+      .send(.loadCurrentSession) { _ in },
+      .receive(.loadedCurrentSession(currentSession.currentSession, currentSession.started)) {
         $0.started = currentSession.started
         $0.currentSession = currentSession.currentSession
       }
@@ -73,8 +73,8 @@ class TimerReducerTests: XCTestCase {
       initialValue: TimerState(started: nil),
       reducer: timerReducer,
       steps:
-      Step(.send, .loadTimerSettings) { _ in },
-      Step(.receive, .loadedTimerSettings(mockSettings)) { $0.timerSettings = mockSettings }
+      .send(.loadTimerSettings) { _ in },
+      .receive(.loadedTimerSettings(mockSettings)) { $0.timerSettings = mockSettings }
     )
   }
 
@@ -83,7 +83,7 @@ class TimerReducerTests: XCTestCase {
       initialValue: TimerState(currentSession: 3, started: Date()),
       reducer: timerReducer,
       steps:
-      Step(.send, .reset) {
+      .send(.reset) {
         $0.started = nil
         $0.currentSession = 1
       }
@@ -114,7 +114,7 @@ class TimerReducerTests: XCTestCase {
       initialValue: TimerState(),
       reducer: timerReducer,
       steps:
-      Step(.send, .noop) { _ in }
+      .send(.noop) { _ in }
     )
   }
 }
