@@ -20,10 +20,10 @@ extension Publisher where Failure == Never {
 }
 
 public struct Reducer<Value, Action> {
-  public let run: (inout Value, Action) -> Effect<Action>
+  public let reduce: (inout Value, Action) -> Effect<Action>
 
   init(run: @escaping (inout Value, Action) -> Effect<Action>) {
-    self.run = run
+    reduce = run
   }
 }
 
@@ -39,7 +39,7 @@ public final class Store<Value, Action>: ObservableObject {
   }
 
   public func send(_ action: Action) {
-    reducer.run(&value, action).sink(receiveValue: send).store(in: &effectCancellables)
+    reducer.reduce(&value, action).sink(receiveValue: send).store(in: &effectCancellables)
   }
 
   public func view<LocalValue, LocalAction>(
@@ -65,7 +65,7 @@ public func combine<Value, Action>(
   _ reducers: Reducer<Value, Action>...
 ) -> Reducer<Value, Action> {
   return Reducer { value, action in
-    let effects = reducers.compactMap { $0.run(&value, action) }
+    let effects = reducers.compactMap { $0.reduce(&value, action) }
     return Publishers.MergeMany(effects).eraseToEffect()
   }
 }
@@ -80,7 +80,7 @@ public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
       return Empty(completeImmediately: true).eraseToEffect()
     }
 
-    let localEffects = reducer.run(&globalValue[keyPath: value], localAction)
+    let localEffects = reducer.reduce(&globalValue[keyPath: value], localAction)
     return localEffects.map { (localAction) -> GlobalAction in
       var globalAction = globalAction
       globalAction[keyPath: action] = localAction
@@ -93,7 +93,7 @@ public func logging<Value, Action>(
   _ reducer: Reducer<Value, Action>
 ) -> Reducer<Value, Action> {
   return Reducer { value, action in
-    let effects = reducer.run(&value, action)
+    let effects = reducer.reduce(&value, action)
     let newValue = value
     let loggingEffect = Effect<Action>.fireAndForget {
       print("Action: \(action)")
