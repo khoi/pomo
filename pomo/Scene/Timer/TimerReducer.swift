@@ -18,8 +18,8 @@ public struct TimerSettings: Equatable {
 }
 
 public struct TimerState: Equatable {
-  var currentSession = 1
-  var timerSettings = TimerSettings()
+  var currentSession: Int
+  var timerSettings: TimerSettings
   var started: Date?
 
   var timerRunning: Bool {
@@ -51,7 +51,7 @@ public struct TimerState: Equatable {
   }
 }
 
-enum TimerAction {
+enum TimerAction: Equatable {
   case startTimer
   case stopTimer
   case completeCurrentSession

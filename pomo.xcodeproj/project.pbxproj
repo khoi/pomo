@@ -18,11 +18,11 @@
 		D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */; };
 		D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */; };
 		D638725223B0B7C400AF1F2B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D638725123B0B7C400AF1F2B /* CloudKit.framework */; };
+		D65367EF23CF5ED9007FA916 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65367EE23CF5ED9007FA916 /* Helper.swift */; };
 		D659A01D235059BF000767CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01C235059BF000767CC /* AppDelegate.swift */; };
 		D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A01E235059BF000767CC /* SceneDelegate.swift */; };
 		D659A023235059C0000767CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A022235059C0000767CC /* Assets.xcassets */; };
 		D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D659A027235059C0000767CC /* LaunchScreen.storyboard */; };
-		D659A034235059C0000767CC /* pomoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659A033235059C0000767CC /* pomoTests.swift */; };
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
 		D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */; };
 		D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8C23B5EC0800A5C90F /* AppReducer.swift */; };
@@ -58,6 +58,7 @@
 		D638724C23B0B6B400AF1F2B /* pomo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomo.xcdatamodel; sourceTree = "<group>"; };
 		D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D638725123B0B7C400AF1F2B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		D65367EE23CF5ED9007FA916 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D659A019235059BF000767CC /* pomo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D659A01C235059BF000767CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D659A01E235059BF000767CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		D659A028235059C0000767CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D659A02A235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D659A02F235059C0000767CC /* pomoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pomoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D659A033235059C0000767CC /* pomoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pomoTests.swift; sourceTree = "<group>"; };
 		D659A035235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
 		D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReducer.swift; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				D69FEC6923CD745100F51E1E /* Reducers */,
-				D659A033235059C0000767CC /* pomoTests.swift */,
 				D659A035235059C0000767CC /* Info.plist */,
+				D65367EE23CF5ED9007FA916 /* Helper.swift */,
 			);
 			path = pomoTests;
 			sourceTree = "<group>";
@@ -364,7 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D69FEC6B23CD746000F51E1E /* TimerReducerTests.swift in Sources */,
-				D659A034235059C0000767CC /* pomoTests.swift in Sources */,
+				D65367EF23CF5ED9007FA916 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
