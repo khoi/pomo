@@ -70,10 +70,11 @@ let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<
     let currentSessionText = state.sessionText
     let currentDuration = state.currentDuration
     let started = state.started
+
     state.started = nil
     state.currentSession = (state.currentSession % state.timerSettings.sessionCount) + 1
-    let localState = state
     let startedDate = started ?? CurrentTimerEnvironment.date()
+    let localState = state
     return CurrentTimerEnvironment
       .pomodoroRepository
       .saveTimer(startedDate, currentDuration, currentSessionText)

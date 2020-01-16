@@ -15,6 +15,85 @@ class TimerReducerTests: XCTestCase {
     CurrentTimerEnvironment = .mock
   }
 
+  func testCompleteSession() {
+    let mockSettings = TimerSettings(sessionCount: 4)
+    CurrentTimerEnvironment.timerSettingsRepository.load = {
+      .sync {
+        mockSettings
+      }
+    }
+
+    assert(
+      initialValue: TimerState(currentSession: 1, started: Date(timeIntervalSince1970: 3000)),
+      reducer: timerReducer,
+      steps:
+      .send(.completeCurrentSession) {
+        $0.currentSession = 2
+        $0.started = nil
+      },
+      .send(.completeCurrentSession) {
+        $0.currentSession = 3
+        $0.started = nil
+      },
+      .send(.completeCurrentSession) {
+        $0.currentSession = 4
+        $0.started = nil
+      }
+    )
+  }
+
+  func testCompleteAllPomodoros() {
+    let mockSettings = TimerSettings(sessionCount: 4)
+    CurrentTimerEnvironment.timerSettingsRepository.load = {
+      .sync {
+        mockSettings
+      }
+    }
+    assert(
+      initialValue: TimerState(currentSession: 4, started: Date(timeIntervalSince1970: 3000)),
+      reducer: timerReducer,
+      steps:
+      .send(.completeCurrentSession) {
+        $0.currentSession = 1
+        $0.started = nil
+      }
+    )
+  }
+
+  func testAllPomodorosHappyFlow() {
+    CurrentTimerEnvironment.date = { Date(timeIntervalSince1970: 3000) }
+    CurrentTimerEnvironment.timerSettingsRepository.load = {
+      .sync {
+        TimerSettings(sessionCount: 4)
+      }
+    }
+
+    assert(
+      initialValue: TimerState(currentSession: 1, started: nil),
+      reducer: timerReducer,
+      steps:
+      .send(.startTimer) {
+        $0.started = Date(timeIntervalSince1970: 3000)
+      },
+      .send(.completeCurrentSession) {
+        $0.currentSession = 2
+        $0.started = nil
+      },
+      .send(.completeCurrentSession) {
+        $0.currentSession = 3
+        $0.started = nil
+      },
+      .send(.completeCurrentSession) {
+        $0.currentSession = 4
+        $0.started = nil
+      },
+      .send(.completeCurrentSession) {
+        $0.currentSession = 1
+        $0.started = nil
+      }
+    )
+  }
+
   func testStopTimer() {
     assert(
       initialValue: TimerState(started: Date()),

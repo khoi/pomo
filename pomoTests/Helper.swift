@@ -37,13 +37,17 @@ struct Step<Value, Action> {
   }
 
   static func send(_ action: Action,
+                   file: StaticString = #file,
+                   line: UInt = #line,
                    _ update: @escaping (inout Value) -> Void) -> Step<Value, Action> {
-    .init(.send, action, update)
+    .init(.send, action, file: file, line: line, update)
   }
 
   static func receive(_ action: Action,
+                      file: StaticString = #file,
+                      line: UInt = #line,
                       _ update: @escaping (inout Value) -> Void) -> Step<Value, Action> {
-    .init(.receive, action, update)
+    .init(.receive, action, file: file, line: line, update)
   }
 }
 
