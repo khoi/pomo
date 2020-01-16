@@ -1,0 +1,15 @@
+name: ci
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: bundle install
+      run: bundle install
+    - name: tests - fastlane scan
+      run: bundle exec fastlane scan

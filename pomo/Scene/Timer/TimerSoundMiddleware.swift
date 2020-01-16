@@ -30,6 +30,6 @@ func withSoundsAndVibrations(reducer: Reducer<TimerState, TimerAction>) -> Reduc
         break
       }
     }
-    return soundEffect.merge(with: reducer.run(&value, action)).eraseToEffect()
+    return soundEffect.merge(with: reducer.reduce(&value, action)).eraseToEffect()
   }
 }
