@@ -61,7 +61,6 @@ enum TimerAction: Equatable {
   case saveCurrentSession
   case loadCurrentSession
   case loadedCurrentSession(Int, Date?)
-  case noop
 }
 
 let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<TimerAction> in
@@ -123,8 +122,6 @@ let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<
   case let .loadedCurrentSession(currentSession, started):
     state.started = started
     state.currentSession = currentSession
-    return .empty()
-  case .noop:
     return .empty()
   }
 }

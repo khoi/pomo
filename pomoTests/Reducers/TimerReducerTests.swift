@@ -187,13 +187,4 @@ class TimerReducerTests: XCTestCase {
     XCTAssertEqual(state, expected)
     XCTAssert(didSave)
   }
-
-  func testNoOp() {
-    assert(
-      initialValue: TimerState(),
-      reducer: timerReducer,
-      steps:
-      .send(.noop) { _ in }
-    )
-  }
 }
