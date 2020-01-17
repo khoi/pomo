@@ -66,10 +66,11 @@ func assert<Value: Equatable, Action: Equatable>(
     case .send:
       let effect = reducer.reduce(&state, step.action)
       let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
-      _ = effect.collect().sink(
+
+      _ = effect.sink(
         receiveCompletion: { _ in receivedCompletion.fulfill() },
         receiveValue: {
-          actions.append(contentsOf: $0)
+          actions.append($0)
         }
       )
 
@@ -85,10 +86,10 @@ func assert<Value: Equatable, Action: Equatable>(
 
       let effect = reducer.reduce(&state, step.action)
       let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
-      _ = effect.collect().sink(
+      _ = effect.sink(
         receiveCompletion: { _ in receivedCompletion.fulfill() },
         receiveValue: {
-          actions.append(contentsOf: $0)
+          actions.append($0)
         }
       )
 
