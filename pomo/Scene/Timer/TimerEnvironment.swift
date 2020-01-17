@@ -24,7 +24,8 @@ extension TimerSettingsRepository {
         .sync {
             TimerSettings(workDuration: AppSettings.workDuration,
                           breakDuration: AppSettings.breakDuration,
-                          longBreakDuration: AppSettings.longBreakDuration)
+                          longBreakDuration: AppSettings.longBreakDuration,
+                          soundEnabled: AppSettings.isSoundEnabled)
         }
     }, save: { (settings) -> Effect<Never> in
         .fireAndForget {
@@ -32,6 +33,7 @@ extension TimerSettingsRepository {
             AppSettings.breakDuration = settings.breakDuration
             AppSettings.longBreakDuration = settings.longBreakDuration
             AppSettings.sessionCount = settings.sessionCount
+            AppSettings.isSoundEnabled = settings.soundEnabled
         }
     }, saveCurrentSession: { currentSession, started in
         .fireAndForget {
