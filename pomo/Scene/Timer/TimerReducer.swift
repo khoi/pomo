@@ -75,35 +75,37 @@ let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<
     state.currentSession = (state.currentSession % state.timerSettings.sessionCount) + 1
     let startedDate = started ?? CurrentTimerEnvironment.date()
     let localState = state
-    return CurrentTimerEnvironment
-      .pomodoroRepository
-      .saveTimer(startedDate, currentDuration, currentSessionText)
-      .map { _ in TimerAction.noop }
-      .flatMap { _ -> Effect<Never> in
-        if localState.timerSettings.soundEnabled {
-          return CurrentTimerEnvironment.hapticHandler.playSound()
-        } else {
-          return .empty()
-        }
-      }
-      .map { _ in TimerAction.noop }
-      .eraseToEffect()
+
+    let saveTimerEffect = CurrentTimerEnvironment.pomodoroRepository.saveTimer(startedDate, currentDuration, currentSessionText)
+    let playSoundEffect = localState.timerSettings.soundEnabled ? CurrentTimerEnvironment.hapticHandler.playSound() : .empty()
+
+    return Publishers.MergeMany([
+      saveTimerEffect,
+      playSoundEffect,
+    ])
+      .fireAndForget()
   case .startTimer:
     state.started = CurrentTimerEnvironment.date()
-    return CurrentTimerEnvironment.hapticHandler.impactOccurred()
-      .map { _ in TimerAction.noop }
-      .eraseToEffect()
+    return CurrentTimerEnvironment
+      .hapticHandler
+      .impactOccurred()
+      .fireAndForget()
   case .stopTimer:
     state.started = nil
-    return CurrentTimerEnvironment.hapticHandler.impactOccurred()
-      .map { _ in TimerAction.noop }
-      .eraseToEffect()
+    return CurrentTimerEnvironment
+      .hapticHandler
+      .impactOccurred()
+      .fireAndForget()
   case .reset:
     state.started = nil
     state.currentSession = 1
     return .empty()
   case .loadTimerSettings:
-    return CurrentTimerEnvironment.timerSettingsRepository.load().map(TimerAction.loadedTimerSettings).eraseToEffect()
+    return CurrentTimerEnvironment
+      .timerSettingsRepository
+      .load()
+      .map(TimerAction.loadedTimerSettings)
+      .eraseToEffect()
   case let .loadedTimerSettings(timerSettings):
     state.timerSettings = timerSettings
     return .empty()
@@ -111,10 +113,13 @@ let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<
     return CurrentTimerEnvironment
       .timerSettingsRepository
       .saveCurrentSession(state.currentSession, state.started)
-      .map { _ in TimerAction.noop }
-      .eraseToEffect()
+      .fireAndForget()
   case .loadCurrentSession:
-    return CurrentTimerEnvironment.timerSettingsRepository.loadCurrentSession().map(TimerAction.loadedCurrentSession).eraseToEffect()
+    return CurrentTimerEnvironment
+      .timerSettingsRepository
+      .loadCurrentSession()
+      .map(TimerAction.loadedCurrentSession)
+      .eraseToEffect()
   case let .loadedCurrentSession(currentSession, started):
     state.started = started
     state.currentSession = currentSession

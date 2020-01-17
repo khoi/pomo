@@ -123,3 +123,11 @@ extension Effect {
     return Empty(completeImmediately: true).eraseToEffect()
   }
 }
+
+extension Publisher where Output == Never, Failure == Never {
+  func fireAndForget<A>() -> Effect<A> {
+    return map(absurd).eraseToEffect()
+  }
+}
+
+func absurd<A>(_: Never) -> A {}
