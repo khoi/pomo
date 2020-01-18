@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		D659A023235059C0000767CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A022235059C0000767CC /* Assets.xcassets */; };
 		D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D659A027235059C0000767CC /* LaunchScreen.storyboard */; };
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
+		D687413423D3388200729770 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = D687413323D3388200729770 /* SwiftDate */; };
 		D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */; };
 		D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8C23B5EC0800A5C90F /* AppReducer.swift */; };
 		D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9023B5F13D00A5C90F /* RootView.swift */; };
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D687413423D3388200729770 /* SwiftDate in Frameworks */,
 				D638725223B0B7C400AF1F2B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +249,9 @@
 			dependencies = (
 			);
 			name = pomo;
+			packageProductDependencies = (
+				D687413323D3388200729770 /* SwiftDate */,
+			);
 			productName = pomo;
 			productReference = D659A019235059BF000767CC /* pomo.app */;
 			productType = "com.apple.product-type.application";
@@ -297,6 +302,9 @@
 				Base,
 			);
 			mainGroup = D659A010235059BF000767CC;
+			packageReferences = (
+				D687413223D3388200729770 /* XCRemoteSwiftPackageReference "SwiftDate" */,
+			);
 			productRefGroup = D659A01A235059BF000767CC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -622,6 +630,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D687413223D3388200729770 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D687413323D3388200729770 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D687413223D3388200729770 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */ = {
