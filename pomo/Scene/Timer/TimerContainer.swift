@@ -51,11 +51,11 @@ struct TimerContainer: View {
       VStack(spacing: 16) {
         Text(self.store.value.sessionText)
           .font(.system(size: 30))
-          .foregroundColor(Color("text"))
+          .foregroundColor(Color(.label))
 
         Text(format(duration: self.timeLeft))
           .font(Font.system(size: 50, weight: .medium, design: .rounded).monospacedDigit())
-          .foregroundColor(Color("text"))
+          .foregroundColor(Color(.label))
           .padding()
 
         HStack(alignment: .center, spacing: 16) {
@@ -122,7 +122,7 @@ struct TimerContainer: View {
         .padding()
       }
     }
-    .background(Color("background"))
+    .background(Color(.systemBackground))
     .onReceive(timer) { _ in
       guard let started = self.store.value.started else {
         self.timeLeft = self.store.value.currentDuration

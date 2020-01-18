@@ -68,7 +68,7 @@ struct SettingsContainer: View {
           ))
           self.presentationMode.wrappedValue.dismiss()
       }.foregroundColor(Color("zima")))
-    }.foregroundColor(Color("text"))
+    }.foregroundColor(Color(.label))
       .onAppear {
         self.workIntervalIndex = intervalIndex(of: self.store.value.workDuration)
         self.shortBreakIndex = intervalIndex(of: self.store.value.breakDuration)
