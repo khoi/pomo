@@ -25,6 +25,7 @@
 		D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D659A027235059C0000767CC /* LaunchScreen.storyboard */; };
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
 		D687413423D3388200729770 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = D687413323D3388200729770 /* SwiftDate */; };
+		D687413723D33BAD00729770 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D687413623D33BAD00729770 /* GlobalFunctions.swift */; };
 		D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */; };
 		D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8C23B5EC0800A5C90F /* AppReducer.swift */; };
 		D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9023B5F13D00A5C90F /* RootView.swift */; };
@@ -68,6 +69,7 @@
 		D659A02F235059C0000767CC /* pomoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pomoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D659A035235059C0000767CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
+		D687413623D33BAD00729770 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReducer.swift; sourceTree = "<group>"; };
 		D6928D8C23B5EC0800A5C90F /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D6928D9023B5F13D00A5C90F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		D659A01B235059BF000767CC /* pomo */ = {
 			isa = PBXGroup;
 			children = (
+				D687413523D33B8A00729770 /* Persistent */,
 				D67C7EE223B0EAAD00787DB1 /* Utilities */,
 				D638724823B093D800AF1F2B /* Resources */,
 				D605C773236AA22E00C9C0A7 /* Scene */,
@@ -180,7 +183,6 @@
 				D659A01E235059BF000767CC /* SceneDelegate.swift */,
 				D609260A23AF457600212288 /* Redux.swift */,
 				D6FCF9E523AFABB1000E228C /* AppSettings.swift */,
-				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 				D6928D8C23B5EC0800A5C90F /* AppReducer.swift */,
 				D6928D9023B5F13D00A5C90F /* RootView.swift */,
 			);
@@ -214,6 +216,15 @@
 				D609260E23AF49E800212288 /* Utils.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D687413523D33B8A00729770 /* Persistent */ = {
+			isa = PBXGroup;
+			children = (
+				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
+				D687413623D33BAD00729770 /* GlobalFunctions.swift */,
+			);
+			path = Persistent;
 			sourceTree = "<group>";
 		};
 		D6928D8923B5E90200A5C90F /* Statistic */ = {
@@ -342,6 +353,7 @@
 			files = (
 				2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */,
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
+				D687413723D33BAD00729770 /* GlobalFunctions.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D609260B23AF457600212288 /* Redux.swift in Sources */,
 				D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */,

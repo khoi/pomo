@@ -16,22 +16,14 @@ struct StatisticContainer: View {
       VStack {
         VStack {
           Text("Sessions Today")
-          Text("\(store.value.sessionCountToday)").font(.largeTitle)
+          Text("\(store.value.focusSessionToday)").font(.largeTitle)
         }
       }
       VStack {
         HStack(spacing: 16) {
           VStack {
-            Text("Week")
-            Text("\(store.value.sessionCountThisWeek)").font(.title)
-          }
-          VStack {
-            Text("Month")
-            Text("\(store.value.sessionCountThisMonth)").font(.title)
-          }
-          VStack {
-            Text("Year")
-            Text("\(store.value.sessionCountThisYear)").font(.title)
+            Text("focus minutes")
+            Text("\(store.value.totalFocusTime)").font(.title)
           }
         }
       }
@@ -39,7 +31,7 @@ struct StatisticContainer: View {
     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     .background(Color("background"))
     .onAppear {
-      self.store.send(.loadStatistic)
+      self.store.send(.loadStatisticToday)
     }
   }
 }
