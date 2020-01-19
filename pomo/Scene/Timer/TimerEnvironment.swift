@@ -71,14 +71,19 @@ extension PomodoroRepository {
 }
 
 struct TimerHapticHandler {
-  let provider: HapticProvider
+  private let provider: HapticProvider
+  var impactOccurred: () -> Effect<Never>
+  var playSound: () -> Effect<Never>
 
-  func impactOccurred() -> Effect<Never> {
-    return provider.impactOccured()
-  }
+  init(provider: HapticProvider) {
+    self.provider = provider
+    impactOccurred = {
+      provider.impactOccured()
+    }
 
-  func playSound() -> Effect<Never> {
-    return provider.playSound()
+    playSound = {
+      provider.playSound()
+    }
   }
 }
 

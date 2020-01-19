@@ -187,4 +187,81 @@ class TimerReducerTests: XCTestCase {
     XCTAssertEqual(state, expected)
     XCTAssert(didSave)
   }
+
+  func testTriggerSound() {
+    var didTriggerSound = false
+    CurrentTimerEnvironment.hapticHandler.playSound = {
+      .fireAndForget {
+        didTriggerSound = true
+      }
+    }
+
+    var state = TimerState()
+    // Given sound settings is enabled
+    state.timerSettings.soundEnabled = true
+
+    _ = timerReducer.reduce(&state, .completeCurrentSession).sink(receiveValue: { _ in
+      XCTFail("No action expected")
+    })
+
+    // Should trigger sound when .completeCurrentSession
+    XCTAssert(didTriggerSound)
+  }
+
+  func testShouldNotTriggerSound() {
+    var didTriggerSound = false
+    CurrentTimerEnvironment.hapticHandler.playSound = {
+      .fireAndForget {
+        didTriggerSound = true
+      }
+    }
+
+    // Given default state, sound settings is off
+    var state = TimerState()
+
+    _ = timerReducer.reduce(&state, .completeCurrentSession).sink(receiveValue: { _ in
+      XCTFail("No action expected")
+    })
+
+    // Should not trigger sound
+    XCTAssertFalse(didTriggerSound)
+  }
+
+  func testShouldTriggerHapticFeedbackWhenStartTimer() {
+    var didTriggerHapticFeedback = false
+    CurrentTimerEnvironment.hapticHandler.impactOccurred = {
+      .fireAndForget {
+        didTriggerHapticFeedback = true
+      }
+    }
+
+    // Given default state, sound settings is off
+    var state = TimerState()
+
+    _ = timerReducer.reduce(&state, .startTimer).sink(receiveValue: { _ in
+      XCTFail("No action expected")
+    })
+
+    // Should not trigger sound
+    XCTAssert(didTriggerHapticFeedback)
+  }
+
+  func testShouldTriggerHapticFeedbackWhenStopTimer() {
+    var didTriggerHapticFeedback = false
+    CurrentTimerEnvironment.hapticHandler.impactOccurred = {
+      .fireAndForget {
+        didTriggerHapticFeedback = true
+      }
+    }
+
+    // Given default state, sound settings is off
+    var state = TimerState()
+
+    _ = timerReducer.reduce(&state, .stopTimer).sink(receiveValue: { _ in
+      XCTFail("No action expected")
+    })
+
+    // Should not trigger sound
+    XCTAssert(didTriggerHapticFeedback)
+  }
 }
