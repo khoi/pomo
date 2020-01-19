@@ -10,6 +10,7 @@
 		2D464ADB23B7316A0033BE2B /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D464ADA23B7316A0033BE2B /* StatisticView.swift */; };
 		2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */; };
 		2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */; };
+		2DE5D8B423D4596B00A79ADC /* HapticProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */; };
 		D609260B23AF457600212288 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260A23AF457600212288 /* Redux.swift */; };
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
 		D609261123AF4B7400212288 /* TimerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609261023AF4B7400212288 /* TimerContainer.swift */; };
@@ -49,6 +50,7 @@
 		2D464ADA23B7316A0033BE2B /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
 		2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsReducer.swift; sourceTree = "<group>"; };
+		2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticProvider.swift; sourceTree = "<group>"; };
 		D609260A23AF457600212288 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D609261023AF4B7400212288 /* TimerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerContainer.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 				2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		2DE5D8B223D4595500A79ADC /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */,
+			);
+			path = Platform;
 			sourceTree = "<group>";
 		};
 		D605C773236AA22E00C9C0A7 /* Scene */ = {
@@ -170,6 +180,7 @@
 		D659A01B235059BF000767CC /* pomo */ = {
 			isa = PBXGroup;
 			children = (
+				2DE5D8B223D4595500A79ADC /* Platform */,
 				D67C7EE223B0EAAD00787DB1 /* Utilities */,
 				D638724823B093D800AF1F2B /* Resources */,
 				D605C773236AA22E00C9C0A7 /* Scene */,
@@ -347,6 +358,7 @@
 				D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */,
 				D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */,
 				D638724F23B0B70D00AF1F2B /* CoreDataStack.swift in Sources */,
+				2DE5D8B423D4596B00A79ADC /* HapticProvider.swift in Sources */,
 				D659A01F235059BF000767CC /* SceneDelegate.swift in Sources */,
 				D609260F23AF49E800212288 /* Utils.swift in Sources */,
 				D6FB31D823B24B54008191B9 /* CircleProgressView.swift in Sources */,

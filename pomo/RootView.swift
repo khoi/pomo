@@ -10,10 +10,10 @@ import SwiftUI
 
 struct RootView: View {
   @ObservedObject var store: Store<AppState, AppAction>
-  
+
   @State private var showingStatisticModal = false
   @State private var showingSettingsModal = false
-  
+
   var body: some View {
     TimerContainer(store:
       store.view(value: { $0.timer },
@@ -22,7 +22,7 @@ struct RootView: View {
                    openSettings: { self.showingSettingsModal.toggle() })
       .sheet(isPresented: $showingStatisticModal) {
         StatisticContainer(store: self.store.view(value: { $0.statistic }, action: { .statistic($0) }))
-    }
+      }
       // FIXME: A temporary hack to attach multiple sheets to a view
       .background(EmptyView().sheet(isPresented: $showingSettingsModal, onDismiss: {
         self.store.send(.timer(.loadTimerSettings))

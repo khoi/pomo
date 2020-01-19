@@ -26,4 +26,7 @@ struct AppSettings {
 
   @UserDefault("current_session", defaultValue: 1)
   static var currentSession: Int
+
+  @UserDefault("sound_enabled", defaultValue: false)
+  static var isSoundEnabled: Bool
 }
