@@ -6,7 +6,6 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
-import AVFoundation
 import CoreData
 import Foundation
 import os.log
@@ -71,36 +70,6 @@ extension PomodoroRepository {
   }
 }
 
-protocol HapticProvider {
-  func impactOccured() -> Effect<Never>
-  func playSound() -> Effect<Never>
-}
-
-struct FoundationHapticProvider: HapticProvider {
-  private let impactGenerator: UIImpactFeedbackGenerator
-  private let audioPlayer: AVAudioPlayer
-
-  init() {
-    impactGenerator = UIImpactFeedbackGenerator(style: .heavy)
-    let completedTimerSoundURL = Bundle.main.url(forResource: "timer_completed", withExtension: "wav")!
-    audioPlayer = try! AVAudioPlayer(contentsOf: completedTimerSoundURL)
-    audioPlayer.prepareToPlay()
-  }
-
-  func impactOccured() -> Effect<Never> {
-    .fireAndForget {
-      self.impactGenerator.impactOccurred(intensity: 1)
-    }
-  }
-
-  func playSound() -> Effect<Never> {
-    .fireAndForget {
-      self.audioPlayer.play()
-      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-    }
-  }
-}
-
 struct TimerHapticHandler {
   let provider: HapticProvider
 
@@ -114,7 +83,7 @@ struct TimerHapticHandler {
 }
 
 extension TimerHapticHandler {
-  static let live = TimerHapticHandler(provider: FoundationHapticProvider())
+  static let live = TimerHapticHandler(provider: iOSHapticProvider())
 }
 
 public struct TimerEnvironment {
@@ -165,20 +134,6 @@ var CurrentTimerEnvironment = TimerEnvironment.live
   extension PomodoroRepository {
     static let mock = PomodoroRepository { (_, _, _) -> Effect<Never> in
       .fireAndForget {}
-    }
-  }
-
-  struct ConsoleHapticProvider: HapticProvider {
-    func impactOccured() -> Effect<Never> {
-      .fireAndForget {
-        print("impact occured")
-      }
-    }
-
-    func playSound() -> Effect<Never> {
-      .fireAndForget {
-        print("play sound")
-      }
     }
   }
 
