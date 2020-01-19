@@ -85,7 +85,7 @@ private func intervalIndex(of duration: TimeInterval) -> Int {
 
 private func interval(at index: Int) -> TimeInterval {
   guard index < SettingsContainer.intervals.count else { return 0 }
-  return Double(SettingsContainer.intervals[index])
+  return Double(SettingsContainer.intervals[index] * 60)
 }
 
 #if DEBUG
