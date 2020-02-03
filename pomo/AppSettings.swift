@@ -29,4 +29,7 @@ struct AppSettings {
 
   @UserDefault("sound_enabled", defaultValue: false)
   static var isSoundEnabled: Bool
+  
+  @UserDefault("auto_start_break", defaultValue: false)
+  static var autoStartBreak:Bool
 }

@@ -18,6 +18,7 @@ struct SettingsContainer: View {
   @State private var shortBreakIndex: Int = 0
   @State private var longBreakIndex: Int = 0
   @State private var isSoundEnabled = false
+  @State private var autoStartBreak = false
 
   var body: some View {
     NavigationView {
@@ -46,6 +47,9 @@ struct SettingsContainer: View {
           Toggle(isOn: $isSoundEnabled) {
             Text("Sounds on/off")
           }
+          Toggle(isOn: $autoStartBreak) {
+            Text("Auto start break")
+          }
         }.padding()
 
         Section {
@@ -64,7 +68,8 @@ struct SettingsContainer: View {
             TimerSettings(workDuration: interval(at: self.workIntervalIndex),
                           breakDuration: interval(at: self.shortBreakIndex),
                           longBreakDuration: interval(at: self.longBreakIndex),
-                          soundEnabled: self.isSoundEnabled)
+                          soundEnabled: self.isSoundEnabled,
+                          autoStartBreak: self.autoStartBreak)
           ))
           self.presentationMode.wrappedValue.dismiss()
       }.foregroundColor(Color("zima")))
@@ -74,6 +79,7 @@ struct SettingsContainer: View {
         self.shortBreakIndex = intervalIndex(of: self.store.value.breakDuration)
         self.longBreakIndex = intervalIndex(of: self.store.value.longBreakDuration)
         self.isSoundEnabled = self.store.value.soundEnabled
+        self.autoStartBreak = self.store.value.autoStartBreak
       }
   }
 }

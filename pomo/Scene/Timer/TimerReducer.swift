@@ -15,6 +15,7 @@ public struct TimerSettings: Equatable {
   var longBreakDuration: TimeInterval = 15 * 60
   var sessionCount = 4
   var soundEnabled = false
+  var autoStartBreak = false
 }
 
 public struct TimerState: Equatable {
@@ -73,15 +74,23 @@ let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<
     state.started = nil
     state.currentSession = (state.currentSession % state.timerSettings.sessionCount) + 1
     let startedDate = started ?? CurrentTimerEnvironment.date()
-    let localState = state
 
     let saveTimerEffect = CurrentTimerEnvironment.pomodoroRepository.saveTimer(startedDate, currentDuration, currentSessionText)
-    let playSoundEffect = localState.timerSettings.soundEnabled ? CurrentTimerEnvironment.hapticHandler.playSound() : .empty()
-
-    return Publishers.MergeMany([
+    let playSoundEffect = state.timerSettings.soundEnabled ? CurrentTimerEnvironment.hapticHandler.playSound() : .empty()
+    
+    if state.isBreak && state.timerSettings.autoStartBreak {
+    
+    }
+    
+    let effects = Publishers.MergeMany([
       saveTimerEffect,
       playSoundEffect,
     ])
+    
+
+    let startTimer = TimerAction.startTimer
+    return
+      effects
       .fireAndForget()
   case .startTimer:
     state.started = CurrentTimerEnvironment.date()
