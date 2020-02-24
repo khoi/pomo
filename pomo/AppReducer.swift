@@ -18,39 +18,6 @@ enum AppAction {
   case timer(TimerAction)
   case statistic(StatisticAction)
   case settings(SettingsAction)
-
-  var timer: TimerAction? {
-    get {
-      guard case let .timer(value) = self else { return nil }
-      return value
-    }
-    set {
-      guard case .timer = self, let newValue = newValue else { return }
-      self = .timer(newValue)
-    }
-  }
-
-  var statistic: StatisticAction? {
-    get {
-      guard case let .statistic(value) = self else { return nil }
-      return value
-    }
-    set {
-      guard case .statistic = self, let newValue = newValue else { return }
-      self = .statistic(newValue)
-    }
-  }
-
-  var settings: SettingsAction? {
-    get {
-      guard case let .settings(value) = self else { return nil }
-      return value
-    }
-    set {
-      guard case .settings = self, let newValue = newValue else { return }
-      self = .settings(newValue)
-    }
-  }
 }
 
 let appReducer = combine(
