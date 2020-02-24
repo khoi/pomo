@@ -62,40 +62,26 @@ func assert<Value: Equatable, Action: Equatable>(
   steps.forEach { step in
     var expected = state
 
-    switch step.type {
-    case .send:
-      let effect = reducer.reduce(&state, step.action)
-      let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
-
-      _ = effect.sink(
-        receiveCompletion: { _ in receivedCompletion.fulfill() },
-        receiveValue: {
-          actions.append($0)
-        }
-      )
-
-      if XCTWaiter.wait(for: [receivedCompletion], timeout: 0.01) != .completed {
-        XCTFail("Timed out waiting for effect to complete")
-      }
-    case .receive:
+    if step.type == .receive {
       guard !actions.isEmpty else {
         XCTFail("Action sent before handling \(actions.count) pending action(s)", file: step.file, line: step.line)
-        break
+        return
       }
       XCTAssertEqual(step.action, actions.removeFirst(), file: step.file, line: step.line)
+    }
 
-      let effect = reducer.reduce(&state, step.action)
-      let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
-      _ = effect.sink(
-        receiveCompletion: { _ in receivedCompletion.fulfill() },
-        receiveValue: {
-          actions.append($0)
-        }
-      )
+    let effect = reducer.reduce(&state, step.action)
+    let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
 
-      if XCTWaiter.wait(for: [receivedCompletion], timeout: 0.01) != .completed {
-        XCTFail("Timed out waiting for effect to complete")
+    _ = effect.sink(
+      receiveCompletion: { _ in receivedCompletion.fulfill() },
+      receiveValue: {
+        actions.append($0)
       }
+    )
+
+    if XCTWaiter.wait(for: [receivedCompletion], timeout: 0.01) != .completed {
+      XCTFail("Timed out waiting for effect to complete")
     }
 
     step.update(&expected)
