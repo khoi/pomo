@@ -6,6 +6,7 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
+import CasePaths
 import Foundation
 
 struct AppState {
@@ -53,7 +54,7 @@ enum AppAction {
 }
 
 let appReducer = combine(
-  pullback(timerReducer, value: \AppState.timer, action: \AppAction.timer),
-  pullback(statisticReducer, value: \AppState.statistic, action: \AppAction.statistic),
-  pullback(settingsReducer, value: \AppState.timer.timerSettings, action: \AppAction.settings)
+  pullback(timerReducer, value: \AppState.timer, action: /AppAction.timer),
+  pullback(statisticReducer, value: \AppState.statistic, action: /AppAction.statistic),
+  pullback(settingsReducer, value: \AppState.timer.timerSettings, action: /AppAction.settings)
 )

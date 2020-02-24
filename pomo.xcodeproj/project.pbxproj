@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,7 @@
 		D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */; };
 		D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D8C23B5EC0800A5C90F /* AppReducer.swift */; };
 		D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9023B5F13D00A5C90F /* RootView.swift */; };
+		D69A80B92404039000C534BC /* CasePaths in Frameworks */ = {isa = PBXBuildFile; productRef = D69A80B82404039000C534BC /* CasePaths */; };
 		D69FEC6B23CD746000F51E1E /* TimerReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69FEC6A23CD746000F51E1E /* TimerReducerTests.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
@@ -87,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D638725223B0B7C400AF1F2B /* CloudKit.framework in Frameworks */,
+				D69A80B92404039000C534BC /* CasePaths in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +260,9 @@
 			dependencies = (
 			);
 			name = pomo;
+			packageProductDependencies = (
+				D69A80B82404039000C534BC /* CasePaths */,
+			);
 			productName = pomo;
 			productReference = D659A019235059BF000767CC /* pomo.app */;
 			productType = "com.apple.product-type.application";
@@ -308,6 +313,9 @@
 				Base,
 			);
 			mainGroup = D659A010235059BF000767CC;
+			packageReferences = (
+				D69A80B72404039000C534BC /* XCRemoteSwiftPackageReference "swift-case-paths" */,
+			);
 			productRefGroup = D659A01A235059BF000767CC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -520,7 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = JN573MG5GT;
+				DEVELOPMENT_TEAM = EMR59SFZRH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = pomo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -567,6 +575,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EMR59SFZRH;
 				INFOPLIST_FILE = pomoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -634,6 +643,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D69A80B72404039000C534BC /* XCRemoteSwiftPackageReference "swift-case-paths" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-case-paths";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D69A80B82404039000C534BC /* CasePaths */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D69A80B72404039000C534BC /* XCRemoteSwiftPackageReference "swift-case-paths" */;
+			productName = CasePaths;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */ = {

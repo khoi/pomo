@@ -1,3 +1,4 @@
+import CasePaths
 import Combine
 import SwiftUI
 
@@ -15,15 +16,15 @@ public struct Effect<Output>: Publisher {
 
 extension Publisher where Failure == Never {
   public func eraseToEffect() -> Effect<Output> {
-    return Effect(publisher: eraseToAnyPublisher())
+    .init(publisher: eraseToAnyPublisher())
   }
 }
 
 public struct Reducer<Value, Action> {
   public let reduce: (inout Value, Action) -> Effect<Action>
 
-  init(run: @escaping (inout Value, Action) -> Effect<Action>) {
-    reduce = run
+  init(reduce: @escaping (inout Value, Action) -> Effect<Action>) {
+    self.reduce = reduce
   }
 }
 
@@ -64,7 +65,7 @@ public final class Store<Value, Action>: ObservableObject {
 public func combine<Value, Action>(
   _ reducers: Reducer<Value, Action>...
 ) -> Reducer<Value, Action> {
-  return Reducer { value, action in
+  .init { value, action in
     let effects = reducers.compactMap { $0.reduce(&value, action) }
     return Publishers.MergeMany(effects).eraseToEffect()
   }
@@ -73,19 +74,18 @@ public func combine<Value, Action>(
 public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
   _ reducer: Reducer<LocalValue, LocalAction>,
   value: WritableKeyPath<GlobalValue, LocalValue>,
-  action: WritableKeyPath<GlobalAction, LocalAction?>
+  action: CasePath<GlobalAction, LocalAction>
 ) -> Reducer<GlobalValue, GlobalAction> {
-  return Reducer { globalValue, globalAction in
-    guard let localAction = globalAction[keyPath: action] else {
+  .init { globalValue, globalAction in
+    guard let localAction = action.extract(from: globalAction) else {
       return Empty(completeImmediately: true).eraseToEffect()
     }
 
     let localEffects = reducer.reduce(&globalValue[keyPath: value], localAction)
-    return localEffects.map { (localAction) -> GlobalAction in
-      var globalAction = globalAction
-      globalAction[keyPath: action] = localAction
-      return globalAction
-    }.eraseToEffect()
+
+    return localEffects
+      .map(action.embed)
+      .eraseToEffect()
   }
 }
 
