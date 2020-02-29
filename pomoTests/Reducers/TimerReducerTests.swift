@@ -180,7 +180,7 @@ class TimerReducerTests: XCTestCase {
     let state = TimerState()
     var expected = state
 
-    _ = timerReducer.reduce(&expected, .saveCurrentSession).sink(receiveValue: { _ in
+    _ = timerReducer(state: &expected, action: .saveCurrentSession).sink(receiveValue: { _ in
       XCTFail("No action expected")
     })
 
@@ -199,7 +199,7 @@ class TimerReducerTests: XCTestCase {
     var state = TimerState()
     state.timerSettings.soundEnabled = true
 
-    _ = timerReducer.reduce(&state, .completeCurrentSession).sink(receiveValue: { _ in
+    _ = timerReducer(state: &state, action: .completeCurrentSession).sink(receiveValue: { _ in
       XCTFail("No action expected")
     })
 
@@ -216,7 +216,7 @@ class TimerReducerTests: XCTestCase {
 
     var state = TimerState()
 
-    _ = timerReducer.reduce(&state, .completeCurrentSession).sink(receiveValue: { _ in
+    _ = timerReducer(state: &state, action: .completeCurrentSession).sink(receiveValue: { _ in
       XCTFail("No action expected")
     })
 
@@ -233,7 +233,7 @@ class TimerReducerTests: XCTestCase {
 
     var state = TimerState()
 
-    _ = timerReducer.reduce(&state, .startTimer).sink(receiveValue: { _ in
+    _ = timerReducer(state: &state, action: .startTimer).sink(receiveValue: { _ in
       XCTFail("No action expected")
     })
 
@@ -250,7 +250,7 @@ class TimerReducerTests: XCTestCase {
 
     var state = TimerState()
 
-    _ = timerReducer.reduce(&state, .stopTimer).sink(receiveValue: { _ in
+    _ = timerReducer(state: &state, action: .stopTimer).sink(receiveValue: { _ in
       XCTFail("No action expected")
     })
 

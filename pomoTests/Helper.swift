@@ -70,7 +70,7 @@ func assert<Value: Equatable, Action: Equatable>(
       XCTAssertEqual(step.action, actions.removeFirst(), file: step.file, line: step.line)
     }
 
-    let effect = reducer.reduce(&state, step.action)
+    let effect = reducer(&state, step.action)
     let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
 
     _ = effect.sink(

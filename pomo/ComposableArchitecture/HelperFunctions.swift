@@ -13,23 +13,23 @@ import Foundation
 public func combine<Value, Action>(
   _ reducers: Reducer<Value, Action>...
 ) -> Reducer<Value, Action> {
-  .init { value, action in
-    let effects = reducers.compactMap { $0.reduce(&value, action) }
+  { value, action in
+    let effects = reducers.compactMap { $0(&value, action) }
     return Publishers.MergeMany(effects).eraseToEffect()
   }
 }
 
 public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
-  _ reducer: Reducer<LocalValue, LocalAction>,
+  _ reducer: @escaping Reducer<LocalValue, LocalAction>,
   value: WritableKeyPath<GlobalValue, LocalValue>,
   action: CasePath<GlobalAction, LocalAction>
 ) -> Reducer<GlobalValue, GlobalAction> {
-  .init { globalValue, globalAction in
+  return { globalValue, globalAction in
     guard let localAction = action.extract(from: globalAction) else {
       return Empty(completeImmediately: true).eraseToEffect()
     }
 
-    let localEffects = reducer.reduce(&globalValue[keyPath: value], localAction)
+    let localEffects = reducer(&globalValue[keyPath: value], localAction)
 
     return localEffects
       .map(action.embed)
@@ -38,10 +38,10 @@ public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
 }
 
 public func logging<Value, Action>(
-  _ reducer: Reducer<Value, Action>
+  _ reducer: @escaping Reducer<Value, Action>
 ) -> Reducer<Value, Action> {
-  return Reducer { value, action in
-    let effects = reducer.reduce(&value, action)
+  { value, action in
+    let effects = reducer(&value, action)
     let newValue = value
     let loggingEffect = Effect<Action>.fireAndForget {
       print("Action: \(action)")

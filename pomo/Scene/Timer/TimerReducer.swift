@@ -51,7 +51,7 @@ public struct TimerState: Equatable {
   }
 }
 
-enum TimerAction: Equatable {
+public enum TimerAction: Equatable {
   case startTimer
   case stopTimer
   case completeCurrentSession
@@ -63,7 +63,10 @@ enum TimerAction: Equatable {
   case loadedCurrentSession(Int, Date?)
 }
 
-let timerReducer = Reducer<TimerState, TimerAction> { (state, action) -> Effect<TimerAction> in
+public func timerReducer(
+  state: inout TimerState,
+  action: TimerAction
+) -> Effect<TimerAction> {
   switch action {
   case .completeCurrentSession:
     let currentSessionText = state.sessionText

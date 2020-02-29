@@ -8,11 +8,14 @@
 
 import Foundation
 
-enum SettingsAction {
+public enum SettingsAction {
   case saveTimerSettings(TimerSettings)
 }
 
-let settingsReducer = Reducer<TimerSettings, SettingsAction> { (_, action) -> Effect<SettingsAction> in
+public func settingsReducer(
+  state _: inout TimerSettings,
+  action: SettingsAction
+) -> Effect<SettingsAction> {
   switch action {
   case let .saveTimerSettings(newTimerSettings):
     return CurrentTimerEnvironment

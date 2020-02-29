@@ -10,7 +10,10 @@ import Combine
 import CoreData
 import Foundation
 
-let statisticReducer = Reducer<StatisticState, StatisticAction> { (state, action) -> Effect<StatisticAction> in
+public func statisticReducer(
+  state: inout StatisticState,
+  action: StatisticAction
+) -> Effect<StatisticAction> {
   switch action {
   case .loadStatistic:
     return CurrentStatisticEnvironment
@@ -26,16 +29,16 @@ let statisticReducer = Reducer<StatisticState, StatisticAction> { (state, action
   }
 }
 
-typealias Statistic = (today: Int, thisWeek: Int, thisMonth: Int, thisYear: Int)
+public typealias Statistic = (today: Int, thisWeek: Int, thisMonth: Int, thisYear: Int)
 
-struct StatisticState {
+public struct StatisticState {
   var sessionCountToday: Int = 0
   var sessionCountThisWeek: Int = 0
   var sessionCountThisMonth: Int = 0
   var sessionCountThisYear: Int = 0
 }
 
-enum StatisticAction {
+public enum StatisticAction {
   case loadStatistic
   case loadedStatistic(Statistic)
 }

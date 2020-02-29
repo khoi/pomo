@@ -2,13 +2,7 @@ import CasePaths
 import Combine
 import SwiftUI
 
-public struct Reducer<Value, Action> {
-  public let reduce: (inout Value, Action) -> Effect<Action>
-
-  init(reduce: @escaping (inout Value, Action) -> Effect<Action>) {
-    self.reduce = reduce
-  }
-}
+public typealias Reducer<Value, Action> = (inout Value, Action) -> Effect<Action>
 
 public final class Store<Value, Action>: ObservableObject {
   private let reducer: Reducer<Value, Action>
@@ -16,13 +10,13 @@ public final class Store<Value, Action>: ObservableObject {
   private var viewCancellable: Cancellable?
   private var effectCancellables: Set<AnyCancellable> = []
 
-  public init(initialValue: Value, reducer: Reducer<Value, Action>) {
+  public init(initialValue: Value, reducer: @escaping Reducer<Value, Action>) {
     self.reducer = reducer
     value = initialValue
   }
 
   public func send(_ action: Action) {
-    reducer.reduce(&value, action).sink(receiveValue: send).store(in: &effectCancellables)
+    reducer(&value, action).sink(receiveValue: send).store(in: &effectCancellables)
   }
 
   public func view<LocalValue, LocalAction>(
@@ -31,7 +25,7 @@ public final class Store<Value, Action>: ObservableObject {
   ) -> Store<LocalValue, LocalAction> {
     let localStore = Store<LocalValue, LocalAction>(
       initialValue: toLocalValue(value),
-      reducer: Reducer { localValue, localAction in
+      reducer: { localValue, localAction in
         self.send(toGlobalAction(localAction))
         localValue = toLocalValue(self.value)
         return Empty(completeImmediately: true).eraseToEffect()
