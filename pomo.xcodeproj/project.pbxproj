@@ -11,7 +11,7 @@
 		2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */; };
 		2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */; };
 		2DE5D8B423D4596B00A79ADC /* HapticProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */; };
-		D609260B23AF457600212288 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260A23AF457600212288 /* Redux.swift */; };
+		D609260B23AF457600212288 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260A23AF457600212288 /* Store.swift */; };
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
 		D609261123AF4B7400212288 /* TimerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609261023AF4B7400212288 /* TimerContainer.swift */; };
 		D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632018123AF4BA2003D1C53 /* TimerReducer.swift */; };
@@ -30,6 +30,8 @@
 		D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6928D9023B5F13D00A5C90F /* RootView.swift */; };
 		D69A80B92404039000C534BC /* CasePaths in Frameworks */ = {isa = PBXBuildFile; productRef = D69A80B82404039000C534BC /* CasePaths */; };
 		D69FEC6B23CD746000F51E1E /* TimerReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69FEC6A23CD746000F51E1E /* TimerReducerTests.swift */; };
+		D6A21C24240A4AED003B68E0 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A21C23240A4AED003B68E0 /* Effect.swift */; };
+		D6A21C26240A4E26003B68E0 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A21C25240A4E26003B68E0 /* HelperFunctions.swift */; };
 		D6B1BCC623AF5BEB00B5CC69 /* TimerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */; };
 		D6B1BCC823AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */; };
 		D6FB31D823B24B54008191B9 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB31D723B24B54008191B9 /* CircleProgressView.swift */; };
@@ -52,7 +54,7 @@
 		2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
 		2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsReducer.swift; sourceTree = "<group>"; };
 		2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticProvider.swift; sourceTree = "<group>"; };
-		D609260A23AF457600212288 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		D609260A23AF457600212288 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D609261023AF4B7400212288 /* TimerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerContainer.swift; sourceTree = "<group>"; };
 		D632018123AF4BA2003D1C53 /* TimerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerReducer.swift; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		D6928D8C23B5EC0800A5C90F /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D6928D9023B5F13D00A5C90F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D69FEC6A23CD746000F51E1E /* TimerReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerReducerTests.swift; sourceTree = "<group>"; };
+		D6A21C23240A4AED003B68E0 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		D6A21C25240A4E26003B68E0 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		D6A62206239CAC95007413A5 /* pomo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pomo.entitlements; sourceTree = "<group>"; };
 		D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEnvironment.swift; sourceTree = "<group>"; };
 		D6B1BCC723AF5DCB00B5CC69 /* UserDefaults+PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PropertyWrapper.swift"; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		D659A01B235059BF000767CC /* pomo */ = {
 			isa = PBXGroup;
 			children = (
+				D6A21C22240A4910003B68E0 /* ComposableArchitecture */,
 				2DE5D8B223D4595500A79ADC /* Platform */,
 				D67C7EE223B0EAAD00787DB1 /* Utilities */,
 				D638724823B093D800AF1F2B /* Resources */,
@@ -189,7 +194,6 @@
 				D659A04C2351F916000767CC /* Views */,
 				D659A01C235059BF000767CC /* AppDelegate.swift */,
 				D659A01E235059BF000767CC /* SceneDelegate.swift */,
-				D609260A23AF457600212288 /* Redux.swift */,
 				D6FCF9E523AFABB1000E228C /* AppSettings.swift */,
 				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 				D6928D8C23B5EC0800A5C90F /* AppReducer.swift */,
@@ -242,6 +246,16 @@
 				D69FEC6A23CD746000F51E1E /* TimerReducerTests.swift */,
 			);
 			path = Reducers;
+			sourceTree = "<group>";
+		};
+		D6A21C22240A4910003B68E0 /* ComposableArchitecture */ = {
+			isa = PBXGroup;
+			children = (
+				D609260A23AF457600212288 /* Store.swift */,
+				D6A21C23240A4AED003B68E0 /* Effect.swift */,
+				D6A21C25240A4E26003B68E0 /* HelperFunctions.swift */,
+			);
+			path = ComposableArchitecture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,13 +368,15 @@
 				2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */,
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
-				D609260B23AF457600212288 /* Redux.swift in Sources */,
+				D609260B23AF457600212288 /* Store.swift in Sources */,
 				D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */,
 				D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */,
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
+				D6A21C26240A4E26003B68E0 /* HelperFunctions.swift in Sources */,
 				2D464ADB23B7316A0033BE2B /* StatisticView.swift in Sources */,
 				D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */,
 				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
+				D6A21C24240A4AED003B68E0 /* Effect.swift in Sources */,
 				2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */,
 				D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */,
 				D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */,
