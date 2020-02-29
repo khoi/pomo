@@ -1,4 +1,8 @@
 --symlinks ignore
 --swiftversion 5
 
+# rules
+--enable isEmpty
+
+# formatting
 --indent 2

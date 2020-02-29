@@ -2,24 +2,6 @@ import CasePaths
 import Combine
 import SwiftUI
 
-public struct Effect<Output>: Publisher {
-  public typealias Failure = Never
-
-  let publisher: AnyPublisher<Output, Failure>
-
-  public func receive<S>(
-    subscriber: S
-  ) where S: Subscriber, Failure == S.Failure, Output == S.Input {
-    publisher.receive(subscriber: subscriber)
-  }
-}
-
-extension Publisher where Failure == Never {
-  public func eraseToEffect() -> Effect<Output> {
-    .init(publisher: eraseToAnyPublisher())
-  }
-}
-
 public struct Reducer<Value, Action> {
   public let reduce: (inout Value, Action) -> Effect<Action>
 
@@ -104,30 +86,3 @@ public func logging<Value, Action>(
     return loggingEffect.merge(with: effects).eraseToEffect()
   }
 }
-
-extension Effect {
-  public static func sync(work: @escaping () -> Output) -> Effect {
-    return Deferred {
-      Just(work())
-    }.eraseToEffect()
-  }
-
-  public static func fireAndForget(work: @escaping () -> Void) -> Effect {
-    return Deferred { () -> Empty<Output, Never> in
-      work()
-      return Empty(completeImmediately: true)
-    }.eraseToEffect()
-  }
-
-  public static func empty() -> Effect {
-    return Empty(completeImmediately: true).eraseToEffect()
-  }
-}
-
-extension Publisher where Output == Never, Failure == Never {
-  func fireAndForget<A>() -> Effect<A> {
-    return map(absurd).eraseToEffect()
-  }
-}
-
-func absurd<A>(_: Never) -> A {}
