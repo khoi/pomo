@@ -56,9 +56,10 @@ public enum TimerAction: Equatable {
   case stopTimer
   case completeCurrentSession
   case reset
+  case saveCurrentSession
   case loadTimerSettings
   case loadedTimerSettings(TimerSettings)
-  case saveCurrentSession
+  case saveTimerSettings(TimerSettings)
   case loadCurrentSession
   case loadedCurrentSession(Int, Date?)
 }
@@ -102,6 +103,11 @@ public func timerReducer(
     state.started = nil
     state.currentSession = 1
     return .empty()
+  case let .saveTimerSettings(settings):
+    return CurrentTimerEnvironment
+      .timerSettingsRepository
+      .save(settings)
+      .fireAndForget()
   case .loadTimerSettings:
     return CurrentTimerEnvironment
       .timerSettingsRepository

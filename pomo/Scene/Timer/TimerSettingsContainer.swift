@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SettingsContainer: View {
-  @ObservedObject var store: Store<TimerSettings, SettingsAction>
+  @ObservedObject var store: Store<TimerState, TimerAction>
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
   fileprivate static let intervals: [Int] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
@@ -70,10 +70,10 @@ struct SettingsContainer: View {
       }.foregroundColor(Color("zima")))
     }.foregroundColor(Color(.label))
       .onAppear {
-        self.workIntervalIndex = intervalIndex(of: self.store.value.workDuration)
-        self.shortBreakIndex = intervalIndex(of: self.store.value.breakDuration)
-        self.longBreakIndex = intervalIndex(of: self.store.value.longBreakDuration)
-        self.isSoundEnabled = self.store.value.soundEnabled
+        self.workIntervalIndex = intervalIndex(of: self.store.value.timerSettings.workDuration)
+        self.shortBreakIndex = intervalIndex(of: self.store.value.timerSettings.breakDuration)
+        self.longBreakIndex = intervalIndex(of: self.store.value.timerSettings.longBreakDuration)
+        self.isSoundEnabled = self.store.value.timerSettings.soundEnabled
       }
   }
 }
@@ -90,7 +90,7 @@ private func interval(at index: Int) -> TimeInterval {
 
 #if DEBUG
   struct SettingsContainer_Previews: PreviewProvider {
-    static let store = Store<TimerSettings, SettingsAction>(initialValue: TimerSettings(), reducer: settingsReducer)
+    static let store = Store<TimerState, TimerAction>(initialValue: TimerState(), reducer: timerReducer)
     static var previews: some View {
       Group {
         NavigationView {

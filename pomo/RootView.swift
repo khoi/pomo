@@ -27,7 +27,7 @@ struct RootView: View {
       .background(EmptyView().sheet(isPresented: $showingSettingsModal, onDismiss: {
         self.store.send(.timer(.loadTimerSettings))
       }) {
-        SettingsContainer(store: self.store.view(value: { $0.timer.timerSettings }, action: { .settings($0) }))
+        SettingsContainer(store: self.store.view(value: { $0.timer }, action: { .timer($0) }))
       })
   }
 }

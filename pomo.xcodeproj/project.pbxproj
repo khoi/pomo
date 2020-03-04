@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D464ADB23B7316A0033BE2B /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D464ADA23B7316A0033BE2B /* StatisticView.swift */; };
-		2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */; };
-		2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */; };
+		2D464ADB23B7316A0033BE2B /* StatisticContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D464ADA23B7316A0033BE2B /* StatisticContainer.swift */; };
+		2DD8746023C0D34B0018AE51 /* TimerSettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8745F23C0D34B0018AE51 /* TimerSettingsContainer.swift */; };
 		2DE5D8B423D4596B00A79ADC /* HapticProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */; };
 		D609260B23AF457600212288 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260A23AF457600212288 /* Store.swift */; };
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
@@ -50,9 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D464ADA23B7316A0033BE2B /* StatisticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
-		2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
-		2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsReducer.swift; sourceTree = "<group>"; };
+		2D464ADA23B7316A0033BE2B /* StatisticContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticContainer.swift; sourceTree = "<group>"; };
+		2DD8745F23C0D34B0018AE51 /* TimerSettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingsContainer.swift; sourceTree = "<group>"; };
 		2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticProvider.swift; sourceTree = "<group>"; };
 		D609260A23AF457600212288 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -106,15 +104,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DD8745E23C0D2D50018AE51 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				2DD8745F23C0D34B0018AE51 /* SettingsContainer.swift */,
-				2DD8746323C1FBB40018AE51 /* SettingsReducer.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		2DE5D8B223D4595500A79ADC /* Platform */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +115,6 @@
 		D605C773236AA22E00C9C0A7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				2DD8745E23C0D2D50018AE51 /* Settings */,
 				D6928D8923B5E90200A5C90F /* Statistic */,
 				D605C774236AA23300C9C0A7 /* Timer */,
 			);
@@ -136,6 +124,7 @@
 		D605C774236AA23300C9C0A7 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				2DD8745F23C0D34B0018AE51 /* TimerSettingsContainer.swift */,
 				D609261023AF4B7400212288 /* TimerContainer.swift */,
 				D632018123AF4BA2003D1C53 /* TimerReducer.swift */,
 				D6B1BCC523AF5BEB00B5CC69 /* TimerEnvironment.swift */,
@@ -235,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */,
-				2D464ADA23B7316A0033BE2B /* StatisticView.swift */,
+				2D464ADA23B7316A0033BE2B /* StatisticContainer.swift */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -365,7 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DD8746023C0D34B0018AE51 /* SettingsContainer.swift in Sources */,
+				2DD8746023C0D34B0018AE51 /* TimerSettingsContainer.swift in Sources */,
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
 				D609260B23AF457600212288 /* Store.swift in Sources */,
@@ -373,11 +362,10 @@
 				D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */,
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
 				D6A21C26240A4E26003B68E0 /* HelperFunctions.swift in Sources */,
-				2D464ADB23B7316A0033BE2B /* StatisticView.swift in Sources */,
+				2D464ADB23B7316A0033BE2B /* StatisticContainer.swift in Sources */,
 				D6928D9123B5F13D00A5C90F /* RootView.swift in Sources */,
 				D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */,
 				D6A21C24240A4AED003B68E0 /* Effect.swift in Sources */,
-				2DD8746423C1FBB40018AE51 /* SettingsReducer.swift in Sources */,
 				D6928D8B23B5E95700A5C90F /* StatisticReducer.swift in Sources */,
 				D6FCF9E623AFABB1000E228C /* AppSettings.swift in Sources */,
 				D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */,
