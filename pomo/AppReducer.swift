@@ -11,15 +11,15 @@ import Foundation
 
 struct AppState {
   var timer = TimerState()
-  var statistic = StatisticState()
+//  var statistic = StatisticState()
 }
 
 enum AppAction {
   case timer(TimerAction)
-  case statistic(StatisticAction)
+//  case statistic(StatisticAction)
 }
 
 let appReducer = combine(
-  pullback(timerReducer, value: \AppState.timer, action: /AppAction.timer),
-  pullback(statisticReducer, value: \AppState.statistic, action: /AppAction.statistic)
+  pullback(timerReducer, value: \AppState.timer, action: /AppAction.timer)
+//  pullback(statisticReducer, value: \AppState.statistic, action: /AppAction.statistic)
 )
