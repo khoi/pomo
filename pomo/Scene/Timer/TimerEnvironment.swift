@@ -6,6 +6,7 @@
 //  Copyright © 2019 khoi. All rights reserved.
 //
 
+import ComposableArchitecture
 import CoreData
 import Foundation
 import os.log
@@ -133,7 +134,7 @@ var CurrentTimerEnvironment = TimerEnvironment.live
       .sync { () -> (currentSession: Int, started: Date?) in
         (1, nil)
       }
-  })
+    })
   }
 
   extension PomodoroRepository {

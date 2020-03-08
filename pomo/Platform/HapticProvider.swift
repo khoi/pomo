@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import ComposableArchitecture
 import UIKit
 
 protocol HapticProvider {

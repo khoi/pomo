@@ -47,7 +47,7 @@ extension Effect {
 }
 
 extension Publisher where Output == Never, Failure == Never {
-  func fireAndForget<A>() -> Effect<A> {
+  public func fireAndForget<A>() -> Effect<A> {
     map { (_) -> A in }
       .eraseToEffect()
   }
