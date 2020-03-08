@@ -10,26 +10,27 @@ import CasePaths
 import Combine
 import Foundation
 
-public func combine<Value, Action>(
-  _ reducers: Reducer<Value, Action>...
-) -> Reducer<Value, Action> {
-  { value, action in
-    let effects = reducers.compactMap { $0(&value, action) }
+public func combine<Value, Action, Environment>(
+  _ reducers: Reducer<Value, Action, Environment>...
+) -> Reducer<Value, Action, Environment> {
+  { value, action, environment in
+    let effects = reducers.compactMap { $0(&value, action, environment) }
     return Publishers.MergeMany(effects).eraseToEffect()
   }
 }
 
-public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
-  _ reducer: @escaping Reducer<LocalValue, LocalAction>,
+public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction, LocalEnvironment, GlobalEnvironment>(
+  _ reducer: @escaping Reducer<LocalValue, LocalAction, LocalEnvironment>,
   value: WritableKeyPath<GlobalValue, LocalValue>,
-  action: CasePath<GlobalAction, LocalAction>
-) -> Reducer<GlobalValue, GlobalAction> {
-  return { globalValue, globalAction in
+  action: CasePath<GlobalAction, LocalAction>,
+  environment: @escaping (GlobalEnvironment) -> LocalEnvironment
+) -> Reducer<GlobalValue, GlobalAction, GlobalEnvironment> {
+  return { globalValue, globalAction, globalEnvironment in
     guard let localAction = action.extract(from: globalAction) else {
       return Empty(completeImmediately: true).eraseToEffect()
     }
 
-    let localEffects = reducer(&globalValue[keyPath: value], localAction)
+    let localEffects = reducer(&globalValue[keyPath: value], localAction, environment(globalEnvironment))
 
     return localEffects
       .map(action.embed)
@@ -37,11 +38,11 @@ public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
   }
 }
 
-public func logging<Value, Action>(
-  _ reducer: @escaping Reducer<Value, Action>
-) -> Reducer<Value, Action> {
-  { value, action in
-    let effects = reducer(&value, action)
+public func logging<Value, Action, Environment>(
+  _ reducer: @escaping Reducer<Value, Action, Environment>
+) -> Reducer<Value, Action, Environment> {
+  { value, action, environment in
+    let effects = reducer(&value, action, environment)
     let newValue = value
     let loggingEffect = Effect<Action>.fireAndForget {
       print("Action: \(action)")
