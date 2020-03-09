@@ -23,8 +23,6 @@
 		D659A023235059C0000767CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D659A022235059C0000767CC /* Assets.xcassets */; };
 		D659A029235059C0000767CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D659A027235059C0000767CC /* LaunchScreen.storyboard */; };
 		D67C7EE423B0EABE00787DB1 /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C7EE323B0EABE00787DB1 /* UIApplication+Version.swift */; };
-		D68B280324153A2700075ED7 /* ComposableArchitecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68B27FA24153A2700075ED7 /* ComposableArchitecture.framework */; };
-		D68B280A24153A2700075ED7 /* ComposableArchitectureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B280924153A2700075ED7 /* ComposableArchitectureTests.swift */; };
 		D68B280C24153A2700075ED7 /* ComposableArchitecture.h in Headers */ = {isa = PBXBuildFile; fileRef = D68B27FC24153A2700075ED7 /* ComposableArchitecture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D68B280F24153A2700075ED7 /* ComposableArchitecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68B27FA24153A2700075ED7 /* ComposableArchitecture.framework */; };
 		D68B281024153A2700075ED7 /* ComposableArchitecture.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D68B27FA24153A2700075ED7 /* ComposableArchitecture.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -46,20 +44,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		D659A030235059C0000767CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D659A011235059BF000767CC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D659A018235059BF000767CC;
-			remoteInfo = pomo;
-		};
-		D68B280424153A2700075ED7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D659A011235059BF000767CC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D68B27F924153A2700075ED7;
-			remoteInfo = ComposableArchitecture;
-		};
-		D68B280624153A2700075ED7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D659A011235059BF000767CC /* Project object */;
 			proxyType = 1;
@@ -114,9 +98,6 @@
 		D68B27FA24153A2700075ED7 /* ComposableArchitecture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComposableArchitecture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68B27FC24153A2700075ED7 /* ComposableArchitecture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposableArchitecture.h; sourceTree = "<group>"; };
 		D68B27FD24153A2700075ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D68B280224153A2700075ED7 /* ComposableArchitectureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposableArchitectureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D68B280924153A2700075ED7 /* ComposableArchitectureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTests.swift; sourceTree = "<group>"; };
-		D68B280B24153A2700075ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6928D8A23B5E95700A5C90F /* StatisticReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReducer.swift; sourceTree = "<group>"; };
 		D6928D8C23B5EC0800A5C90F /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		D6928D9023B5F13D00A5C90F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -154,14 +135,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D68B281C24153A4500075ED7 /* CasePaths in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D68B27FF24153A2700075ED7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D68B280324153A2700075ED7 /* ComposableArchitecture.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +196,6 @@
 				D659A01B235059BF000767CC /* pomo */,
 				D659A032235059C0000767CC /* pomoTests */,
 				D68B27FB24153A2700075ED7 /* ComposableArchitecture */,
-				D68B280824153A2700075ED7 /* ComposableArchitectureTests */,
 				D659A01A235059BF000767CC /* Products */,
 				D638725023B0B7C400AF1F2B /* Frameworks */,
 			);
@@ -235,7 +207,6 @@
 				D659A019235059BF000767CC /* pomo.app */,
 				D659A02F235059C0000767CC /* pomoTests.xctest */,
 				D68B27FA24153A2700075ED7 /* ComposableArchitecture.framework */,
-				D68B280224153A2700075ED7 /* ComposableArchitectureTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,15 +268,6 @@
 				D68B27FD24153A2700075ED7 /* Info.plist */,
 			);
 			path = ComposableArchitecture;
-			sourceTree = "<group>";
-		};
-		D68B280824153A2700075ED7 /* ComposableArchitectureTests */ = {
-			isa = PBXGroup;
-			children = (
-				D68B280924153A2700075ED7 /* ComposableArchitectureTests.swift */,
-				D68B280B24153A2700075ED7 /* Info.plist */,
-			);
-			path = ComposableArchitectureTests;
 			sourceTree = "<group>";
 		};
 		D6928D8923B5E90200A5C90F /* Statistic */ = {
@@ -400,25 +362,6 @@
 			productReference = D68B27FA24153A2700075ED7 /* ComposableArchitecture.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D68B280124153A2700075ED7 /* ComposableArchitectureTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D68B281724153A2700075ED7 /* Build configuration list for PBXNativeTarget "ComposableArchitectureTests" */;
-			buildPhases = (
-				D68B27FE24153A2700075ED7 /* Sources */,
-				D68B27FF24153A2700075ED7 /* Frameworks */,
-				D68B280024153A2700075ED7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D68B280524153A2700075ED7 /* PBXTargetDependency */,
-				D68B280724153A2700075ED7 /* PBXTargetDependency */,
-			);
-			name = ComposableArchitectureTests;
-			productName = ComposableArchitectureTests;
-			productReference = D68B280224153A2700075ED7 /* ComposableArchitectureTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -438,10 +381,6 @@
 					};
 					D68B27F924153A2700075ED7 = {
 						CreatedOnToolsVersion = 11.3.1;
-					};
-					D68B280124153A2700075ED7 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = D659A018235059BF000767CC;
 					};
 				};
 			};
@@ -464,7 +403,6 @@
 				D659A018235059BF000767CC /* pomo */,
 				D659A02E235059C0000767CC /* pomoTests */,
 				D68B27F924153A2700075ED7 /* ComposableArchitecture */,
-				D68B280124153A2700075ED7 /* ComposableArchitectureTests */,
 			);
 		};
 /* End PBXProject section */
@@ -488,13 +426,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D68B27F824153A2700075ED7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D68B280024153A2700075ED7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -549,14 +480,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D68B27FE24153A2700075ED7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D68B280A24153A2700075ED7 /* ComposableArchitectureTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -564,16 +487,6 @@
 			isa = PBXTargetDependency;
 			target = D659A018235059BF000767CC /* pomo */;
 			targetProxy = D659A030235059C0000767CC /* PBXContainerItemProxy */;
-		};
-		D68B280524153A2700075ED7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D68B27F924153A2700075ED7 /* ComposableArchitecture */;
-			targetProxy = D68B280424153A2700075ED7 /* PBXContainerItemProxy */;
-		};
-		D68B280724153A2700075ED7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D659A018235059BF000767CC /* pomo */;
-			targetProxy = D68B280624153A2700075ED7 /* PBXContainerItemProxy */;
 		};
 		D68B280E24153A2700075ED7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -859,46 +772,6 @@
 			};
 			name = Release;
 		};
-		D68B281424153A2700075ED7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ComposableArchitectureTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.khoi.ComposableArchitectureTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pomo.app/pomo";
-			};
-			name = Debug;
-		};
-		D68B281524153A2700075ED7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ComposableArchitectureTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.khoi.ComposableArchitectureTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pomo.app/pomo";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -934,15 +807,6 @@
 			buildConfigurations = (
 				D68B281224153A2700075ED7 /* Debug */,
 				D68B281324153A2700075ED7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D68B281724153A2700075ED7 /* Build configuration list for PBXNativeTarget "ComposableArchitectureTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D68B281424153A2700075ED7 /* Debug */,
-				D68B281524153A2700075ED7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
