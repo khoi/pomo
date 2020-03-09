@@ -7,6 +7,7 @@
 //
 
 import Combine
+import ComposableArchitecture
 @testable import pomo
 import XCTest
 
@@ -51,9 +52,10 @@ struct Step<Value, Action> {
   }
 }
 
-func assert<Value: Equatable, Action: Equatable>(
+func assert<Value: Equatable, Action: Equatable, Environment>(
   initialValue: Value,
-  reducer: Reducer<Value, Action>,
+  reducer: Reducer<Value, Action, Environment>,
+  environment: Environment,
   steps: Step<Value, Action>...
 ) {
   var state = initialValue
@@ -70,7 +72,7 @@ func assert<Value: Equatable, Action: Equatable>(
       XCTAssertEqual(step.action, actions.removeFirst(), file: step.file, line: step.line)
     }
 
-    let effect = reducer(&state, step.action)
+    let effect = reducer(&state, step.action, environment)
     let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
 
     _ = effect.sink(
