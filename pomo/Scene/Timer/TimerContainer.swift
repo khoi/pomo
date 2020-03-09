@@ -169,7 +169,7 @@ struct TimerContainer: View {
         started: Date(timeIntervalSince1970: 1_577_528_235)
       ),
       reducer: timerReducer,
-      environment: AppEnvironment(
+      environment: TimerEnvironment(
         date: Date.init,
         timerSettingsRepository: .mock,
         pomodoroRepository: .mock,

@@ -20,7 +20,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       date: Date.init,
       timerSettingsRepository: .live,
       pomodoroRepository: .live,
-      hapticHandler: TimerHapticHandler(provider: iOSHapticProvider())
+      hapticHandler: TimerHapticHandler(provider: iOSHapticProvider()),
+      loadStatistic: {
+        .sync {
+          let now = Date()
+          return Statistic(today: getTodayPomoCount(date: now),
+                           thisWeek: getThisWeekPomoCount(date: now),
+                           thisMonth: getThisMonthPomoCount(date: now),
+                           thisYear: getThisYearPomoCount(date: now))
+        }
+      }
     )
   )
 

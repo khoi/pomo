@@ -94,7 +94,7 @@ private func interval(at index: Int) -> TimeInterval {
     static let store = Store<TimerState, TimerAction>(
       initialValue: TimerState(),
       reducer: timerReducer,
-      environment: AppEnvironment(
+      environment: TimerEnvironment(
         date: Date.init,
         timerSettingsRepository: .mock,
         pomodoroRepository: .mock,

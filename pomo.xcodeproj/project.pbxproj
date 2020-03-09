@@ -12,6 +12,7 @@
 		2DE5D8B423D4596B00A79ADC /* HapticProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5D8B323D4596B00A79ADC /* HapticProvider.swift */; };
 		D609260F23AF49E800212288 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609260E23AF49E800212288 /* Utils.swift */; };
 		D609261123AF4B7400212288 /* TimerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609261023AF4B7400212288 /* TimerContainer.swift */; };
+		D62BD9CE241687F3008A2623 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62BD9CD241687F3008A2623 /* Functions.swift */; };
 		D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632018123AF4BA2003D1C53 /* TimerReducer.swift */; };
 		D638724A23B093E600AF1F2B /* timer_completed.wav in Resources */ = {isa = PBXBuildFile; fileRef = D638724923B093E600AF1F2B /* timer_completed.wav */; };
 		D638724D23B0B6B400AF1F2B /* pomo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D638724B23B0B6B400AF1F2B /* pomo.xcdatamodeld */; };
@@ -80,6 +81,7 @@
 		D609260A23AF457600212288 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D609260E23AF49E800212288 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D609261023AF4B7400212288 /* TimerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerContainer.swift; sourceTree = "<group>"; };
+		D62BD9CD241687F3008A2623 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D632018123AF4BA2003D1C53 /* TimerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerReducer.swift; sourceTree = "<group>"; };
 		D638724923B093E600AF1F2B /* timer_completed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timer_completed.wav; sourceTree = "<group>"; };
 		D638724C23B0B6B400AF1F2B /* pomo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomo.xcdatamodel; sourceTree = "<group>"; };
@@ -169,6 +171,15 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		D62BD9CC241687E1008A2623 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
+				D62BD9CD241687F3008A2623 /* Functions.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		D638724823B093D800AF1F2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +225,7 @@
 		D659A01B235059BF000767CC /* pomo */ = {
 			isa = PBXGroup;
 			children = (
+				D62BD9CC241687E1008A2623 /* CoreData */,
 				2DE5D8B223D4595500A79ADC /* Platform */,
 				D67C7EE223B0EAAD00787DB1 /* Utilities */,
 				D638724823B093D800AF1F2B /* Resources */,
@@ -222,7 +234,6 @@
 				D659A01C235059BF000767CC /* AppDelegate.swift */,
 				D659A01E235059BF000767CC /* SceneDelegate.swift */,
 				D6FCF9E523AFABB1000E228C /* AppSettings.swift */,
-				D638724E23B0B70D00AF1F2B /* CoreDataStack.swift */,
 				D6928D8C23B5EC0800A5C90F /* AppReducer.swift */,
 				D6928D9023B5F13D00A5C90F /* RootView.swift */,
 			);
@@ -442,6 +453,7 @@
 				2DD8746023C0D34B0018AE51 /* TimerSettingsContainer.swift in Sources */,
 				D632018223AF4BA2003D1C53 /* TimerReducer.swift in Sources */,
 				D659A01D235059BF000767CC /* AppDelegate.swift in Sources */,
+				D62BD9CE241687F3008A2623 /* Functions.swift in Sources */,
 				D6928D8D23B5EC0800A5C90F /* AppReducer.swift in Sources */,
 				D6FCF9E823AFAC6A000E228C /* Array+Safesubscript.swift in Sources */,
 				D609261123AF4B7400212288 /* TimerContainer.swift in Sources */,
