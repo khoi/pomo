@@ -91,7 +91,16 @@ private func interval(at index: Int) -> TimeInterval {
 
 #if DEBUG
   struct SettingsContainer_Previews: PreviewProvider {
-    static let store = Store<TimerState, TimerAction>(initialValue: TimerState(), reducer: timerReducer)
+    static let store = Store<TimerState, TimerAction>(
+      initialValue: TimerState(),
+      reducer: timerReducer,
+      environment: AppEnvironment(
+        date: Date.init,
+        timerSettingsRepository: .mock,
+        pomodoroRepository: .mock,
+        hapticHandler: TimerHapticHandler(provider: ConsoleHapticProvider())
+      )
+    )
     static var previews: some View {
       Group {
         NavigationView {

@@ -13,13 +13,16 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
-  #if DEBUG
-    let store = Store(initialValue: AppState(),
-                      reducer: appReducer)
-  #else
-    let store = Store(initialValue: AppState(),
-                      reducer: appReducer)
-  #endif
+  let store = Store(
+    initialValue: AppState(),
+    reducer: appReducer,
+    environment: AppEnvironment(
+      date: Date.init,
+      timerSettingsRepository: .live,
+      pomodoroRepository: .live,
+      hapticHandler: TimerHapticHandler(provider: iOSHapticProvider())
+    )
+  )
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

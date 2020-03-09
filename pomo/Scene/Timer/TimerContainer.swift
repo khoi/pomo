@@ -129,7 +129,8 @@ struct TimerContainer: View {
         self.timeLeft = self.store.value.currentDuration
         return
       }
-      let timeLeft = self.store.value.currentDuration - CurrentTimerEnvironment.date().timeIntervalSince(started)
+      // TODO: FIX ME
+      let timeLeft = self.store.value.currentDuration - Date().timeIntervalSince(started)
       if timeLeft <= 0 {
         self.store.send(TimerAction.completeCurrentSession)
         return
@@ -167,7 +168,13 @@ struct TimerContainer: View {
         timerSettings: TimerSettings(workDuration: 5, breakDuration: 5, longBreakDuration: 5, sessionCount: 4),
         started: Date(timeIntervalSince1970: 1_577_528_235)
       ),
-      reducer: timerReducer
+      reducer: timerReducer,
+      environment: AppEnvironment(
+        date: Date.init,
+        timerSettingsRepository: .mock,
+        pomodoroRepository: .mock,
+        hapticHandler: TimerHapticHandler(provider: ConsoleHapticProvider())
+      )
     )
     static var previews: some View {
       Group {

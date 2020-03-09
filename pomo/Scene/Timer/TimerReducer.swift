@@ -65,9 +65,10 @@ public enum TimerAction: Equatable {
   case loadedCurrentSession(Int, Date?)
 }
 
-public func timerReducer(
+func timerReducer(
   state: inout TimerState,
-  action: TimerAction
+  action: TimerAction,
+  environment: TimerEnvironment
 ) -> Effect<TimerAction> {
   switch action {
   case .completeCurrentSession:
@@ -77,11 +78,11 @@ public func timerReducer(
 
     state.started = nil
     state.currentSession = (state.currentSession % state.timerSettings.sessionCount) + 1
-    let startedDate = started ?? CurrentTimerEnvironment.date()
+    let startedDate = started ?? environment.date()
     let localState = state
 
-    let saveTimerEffect = CurrentTimerEnvironment.pomodoroRepository.saveTimer(startedDate, currentDuration, currentSessionText)
-    let playSoundEffect = localState.timerSettings.soundEnabled ? CurrentTimerEnvironment.hapticHandler.playSound() : .empty()
+    let saveTimerEffect = environment.pomodoroRepository.saveTimer(startedDate, currentDuration, currentSessionText)
+    let playSoundEffect = localState.timerSettings.soundEnabled ? environment.hapticHandler.playSound() : .empty()
 
     return Publishers.MergeMany([
       saveTimerEffect,
@@ -89,14 +90,14 @@ public func timerReducer(
     ])
       .fireAndForget()
   case .startTimer:
-    state.started = CurrentTimerEnvironment.date()
-    return CurrentTimerEnvironment
+    state.started = environment.date()
+    return environment
       .hapticHandler
       .impactOccurred()
       .fireAndForget()
   case .stopTimer:
     state.started = nil
-    return CurrentTimerEnvironment
+    return environment
       .hapticHandler
       .impactOccurred()
       .fireAndForget()
@@ -105,12 +106,12 @@ public func timerReducer(
     state.currentSession = 1
     return .empty()
   case let .saveTimerSettings(settings):
-    return CurrentTimerEnvironment
+    return environment
       .timerSettingsRepository
       .save(settings)
       .fireAndForget()
   case .loadTimerSettings:
-    return CurrentTimerEnvironment
+    return environment
       .timerSettingsRepository
       .load()
       .map(TimerAction.loadedTimerSettings)
@@ -119,12 +120,12 @@ public func timerReducer(
     state.timerSettings = timerSettings
     return .empty()
   case .saveCurrentSession:
-    return CurrentTimerEnvironment
+    return environment
       .timerSettingsRepository
       .saveCurrentSession(state.currentSession, state.started)
       .fireAndForget()
   case .loadCurrentSession:
-    return CurrentTimerEnvironment
+    return environment
       .timerSettingsRepository
       .loadCurrentSession()
       .map(TimerAction.loadedCurrentSession)

@@ -20,7 +20,10 @@ enum AppAction {
 //  case statistic(StatisticAction)
 }
 
+typealias AppEnvironment =
+  TimerEnvironment
+
 let appReducer = combine(
-  pullback(timerReducer, value: \AppState.timer, action: /AppAction.timer)
+  pullback(timerReducer, value: \AppState.timer, action: /AppAction.timer, environment: { $0 })
 //  pullback(statisticReducer, value: \AppState.statistic, action: /AppAction.statistic)
 )

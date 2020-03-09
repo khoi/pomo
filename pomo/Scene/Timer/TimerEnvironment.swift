@@ -92,33 +92,18 @@ extension TimerHapticHandler {
   static let live = TimerHapticHandler(provider: iOSHapticProvider())
 }
 
-public struct TimerEnvironment {
-  var date: () -> Date = Date.init
-  var timerSettingsRepository: TimerSettingsRepository = .live
-  var pomodoroRepository: PomodoroRepository = .live
-  var hapticHandler: TimerHapticHandler = .live
-}
-
-extension TimerEnvironment {
-  static let live = TimerEnvironment()
-}
+typealias TimerEnvironment = (
+  date: () -> Date,
+  timerSettingsRepository: TimerSettingsRepository,
+  pomodoroRepository: PomodoroRepository,
+  hapticHandler: TimerHapticHandler
+)
 
 extension TimerState {
   static let live = TimerState()
 }
 
-var CurrentTimerEnvironment = TimerEnvironment.live
-
 #if DEBUG
-  extension TimerEnvironment {
-    static let mock = TimerEnvironment(
-      date: { Date(timeIntervalSince1970: 1_577_528_238) },
-      timerSettingsRepository: .mock,
-      pomodoroRepository: .mock,
-      hapticHandler: .mock
-    )
-  }
-
   extension TimerSettingsRepository {
     static let mock = TimerSettingsRepository(load: { () -> Effect<TimerSettings> in
       .sync {
