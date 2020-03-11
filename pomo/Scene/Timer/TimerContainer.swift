@@ -129,7 +129,6 @@ struct TimerContainer: View {
         self.timeLeft = self.store.value.currentDuration
         return
       }
-      // TODO: FIX ME
       let timeLeft = self.store.value.currentDuration - Date().timeIntervalSince(started)
       if timeLeft <= 0 {
         self.store.send(TimerAction.completeCurrentSession)
