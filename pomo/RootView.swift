@@ -22,7 +22,6 @@ struct RootView: View {
                    openStatistic: { self.showingStatisticModal.toggle() },
                    openSettings: { self.showingSettingsModal.toggle() })
       .sheet(isPresented: $showingStatisticModal) {
-        Text("ASD")
         StatisticContainer(store: self.store.view(value: { $0.statistic }, action: { .statistic($0) }))
       }
       // FIXME: A temporary hack to attach multiple sheets to a view
