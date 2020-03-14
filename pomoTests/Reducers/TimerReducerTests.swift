@@ -467,4 +467,38 @@ class TimerReducerTests: XCTestCase {
 
     XCTAssert(didTriggerHapticFeedback)
   }
+
+  func testSaveTimerSettings() {
+    var savedSettings: TimerSettings?
+    let mockSettings = TimerSettings(workDuration: 5,
+                                     breakDuration: 3,
+                                     longBreakDuration: 5)
+
+    let mockRepository = TimerSettingsRepository(load: { () -> Effect<TimerSettings> in
+      .sync { savedSettings! }
+    }, save: { newSettings -> Effect<Never> in
+      .fireAndForget { savedSettings = newSettings }
+    }, saveCurrentSession: { (_, _) -> Effect<Never> in
+      fatalError()
+      }) { () -> Effect<(currentSession: Int, started: Date?)> in
+      fatalError()
+    }
+
+    let mockEnvironment = TimerEnvironment(
+      date: { Date(timeIntervalSince1970: 3000) },
+      timerSettingsRepository: mockRepository,
+      pomodoroRepository: .mock,
+      hapticHandler: TimerHapticHandler(provider: ConsoleHapticProvider())
+    )
+
+    assert(
+      initialValue: TimerState(started: nil),
+      reducer: timerReducer,
+      environment: mockEnvironment,
+      steps:
+      .send(.saveTimerSettings(mockSettings)) { _ in },
+      .send(.loadTimerSettings) { _ in },
+      .receive(.loadedTimerSettings(mockSettings)) { $0.timerSettings = mockSettings }
+    )
+  }
 }
